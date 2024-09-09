@@ -6,14 +6,14 @@ const Header = () => {
   return (
     <>
       <header
-        className={`flex flex-col gap-2 text-center justify-between p-2 items-center ${
-          isOpen ? 'h-auto' : 'h-[3em]'
-        }  overflow-hidden`}
+        className={`flex flex-col gap-2 text-center justify-between py-8 px-10 items-center ${
+          isOpen ? 'h-auto' : 'h-[5em]'
+        }  overflow-hidden xmd:flex-row`}
       >
         <div className="title-logo flex items-center justify-between">
           <h1 className="text-3xl font-semibold text-green-600"> GoShoppe </h1>
           <div
-            className="w-8 h-8 bg-green-600 cursor-pointer"
+            className="w-8 h-8 bg-green-600 cursor-pointer xmd:hidden"
             onClick={() => {
               setIsOpen(!isOpen);
             }}
@@ -21,7 +21,7 @@ const Header = () => {
         </div>
 
         <nav>
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col gap-1 xmd:flex-row">
             <li className="hover:text-green-600 hover:border-b-2 hover:border-green-600 cursor-pointer p-1">
               Category
             </li>
@@ -46,7 +46,7 @@ const Header = () => {
         </nav>
 
         <nav>
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col gap-2 xmd:flex-row">
             <li className="hover:text-green-600 hover:border-b-2 hover:border-green-600 cursor-pointer p-1">
               Account
             </li>
