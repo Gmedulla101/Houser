@@ -4,59 +4,46 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <>
-      <header
-        className={`flex flex-col gap-2 text-center justify-between py-8 px-10 items-center ${
-          isOpen ? 'h-auto' : 'h-[5em]'
-        }  overflow-hidden xmd:flex-row`}
-      >
-        <div className="title-logo flex items-center justify-between">
-          <h1 className="text-3xl font-semibold text-green-600"> GoShoppe </h1>
-          <div
-            className="w-8 h-8 bg-green-600 cursor-pointer xmd:hidden"
-            onClick={() => {
-              setIsOpen(!isOpen);
-            }}
-          ></div>
-        </div>
+    <header
+      className={`flex flex-col gap-2 text-center justify-between py-4 px-10 items-center bg-white mx-auto ${
+        isOpen ? 'h-auto' : 'h-[4em]'
+      }  overflow-hidden z-50 xmd:flex-row`}
+    >
+      <div className="title-logo flex items-center justify-between w-full xmd:w-fit">
+        <h1 className="text-3xl font-bold text-purple-700"> Houser </h1>
+        <div
+          className="w-8 h-8 bg-blue-400 cursor-pointer xmd:hidden"
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+        ></div>
+      </div>
 
-        <nav>
-          <ul className="flex flex-col gap-1 xmd:flex-row">
-            <li className="hover:text-green-600 hover:border-b-2 hover:border-green-600 cursor-pointer p-1">
-              Category
-            </li>
-            <li className="hover:text-green-600 hover:border-b-2 hover:border-green-600 cursor-pointer p-1">
-              Top deals
-            </li>
-            <li className="hover:text-green-600 hover:border-b-2 hover:border-green-600 cursor-pointer p-1">
-              What's new
-            </li>
-            <li className="hover:text-green-600 hover:border-b-2 hover:border-green-600 cursor-pointer p-1">
-              Wanna sell?
-            </li>
-          </ul>
-        </nav>
+      <nav>
+        <ul className="flex flex-col gap-4 xmd:flex-row">
+          <li className="hover:text-green-600 hover:border-b-2 hover:border-green-600 cursor-pointer p-1">
+            Home
+          </li>
+          <li className="hover:text-green-600 hover:border-b-2 hover:border-green-600 cursor-pointer p-1">
+            About Us
+          </li>
+          <li className="hover:text-green-600 hover:border-b-2 hover:border-green-600 cursor-pointer p-1">
+            Properties
+          </li>
+          <li className="hover:text-green-600 hover:border-b-2 hover:border-green-600 cursor-pointer p-1">
+            Services
+          </li>
+        </ul>
+      </nav>
 
-        <nav>
-          <input
-            type="text"
-            placeholder="Search for a product"
-            className="border-2 border-slate-400 py-2 px-4 rounded-full outline-none focus:border-green-400"
-          />
-        </nav>
-
-        <nav>
-          <ul className="flex flex-col gap-2 xmd:flex-row">
-            <li className="hover:text-green-600 hover:border-b-2 hover:border-green-600 cursor-pointer p-1">
-              Account
-            </li>
-            <li className="hover:text-green-600 hover:border-b-2 hover:border-green-600 cursor-pointer p-1">
-              Cart
-            </li>
-          </ul>
-        </nav>
-      </header>
-    </>
+      <nav>
+        <ul className="flex flex-col gap-2 xmd:flex-row">
+          <li className="hover:text-green-600 hover:border-b-2 hover:border-green-600 cursor-pointer p-1">
+            Contact us
+          </li>
+        </ul>
+      </nav>
+    </header>
   );
 };
 
