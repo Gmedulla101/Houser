@@ -1,10 +1,12 @@
+import heroImg from '../assets/Image.png';
+
 const Hero = () => {
   return (
-    <section className="mt-24">
+    <section className="mt-12 flex items-center">
       <div className="heroText w-[40%] flex flex-col justify-center align-center gap-3 ml-24">
         <h1 className="text-6xl font-semibold">
           Get rid of housing hassles with{' '}
-          <span className="text-purple-700">Houser</span>
+          <span className="text-blue-800">Houser</span>
         </h1>
         <p className="text-gray-600">
           Your journey to finding the perfect house for you begins here. Explore
@@ -20,7 +22,7 @@ const Hero = () => {
           </a>
           <a
             href="#"
-            className="border-2 border-purple-500 px-6 py-3 rounded-md bg-purple-500 text-white hover:scale-110 transition active:bg-purple-800"
+            className="px-6 py-3 rounded-md bg-blue-600 text-white hover:scale-110 transition active:bg-blue-800"
           >
             {' '}
             Browse Properties{' '}
@@ -37,6 +39,9 @@ const Hero = () => {
             <p className="text-gray-600">Properties for clients</p>
           </span>
         </div>
+      </div>
+      <div className="heroImg">
+        <img src={heroImg} alt="" />
       </div>
     </section>
   );
