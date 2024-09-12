@@ -2,46 +2,56 @@ import heroImg from '../assets/heroImg.png';
 
 const Hero = () => {
   return (
-    <section className="mt-12 flex items-center">
-      <div className="heroText w-[40%] flex flex-col justify-center align-center gap-3 ml-24">
-        <h1 className="text-6xl font-semibold">
+    <section className="p-4 mt-12 flex flex-col-reverse items-center md:flex-row xl:mt-16">
+      <div className="heroText  flex flex-col justify-center items-center text-center gap-3 md:w-[40%] md:ml-24 md:text-left md:items-start">
+        <h1 className="text-2xl font-semibold lg:text-4xl xl:text-6xl">
           Get rid of housing hassles with{' '}
           <span className="text-blue-800">Houser</span>
         </h1>
-        <p className="text-gray-600">
+        <p className="text-sm text-gray-600">
           Your journey to finding the perfect house for you begins here. Explore
           our listings to find the home that matches your dreams.
         </p>
 
-        <span className="actionBtns flex gap-12">
+        <span className="actionBtns flex flex-col gap-5 w-[90%] xmd:flex-row">
           <a
             href="#"
-            className="border-2 border-slate-400 px-6 py-3 rounded-md hover:scale-110 hover:bg-slate-300 transition"
+            className="block text-sm text-center border-2 px-2 py-3 border-slate-400 w-full  rounded-md hover:scale-110 hover:bg-slate-300 transition lg:px-6 lg:py-3"
           >
             Learn more
           </a>
           <a
             href="#"
-            className="px-6 py-3 rounded-md bg-blue-600 text-white hover:scale-110 transition active:bg-blue-800"
+            className="block text-sm text-center px-2 py-3 w-full  rounded-md bg-blue-600 text-white hover:scale-110 transition active:bg-blue-800 lg:px-6 lg:py-3"
           >
             {' '}
             Browse Properties{' '}
           </a>
         </span>
-        <div className="stats flex gap-12 mt-24">
-          <span className="border-2 border-gray-400 px-4 py-2 rounded-md shadow-xl">
-            <p className="text-4xl font-semibold"> 200+ </p>
-            <p className="text-gray-600">Happy customers</p>
-          </span>
+        <div className="stats flex items-center justify-center w-[90%] gap-6 mt-5 xmd:flex-row xl:mt-10">
+          <div className="border-2 border-gray-400 px-4 py-2 rounded-md shadow-xl w-full">
+            <p className="text-xl font-semibold lg:text-2xl xl:text-4xl">
+              {' '}
+              200+{' '}
+            </p>
+            <p className="text-xs lg:text-sm text-gray-600">Happy customers</p>
+          </div>
 
-          <span className="border-2 border-gray-400 px-4 py-2 rounded-md shadow-xl">
-            <p className="text-4xl font-semibold"> 1k+ </p>
-            <p className="text-gray-600">Properties for clients</p>
-          </span>
+          <div className="border-2 border-gray-400 px-4 py-2 rounded-md shadow-xl w-full">
+            <p className="text-xl font-semibold lg:text-2xl xl:text-4xl">
+              {' '}
+              1k+{' '}
+            </p>
+            <p className="text-xs text-gray-600 lg:text-sm">
+              Properties for clients
+            </p>
+          </div>
         </div>
       </div>
-      <div className="heroImg">
-        <img src={heroImg} alt="" />
+
+      {/* HERO SECTION IMAGE */}
+      <div className="heroImg rounded-xl mb-12 overflow-hidden shadow-md md:w-[60%] md:shadow-none">
+        <img src={heroImg} alt="" className="w-full" />
       </div>
     </section>
   );
