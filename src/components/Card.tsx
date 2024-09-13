@@ -22,9 +22,9 @@ const Card = ({
   type,
 }: CardProps) => {
   return (
-    <div className="shadow-3xl border-2 border-gray-300 shadow-xl rounded-lg p-2 w-[300px] mx-auto">
+    <div className="card shadow-3xl border-2 border-gray-300 shadow-xl rounded-lg p-2 w-[300px]">
       <img src={imgUrl} alt="Houser home" />
-      <h3 className="font-semibold mt-3 text-lg">{title}</h3>
+      <h3 className="font-semibold mt-3 text-lg w-[300px]">{title}</h3>
       <p className="text-gray-600 text-sm mt-2">{desc.slice(0, 100)}...</p>
 
       <div className="properties flex mt-5 gap-2 flex-wrap">

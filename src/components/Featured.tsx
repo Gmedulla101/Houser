@@ -1,12 +1,9 @@
-import Card from './Card';
+import Slider from './Slider';
 import { homes } from '../dummy';
-console.log(homes);
 
 const Featured = () => {
-  const featuredEl = homes.map((home, i) => {
-    if (home.featured === true) {
-      return <Card {...home} key={i} />;
-    }
+  const featured = homes.filter((home) => {
+    return home.featured === true;
   });
 
   return (
@@ -18,7 +15,9 @@ const Featured = () => {
         filter through to make available to our customers.
       </p>
 
-      <div className="featuredCards mt-12 flex gap-12">{featuredEl}</div>
+      <div className="overflow-hidden mt-12 relative">
+        <Slider features={featured} />
+      </div>
     </section>
   );
 };

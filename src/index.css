@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.featuredCards::-webkit-scrollbar {
+  display: none;
+}
