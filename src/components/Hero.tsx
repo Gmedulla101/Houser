@@ -42,9 +42,7 @@ const Hero = () => {
               {' '}
               1k+{' '}
             </p>
-            <p className="text-xs text-gray-600 lg:text-sm">
-              Properties for clients
-            </p>
+            <p className="text-xs text-gray-600 lg:text-sm">Properties</p>
           </div>
         </div>
       </div>
