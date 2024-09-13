@@ -18,9 +18,7 @@ const Featured = () => {
         filter through to make available to our customers.
       </p>
 
-      <div className="featuredCards mt-12 flex flex-col gap-12">
-        {featuredEl}
-      </div>
+      <div className="featuredCards mt-12 flex gap-12">{featuredEl}</div>
     </section>
   );
 };

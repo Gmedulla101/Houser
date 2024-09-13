@@ -2,7 +2,25 @@ import bathImg from '../assets/bath.png';
 import bed from '../assets/bed.png';
 import villa from '../assets/home.png';
 
-const Card = ({ imgUrl, title, desc, price, bedrooms, bath, type }) => {
+type CardProps = {
+  imgUrl: string;
+  title: string;
+  desc: string;
+  price: number;
+  bedrooms: number;
+  bath: number;
+  type: string;
+};
+
+const Card = ({
+  imgUrl,
+  title,
+  desc,
+  price,
+  bedrooms,
+  bath,
+  type,
+}: CardProps) => {
   return (
     <div className="shadow-3xl border-2 border-gray-300 shadow-xl rounded-lg p-2 w-[300px] mx-auto">
       <img src={imgUrl} alt="Houser home" />
