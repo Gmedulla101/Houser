@@ -36,31 +36,25 @@ const showPrevCard = () => {
   }
 };
 
-const Slider = ({ features }: any) => {
-  const featuredEl = features.map((feature: CardProps, index: number) => {
+const Slider = ({ sliderDetails }: any) => {
+  const sliderEl = sliderDetails.map((feature: CardProps, index: number) => {
     return <Card key={index} {...feature} />;
   });
 
   return (
     <>
       <div className="featuredCards flex gap-12 pl-8 transiton" id="featured">
-        {featuredEl}
+        {sliderEl}
       </div>
 
       {/* BUTTONS */}
       <div className="flex gap-3 w-fit relative left-[73%] mt-5 md:left-[80%] lg:left-[90%]">
-        <CIcon
-          icon={cilArrowThickLeft}
-          size="lg"
-          className="border-2 border-black w-10 h-10 rounded-full p-2 transition active:scale-110 cursor-pointer"
-          onClick={showPrevCard}
-        />
-        <CIcon
-          icon={cilArrowThickRight}
-          size="lg"
-          className="border-2 border-black w-10 h-10 rounded-full p-2 transition active:scale-110 cursor-pointer"
-          onClick={showNextCard}
-        />
+        <button className="border-2 border-black w-10 h-10 rounded-full p-2 transition active:scale-110 cursor-pointer">
+          <CIcon icon={cilArrowThickLeft} size="lg" onClick={showPrevCard} />
+        </button>
+        <button className="border-2 border-black w-10 h-10 rounded-full p-2 transition active:scale-110 cursor-pointer">
+          <CIcon icon={cilArrowThickRight} size="lg" onClick={showNextCard} />
+        </button>
       </div>
     </>
   );

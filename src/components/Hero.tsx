@@ -1,5 +1,7 @@
 import heroImg from '../assets/heroImg.png';
 
+import { Link } from 'react-router-dom';
+
 const Hero = () => {
   return (
     <section className="p-4 mt-12 flex flex-col-reverse items-center md:flex-row xl:mt-16">
@@ -20,13 +22,12 @@ const Hero = () => {
           >
             Learn more
           </a>
-          <a
-            href="#"
+          <Link
+            to={'/properties'}
             className="block text-sm text-center px-2 py-3 w-full  rounded-md bg-blue-600 text-white hover:scale-110 transition active:bg-blue-800 lg:px-6 lg:py-3"
           >
-            {' '}
-            Browse Properties{' '}
-          </a>
+            Browse Properties
+          </Link>
         </span>
         <div className="stats flex items-center justify-center w-[90%] gap-6 mt-5 xmd:flex-row xl:mt-10">
           <div className="border-2 border-gray-400 px-4 py-2 rounded-md shadow-xl w-full">

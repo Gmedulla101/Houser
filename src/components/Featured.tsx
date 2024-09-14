@@ -18,7 +18,7 @@ const Featured = () => {
       </p>
 
       <div className="overflow-hidden mt-12 relative">
-        <Slider features={featured} />
+        <Slider sliderDetails={featured} />
       </div>
     </section>
   );

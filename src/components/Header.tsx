@@ -1,5 +1,8 @@
 import { useState } from 'react';
 
+//IMPORTING ROUTING ASSETS
+import { Link } from 'react-router-dom';
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -10,7 +13,9 @@ const Header = () => {
       }  overflow-hidden z-50 xmd:flex-row`}
     >
       <div className="title-logo flex items-center justify-between w-full xmd:w-fit">
-        <h1 className="text-3xl font-bold text-blue-800"> Houser </h1>
+        <Link to={'/'}>
+          <h1 className="text-3xl font-bold text-blue-800"> Houser </h1>
+        </Link>
         <div
           className="w-8 h-8 bg-blue-400 cursor-pointer xmd:hidden"
           onClick={() => {
@@ -21,10 +26,23 @@ const Header = () => {
 
       <nav>
         <ul className="flex flex-col gap-4 xmd:flex-row">
-          <li className="hover:text-blue-600 cursor-pointer p-1">Home</li>
-          <li className="hover:text-blue-600 cursor-pointer p-1">About Us</li>
-          <li className="hover:text-blue-600 cursor-pointer p-1">Properties</li>
-          <li className="hover:text-blue-600 cursor-pointer p-1">Services</li>
+          <li className="hover:text-blue-600 cursor-pointer p-1">
+            {' '}
+            <Link to={'/'}> Home </Link>
+          </li>
+
+          <li className="hover:text-blue-600 cursor-pointer p-1">
+            <Link to={'/properties'}> About us </Link>
+          </li>
+
+          <li className="hover:text-blue-600 cursor-pointer p-1">
+            <Link to={'/properties'}>Properties</Link>
+          </li>
+
+          <li className="hover:text-blue-600 p-1">
+            {' '}
+            <Link to={'/properties'}>Services</Link>{' '}
+          </li>
         </ul>
       </nav>
 
