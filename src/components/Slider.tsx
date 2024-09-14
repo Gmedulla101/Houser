@@ -22,6 +22,7 @@ const showNextCard = () => {
     }
     cardSlider.style.transition = `0.3s`;
     cardSlider.style.transform = `translateX(${(scrolledValue -= 350)}px)`;
+    console.log(scrolledValue);
   }
 };
 
@@ -43,12 +44,12 @@ const Slider = ({ features }: any) => {
 
   return (
     <>
-      <div className="featuredCards flex gap-12 pl-16 transiton" id="featured">
+      <div className="featuredCards flex gap-12 pl-12 transiton" id="featured">
         {featuredEl}
       </div>
 
       {/* BUTTONS */}
-      <div className="flex gap-3 w-full relative left-3/4 mt-5">
+      <div className="flex gap-3 w-fit relative left-[75%] mt-5 md:left-[80%] lg:left-[90%]">
         <CIcon
           icon={cilArrowThickLeft}
           size="lg"
