@@ -1,6 +1,7 @@
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import Featured from '../components/Featured';
+import ExtraHomeText from '../components/ExtraHomeText';
 
 const Home = () => {
   return (
@@ -8,6 +9,7 @@ const Home = () => {
       <Header />
       <Hero />
       <Featured />
+      <ExtraHomeText />
     </main>
   );
 };

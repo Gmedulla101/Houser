@@ -7,8 +7,10 @@ const Featured = () => {
   });
 
   return (
-    <section className="p-4 mt-12">
-      <h1 className="text-2xl font-semibold mb-3">Featured properties</h1>
+    <section className="px-2 mt-10 lg:px-12">
+      <h1 className="text-3xl font-semibold mb-3 lg:text-4xl xl:text-6xl">
+        Featured properties
+      </h1>
       <p className="text-sm text-gray-600 ">
         Explore our handpicked selection of featured properties. Each listing
         offers a glimpse into the exceptional homes and rentals we carefully
