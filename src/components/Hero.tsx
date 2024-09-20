@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <section className="p-4 mt-12 flex flex-col-reverse items-center md:flex-row xl:mt-16 md:p-0">
+    <section className="p-4 mt-24 flex flex-col-reverse items-center md:flex-row xl:mt-16 md:p-0">
       <div className="heroText  flex flex-col justify-center items-center text-center gap-3 md:w-[40%] md:ml-2 lg:ml-12 md:text-left md:items-start">
         <h1 className="text-3xl font-semibold lg:text-4xl xl:text-6xl">
           Get rid of housing hassles with{' '}

@@ -10,7 +10,7 @@ const Header = () => {
     <header
       className={`absolute top-0 left-0 w-full flex flex-col gap-2 text-center justify-between py-4 px-10 items-center bg-white mx-auto ${
         isOpen ? 'h-auto' : 'h-[4em]'
-      }  overflow-hidden z-50 xmd:flex-row`}
+      }  overflow-hidden z-50 xmd:flex-row shadow-md`}
     >
       <div className="title-logo flex items-center justify-between w-full xmd:w-fit">
         <Link to={'/'}>
