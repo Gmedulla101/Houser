@@ -48,7 +48,7 @@ const Slider = ({ sliderDetails }: any) => {
       </div>
 
       {/* BUTTONS */}
-      <div className="flex gap-3 w-fit relative left-[73%] mt-5 md:left-[80%] lg:left-[90%]">
+      <div className="flex relative mt-5 gap-3 justify-end">
         <button className="border-2 border-black w-10 h-10 rounded-full p-2 transition active:scale-110 cursor-pointer">
           <CIcon icon={cilArrowThickLeft} size="lg" onClick={showPrevCard} />
         </button>

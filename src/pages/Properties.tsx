@@ -1,12 +1,19 @@
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import searchIcon from '../assets/search.png';
+import Slider from '../components/Slider';
+import { homes } from '../dummy';
 
 const Properties = () => {
+  const featured = homes.filter((home) => {
+    return home.featured === true;
+  });
+
   return (
     <>
       <Header />
-      <section className="px-3 xmd:px-12">
-        <section className="p-4 mt-24 items-center xl:mt-16 md:p-0">
+      <section className="mt-24 xl:mt-28 md:p-0 px-2 xmd:px-12">
+        <section>
           <h1 className="text-3xl font-semibold pb-5 lg:text-4xl xl:text-6xl">
             Find your dream property
           </h1>
@@ -27,7 +34,7 @@ const Properties = () => {
             <button className="bg-blue-600 flex gap-2 items-center py-2 px-4 rounded-lg justify-between hover:bg-blue-700">
               <img className="w-5" src={searchIcon} alt="Search icon" />
 
-              <p className="bg-blue-600 text-white text-sm hidden xsm:block">
+              <p className="bg-blue-600 text-white text-xs hidden xsm:block">
                 Find property
               </p>
             </button>
@@ -36,7 +43,7 @@ const Properties = () => {
             <select
               name="Location"
               id="location"
-              className="w-full border-2 border-gray-200 rounded-lg py-2 mb-3 outline-none text-center"
+              className="w-full border-2 border-gray-200 rounded-lg py-2 mb-3 outline-none text-center cursor-pointer"
             >
               <option value=""> Location </option>
               <option value="Ekosodin"> Ekosodin </option>
@@ -46,7 +53,7 @@ const Properties = () => {
             <select
               name="Location"
               id="location"
-              className="w-full border-2 border-gray-200 rounded-lg py-2 mb-3 outline-none text-center"
+              className="w-full border-2 border-gray-200 rounded-lg py-2 mb-3 outline-none text-center cursor-pointer"
             >
               <option value=""> Property type </option>
               <option value="self-con"> Self-con </option>
@@ -57,7 +64,7 @@ const Properties = () => {
             <select
               name="Location"
               id="location"
-              className="w-full border-2 border-gray-200 rounded-lg py-2 mb-3 outline-none text-center"
+              className="w-full border-2 border-gray-200 rounded-lg py-2 mb-3 outline-none text-center cursor-pointer"
             >
               <option value=""> Pricing range </option>
               <option value="50000 - 100000"> N50,000 - N100,000 </option>
@@ -72,7 +79,7 @@ const Properties = () => {
             <select
               name="Location"
               id="location"
-              className="w-full border-2 border-gray-200 rounded-lg py-2 mb-3 outline-none text-center"
+              className="w-full border-2 border-gray-200 rounded-lg py-2 mb-3 outline-none text-center cursor-pointer"
             >
               <option value=""> Build year </option>
               <option value="2000"> {'< 2000'} </option>
@@ -92,9 +99,13 @@ const Properties = () => {
               the following categories to find the perfect property that
               resonates with your vision of home.
             </p>
+            <div className="overflow-hidden mt-12 relative xxsm:pl-10">
+              <Slider sliderDetails={featured} />
+            </div>
           </div>
         </section>
       </section>
+      <Footer />
     </>
   );
 };
