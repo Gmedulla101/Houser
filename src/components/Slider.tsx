@@ -43,7 +43,7 @@ const Slider = ({ sliderDetails }: any) => {
 
   return (
     <>
-      <div className="featuredCards flex gap-12 pl-8 transiton" id="featured">
+      <div className="featuredCards flex gap-12 pl-1 transiton" id="featured">
         {sliderEl}
       </div>
 
