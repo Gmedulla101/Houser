@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useGlobalContext } from '../context/userContext';
 
 //IMPORTING ROUTING ASSETS
 import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isSignedIn } = useGlobalContext();
 
   return (
     <header
@@ -47,9 +49,37 @@ const Header = () => {
       </nav>
 
       <nav>
-        <ul className="flex flex-col gap-2 xmd:flex-row">
-          <li className="hover:text-blue-600 cursor-pointer p-1">Contact us</li>
-        </ul>
+        {isSignedIn ? (
+          <ul className="flex flex-col gap-2 xmd:flex-row">
+            <li>
+              <Link
+                to={'/sign-up'}
+                className=" cursor-pointer p-1 border-2 rounded-lg block w-36 bg-blue-600 text-white hover:scale-110 transition duration-300"
+              >
+                Post Vacancy
+              </Link>
+            </li>
+            <li>
+              <Link
+                to={'/sign-in'}
+                className="cursor-pointer p-1 bg-gray-200 text-blue-600 rounded-lg block w-36 hover:scale-110 transition duration-300"
+              >
+                Profile
+              </Link>
+            </li>
+          </ul>
+        ) : (
+          <ul className="flex flex-col gap-2 xmd:flex-row">
+            <li className="hover:text-blue-600 cursor-pointer p-1">
+              {' '}
+              <Link to={'/sign-up'}> Sign up </Link>{' '}
+            </li>
+            <li className="hover:text-blue-600 cursor-pointer p-1">
+              {' '}
+              <Link to={'/sign-in'}> Sign in </Link>{' '}
+            </li>
+          </ul>
+        )}
       </nav>
     </header>
   );

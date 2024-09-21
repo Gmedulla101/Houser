@@ -8,7 +8,7 @@ type CardProps = {
   desc: string;
   price: number;
   bedrooms: number;
-  bath: number;
+  location: string;
   type: string;
   featured: boolean;
 };

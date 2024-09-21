@@ -1,6 +1,6 @@
-import bathImg from '../assets/bath.png';
 import bed from '../assets/bed.png';
-import villa from '../assets/home.png';
+import villa from '../assets/cardHome.png';
+import locationPointer from '../assets/location.png';
 
 type CardProps = {
   imgUrl: string;
@@ -8,7 +8,7 @@ type CardProps = {
   desc: string;
   price: number;
   bedrooms: number;
-  bath: number;
+  location: string;
   type: string;
 };
 
@@ -18,7 +18,7 @@ const Card = ({
   desc,
   price,
   bedrooms,
-  bath,
+  location,
   type,
 }: CardProps) => {
   return (
@@ -34,8 +34,8 @@ const Card = ({
         </span>
 
         <span className="flex items-center gap-1 border-2 border-gray-400 px-3 py-2 rounded-3xl">
-          <img src={bathImg} alt="" className="w-5" />
-          <p className="text-xs">{bath}-bathroom</p>
+          <img src={locationPointer} alt="" className="w-5" />
+          <p className="text-xs capitalize">{location}</p>
         </span>
 
         <span className="flex items-center gap-1 border-2 border-gray-400 px-3 py-2 rounded-3xl">

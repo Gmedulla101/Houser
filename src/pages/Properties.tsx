@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import searchIcon from '../assets/search.png';
@@ -8,6 +10,19 @@ const Properties = () => {
   const featured = homes.filter((home) => {
     return home.featured === true;
   });
+
+  const [filterObj, setFilterObj] = useState({
+    location: '',
+    propertyType: '',
+    pricingRange: '',
+    buildYear: '',
+  });
+  const handleChange = (e: any) => {
+    const { value, name } = e.target;
+    setFilterObj((prevObj) => {
+      return { ...prevObj, [name]: value };
+    });
+  };
 
   return (
     <>
@@ -41,18 +56,20 @@ const Properties = () => {
           </div>
           <div className="filter mt-5 md:flex md:gap-2">
             <select
-              name="Location"
+              onChange={handleChange}
+              name="location"
               id="location"
               className="w-full border-2 border-gray-200 rounded-lg py-2 mb-3 outline-none text-center cursor-pointer"
             >
-              <option value=""> Location </option>
+              <option value="default"> Location </option>
               <option value="Ekosodin"> Ekosodin </option>
               <option value="Osasogie"> Osasogie </option>
               <option value="BDPA"> BDPA </option>
             </select>
             <select
-              name="Location"
-              id="location"
+              onChange={handleChange}
+              name="propertyType"
+              id="propertyType"
               className="w-full border-2 border-gray-200 rounded-lg py-2 mb-3 outline-none text-center cursor-pointer"
             >
               <option value=""> Property type </option>
@@ -60,10 +77,13 @@ const Properties = () => {
               <option value="a room and parlour"> A room and parlour </option>
               <option value="2 bedroom flat"> 2 bedroom flat </option>
               <option value="3 bedroom flat"> 3 bedroom flat </option>
+              <option value="bungalow"> Bungalow </option>
+              <option value="duplex"> Duplex </option>
             </select>
             <select
-              name="Location"
-              id="location"
+              onChange={handleChange}
+              name="pricingRange"
+              id="pricingRange"
               className="w-full border-2 border-gray-200 rounded-lg py-2 mb-3 outline-none text-center cursor-pointer"
             >
               <option value=""> Pricing range </option>
@@ -77,8 +97,9 @@ const Properties = () => {
             </select>
 
             <select
-              name="Location"
-              id="location"
+              onChange={handleChange}
+              name="buildYear"
+              id="buildYear"
               className="w-full border-2 border-gray-200 rounded-lg py-2 mb-3 outline-none text-center cursor-pointer"
             >
               <option value=""> Build year </option>
