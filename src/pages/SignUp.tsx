@@ -61,7 +61,7 @@ const SignUp = () => {
     <>
       <Header />
       <section className="mt-24 flex flex-col items-center">
-        <img src={home} alt="home" className="w-48" />
+        <img src={home} alt="home" className="w-48 mb-12" />
 
         <div className="errorPopup">
           {' '}

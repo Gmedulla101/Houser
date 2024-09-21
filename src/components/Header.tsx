@@ -53,7 +53,7 @@ const Header = () => {
           <ul className="flex flex-col gap-2 xmd:flex-row">
             <li>
               <Link
-                to={'/sign-up'}
+                to={'/create-post'}
                 className=" cursor-pointer p-1 border-2 rounded-lg block w-36 bg-blue-600 text-white hover:scale-110 transition duration-300"
               >
                 Post Vacancy
@@ -61,7 +61,7 @@ const Header = () => {
             </li>
             <li>
               <Link
-                to={'/sign-in'}
+                to={'/profile'}
                 className="cursor-pointer p-1 bg-gray-200 text-blue-600 rounded-lg block w-36 hover:scale-110 transition duration-300"
               >
                 Profile

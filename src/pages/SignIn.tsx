@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useGlobalContext } from '../context/userContext';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -11,8 +10,6 @@ import home from '../assets/home.png';
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const { setIsSignedIn, isSignedIn, setUser } = useGlobalContext();
-  console.log(isSignedIn);
 
   const [form, setForm] = useState({
     email: '',
@@ -58,7 +55,7 @@ const SignIn = () => {
     <>
       <Header />
       <section className="mt-24 flex flex-col items-center">
-        <img src={home} alt="home" className="w-48" />
+        <img src={home} alt="home" className="w-48 mb-12" />
 
         <div className="errorPopup">
           {' '}
