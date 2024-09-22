@@ -72,7 +72,7 @@ const Properties = () => {
               id="propertyType"
               className="w-full border-2 border-gray-200 rounded-lg py-2 mb-3 outline-none text-center cursor-pointer"
             >
-              <option value=""> Property type </option>
+              <option value="default"> Property type </option>
               <option value="self-con"> Self-con </option>
               <option value="a room and parlour"> A room and parlour </option>
               <option value="2 bedroom flat"> 2 bedroom flat </option>
@@ -86,7 +86,7 @@ const Properties = () => {
               id="pricingRange"
               className="w-full border-2 border-gray-200 rounded-lg py-2 mb-3 outline-none text-center cursor-pointer"
             >
-              <option value=""> Pricing range </option>
+              <option value="default"> Pricing range </option>
               <option value="50000 - 100000"> N50,000 - N100,000 </option>
               <option value="100000 - 200000"> N100,000 - N200,000 </option>
               <option value="200000 - 300000"> N200,000 - N300,000 </option>
@@ -102,7 +102,7 @@ const Properties = () => {
               id="buildYear"
               className="w-full border-2 border-gray-200 rounded-lg py-2 mb-3 outline-none text-center cursor-pointer"
             >
-              <option value=""> Build year </option>
+              <option value="default"> Build year </option>
               <option value="2000"> {'< 2000'} </option>
               <option value="2000 - 2010"> 2000 - 2010 </option>
               <option value="2010 -2020"> 2010 - 2020 </option>
