@@ -1,7 +1,18 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useGlobalContext } from '../context/userContext';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+  const { setIsSignedIn } = useGlobalContext();
+
+  const logout = () => {
+    localStorage.clear();
+    setIsSignedIn(false);
+    navigate('/');
+  };
+
   return (
     <>
       <Header />
@@ -28,22 +39,25 @@ const Dashboard = () => {
         <div className="basicDetails mt-12 flex flex-col gap-3">
           <span>
             <p className="text-xl font-semibold">Full name:</p>
-            <p> John Doe </p>
+            <p className="text-gray-600"> John Doe </p>
           </span>
 
           <span>
             <p className="text-xl font-semibold">Phone number:</p>
-            <p> 08012312312 </p>
+            <p className="text-gray-600"> 08012312312 </p>
           </span>
 
           <span>
             <p className="text-xl font-semibold">Location:</p>
-            <p> Edo State </p>
+            <p className="text-gray-600"> Edo State </p>
           </span>
         </div>
 
         <div className="logout flex justify-center">
-          <button className="block text-sm text-center px-2 py-3 my-12 w-64  rounded-md bg-blue-600 text-white hover:scale-110 transition active:bg-blue-800 lg:px-6 lg:py-3">
+          <button
+            onClick={logout}
+            className="block text-sm text-center px-2 py-3 my-12 w-64  rounded-md bg-blue-600 text-white hover:scale-110 transition active:bg-blue-800 lg:px-6 lg:py-3"
+          >
             Logout
           </button>
         </div>

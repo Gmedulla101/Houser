@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useGlobalContext } from '../context/userContext';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -10,6 +11,8 @@ import home from '../assets/home.png';
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const { setIsSignedIn } = useGlobalContext();
+
   const [form, setForm] = useState({
     username: '',
     email: '',
@@ -50,6 +53,7 @@ const SignUp = () => {
       );
       const userToken = data.data.token;
       localStorage.setItem('user', JSON.stringify(userToken));
+      setIsSignedIn(true);
       navigate('/');
     } catch (error: any) {
       console.error(error);
