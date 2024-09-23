@@ -57,8 +57,6 @@ const AllProperties = () => {
     });
   };
 
-  console.log(properties);
-
   return (
     <>
       <Header />

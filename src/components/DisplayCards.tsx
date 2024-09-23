@@ -1,8 +1,10 @@
 import bed from '../assets/bed.png';
 import villa from '../assets/cardHome.png';
 import locationPointer from '../assets/location.png';
+import { Link } from 'react-router-dom';
 
 type Property = {
+  _id?: string;
   imgUrl: string;
   title: string;
   desc: string;
@@ -22,6 +24,7 @@ const DisplayCards = ({
   location,
   price,
   featured,
+  _id,
 }: Property) => {
   return (
     <div className="card flex flex-col justify-between shadow-3xl border-2 border-gray-300 shadow-xl rounded-lg p-2 w-[350px] h-[400px]">
@@ -52,13 +55,12 @@ const DisplayCards = ({
           <p className="text-xs">Price:</p>
           <p className="font-semibold">${price}</p>
         </span>
-        <a
-          href="#"
+        <Link
+          to={`/view-property/${_id}`}
           className="text-white bg-blue-600 rounded-lg px-4 py-2 transition hover:scale-105"
         >
-          {' '}
-          View property details{' '}
-        </a>
+          View property details
+        </Link>
       </div>
     </div>
   );
