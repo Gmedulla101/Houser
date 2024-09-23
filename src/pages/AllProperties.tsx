@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Loader from '../components/Loader';
+import DisplayCards from '../components/DisplayCards';
 import axios from 'axios';
 
 const AllProperties = () => {
-  type props = {
+  type Property = {
     imgUrl: string;
     title: string;
     desc: string;
@@ -14,14 +16,21 @@ const AllProperties = () => {
     price: number;
     featured?: boolean;
   };
-  const [properties, setProperties] = useState();
+  const [properties, setProperties] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await axios.get(
           'http://localhost:5000/api/v1/properties/get-all-properties'
         );
-        setProperties(data.data.data);
+        if (data) {
+          setProperties(data.data.data);
+          setIsLoading(false);
+        } else {
+          setProperties([]);
+          setIsLoading(false);
+        }
       } catch (error) {
         console.error(error);
       }
@@ -30,7 +39,9 @@ const AllProperties = () => {
     fetchData();
   }, []);
 
-  console.log(properties);
+  const propertyEl = properties.map((property: Property, i: number) => {
+    return <DisplayCards key={i} {...property} />;
+  });
 
   const [filterObj, setFilterObj] = useState({
     location: '',
@@ -110,6 +121,8 @@ const AllProperties = () => {
             <option value="2020"> {'> 2020'} </option>
           </select>
         </div>
+
+        {isLoading ? <Loader /> : propertyEl}
       </section>
       <Footer />
     </>

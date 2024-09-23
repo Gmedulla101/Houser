@@ -31,7 +31,7 @@ const Properties = () => {
             <input
               type="text"
               placeholder="Search for a property"
-              className="outline-none w-[80%]"
+              className="outline-none w-[80%] bg-transparent"
             />
 
             <button className="bg-blue-600 flex gap-2 items-center py-2 px-4 rounded-lg justify-between hover:bg-blue-700">
