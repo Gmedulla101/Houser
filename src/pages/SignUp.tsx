@@ -20,7 +20,7 @@ const SignUp = () => {
     confirmPassword: '',
   });
 
-  const [errorMsg, setErrorMsg] = useState();
+  const [errorMsg, setErrorMsg] = useState('');
 
   const handleFormChange = (e: any) => {
     const { name, value } = e.target;
@@ -35,11 +35,11 @@ const SignUp = () => {
   const handleRegister = async () => {
     const { confirmPassword, password, email, username } = form;
     if (!form) {
-      alert('Please fill in the appopriate details');
+      setErrorMsg('Please fill in the appopriate details');
       return;
     }
     if (confirmPassword !== password) {
-      alert('Passwords do not match');
+      setErrorMsg('Passwords do not match');
       return;
     }
     try {

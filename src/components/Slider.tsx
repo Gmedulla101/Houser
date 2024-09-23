@@ -37,9 +37,12 @@ const showPrevCard = () => {
 };
 
 const Slider = ({ sliderDetails }: any) => {
-  const sliderEl = sliderDetails.map((feature: CardProps, index: number) => {
-    return <Card key={index} {...feature} />;
-  });
+  const sliderDetailsPreview = sliderDetails.slice(0, 8);
+  const sliderEl = sliderDetailsPreview.map(
+    (feature: CardProps, index: number) => {
+      return <Card key={index} {...feature} />;
+    }
+  );
 
   return (
     <>

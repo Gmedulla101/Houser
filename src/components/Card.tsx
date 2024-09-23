@@ -10,6 +10,7 @@ type CardProps = {
   bedrooms: number;
   location: string;
   type: string;
+  featured?: boolean;
 };
 
 const Card = ({
@@ -20,11 +21,13 @@ const Card = ({
   bedrooms,
   location,
   type,
+  featured,
 }: CardProps) => {
   return (
     <div className="card shadow-3xl border-2 border-gray-300 shadow-xl rounded-lg p-2 w-[300px]">
       <img src={imgUrl} alt="Houser home" />
       <h3 className="font-semibold mt-3 text-lg w-[300px]">{title}</h3>
+      <p className="text-xs text-gray-400"> {featured ? 'Featured' : ''} </p>
       <p className="text-gray-600 text-sm mt-2">{desc.slice(0, 100)}...</p>
 
       <div className="properties flex mt-5 gap-2 flex-wrap">

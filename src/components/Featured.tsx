@@ -1,5 +1,6 @@
 import Slider from './Slider';
 import { homes } from '../dummy';
+import { Link } from 'react-router-dom';
 
 const Featured = () => {
   const featured = homes.filter((home) => {
@@ -19,6 +20,13 @@ const Featured = () => {
 
       <div className="overflow-hidden mt-12 relative">
         <Slider sliderDetails={featured} />
+        <Link
+          to={'/featured-properties'}
+          className="block text-sm text-center px-2 py-3 w-36  rounded-md bg-blue-600 text-white hover:scale-110 transition active:bg-blue-800 lg:px-6 lg:py-3 lg:w-56 relative -top-10"
+        >
+          {' '}
+          Featured properties{' '}
+        </Link>
       </div>
     </section>
   );

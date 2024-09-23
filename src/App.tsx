@@ -5,6 +5,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
 import CreatePost from './pages/CreatePost';
+import AllProperties from './pages/AllProperties';
 
 //IMPORTING REAC ROUTER COMPONENTS
 import { Route, Routes } from 'react-router-dom';
@@ -18,6 +19,7 @@ const App = () => {
       <Route path="/sign-up" element={<SignUp />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="create-post" element={<CreatePost />} />
+      <Route path="/all-properties" element={<AllProperties />} />
     </Routes>
   );
 };
