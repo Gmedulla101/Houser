@@ -57,6 +57,8 @@ const AllProperties = () => {
     });
   };
 
+  console.log(properties);
+
   return (
     <>
       <Header />
@@ -125,7 +127,7 @@ const AllProperties = () => {
         {isLoading ? (
           <Loader />
         ) : (
-          <div className="flex flex-wrap gap-5 justify-center my-12">
+          <div className="flex flex-wrap gap-5 justify-center items-center my-12">
             {' '}
             {propertyEl}{' '}
           </div>
