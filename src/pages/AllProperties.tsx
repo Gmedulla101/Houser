@@ -11,7 +11,7 @@ const AllProperties = () => {
     title: string;
     desc: string;
     bedrooms: number;
-    propertytype: string;
+    propertyType: string;
     location: string;
     price: number;
     featured?: boolean;
@@ -122,7 +122,14 @@ const AllProperties = () => {
           </select>
         </div>
 
-        {isLoading ? <Loader /> : propertyEl}
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <div className="flex flex-wrap gap-5 justify-center my-12">
+            {' '}
+            {propertyEl}{' '}
+          </div>
+        )}
       </section>
       <Footer />
     </>
