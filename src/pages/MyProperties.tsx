@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Loader from '../components/Loader';
@@ -21,13 +23,18 @@ const MyProperties = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const storedValue = 
-          localStorage.getItem('user');
-          if(!storedValue) {
-            throw new Error('There is no user logged in')
-          }
+        const storedValue = localStorage.getItem('user');
+        if (!storedValue) {
+          throw new Error('There is no user logged in');
+        }
+        const token = JSON.parse(storedValue);
         const data = await axios.get(
-          'http://localhost:5000/api/v1/properties/my-properties'
+          'http://localhost:5000/api/v1/properties/my-properties',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         if (data) {
           setProperties(data.data.data);
@@ -61,7 +68,7 @@ const MyProperties = () => {
       return { ...prevObj, [name]: value };
     });
   };
-
+  // MAIN COMPONENT BODY
   return (
     <>
       <Header />
@@ -71,6 +78,15 @@ const MyProperties = () => {
           View and manage your
           <span className="text-blue-600"> listings. </span>
         </h1>
+
+        <Link
+          to={'/create-property'}
+          className="block font-semibold text-center px-2 py-3 w-[50%] mx-auto  rounded-md bg-blue-600 text-white  transition hover:bg-white hover:text-blue-600  active:bg-blue-800 lg:px-6 lg:py-3"
+        >
+          {' '}
+          Create new listing{' '}
+        </Link>
+
         <div className="filter mt-5 md:flex md:gap-2">
           <select
             onChange={handleChange}
