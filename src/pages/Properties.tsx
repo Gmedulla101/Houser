@@ -1,16 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Loader from '../components/Loader';
 import searchIcon from '../assets/search.png';
 import Slider from '../components/Slider';
-import { homes } from '../dummy';
 
 const Properties = () => {
-  const featured = homes.filter((home) => {
-    return home.featured === true;
-  });
+  const [properties, setProperties] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await axios.get(
+          'http://localhost:5000/api/v1/properties/get-all-properties'
+        );
+        if (data) {
+          setProperties(data.data.data);
+          setIsLoading(false);
+        } else {
+          setProperties([]);
+          setIsLoading(false);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -24,7 +44,6 @@ const Properties = () => {
             Welcome to Houser, where your dream property awaits in every corner
             of our beautiful world. Explore our curated selection of properties,
             each offering a unique story and a chance to redefine your life.
-            With categories to suit every dreamer, your journey
           </p>
 
           <div className="searchInput flex justify-between mt-12 p-2 border-2 border-gray-200 rounded-lg shadow-lg">
@@ -53,16 +72,19 @@ const Properties = () => {
               the following categories to find the perfect property that
               resonates with your vision of home.
             </p>
-            <div className="overflow-hidden mt-12 relative xxsm:pl-10">
-              <Slider sliderDetails={featured} />
-              <Link
-                to={'/all-properties'}
-                className="block text-sm text-center px-2 py-3 w-36  rounded-md bg-blue-600 text-white hover:scale-110 transition active:bg-blue-800 lg:px-6 lg:py-3 lg:w-56 relative -top-10"
-              >
-                {' '}
-                All properties{' '}
-              </Link>
-            </div>
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <div className="overflow-hidden mt-12 relative xxsm:pl-10">
+                <Slider sliderDetails={properties} />
+                <Link
+                  to={'/all-properties'}
+                  className="block text-sm text-center px-2 py-3 w-36  rounded-md bg-blue-600 text-white hover:scale-110 transition active:bg-blue-800 lg:px-6 lg:py-3 lg:w-56 relative -top-10"
+                >
+                  All properties
+                </Link>
+              </div>
+            )}
           </div>
         </section>
       </section>

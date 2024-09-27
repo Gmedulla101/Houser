@@ -1,6 +1,7 @@
 import bed from '../assets/bed.png';
 import villa from '../assets/cardHome.png';
 import locationPointer from '../assets/location.png';
+import { Link } from 'react-router-dom';
 
 type CardProps = {
   imgUrl: string;
@@ -10,7 +11,8 @@ type CardProps = {
   bedrooms: number;
   location: string;
   type: string;
-  featured?: boolean;
+  featured: boolean;
+  _id?: string;
 };
 
 const Card = ({
@@ -22,6 +24,7 @@ const Card = ({
   location,
   type,
   featured,
+  _id,
 }: CardProps) => {
   return (
     <div className="card shadow-3xl border-2 border-gray-300 shadow-xl rounded-lg p-2 w-[300px]">
@@ -52,13 +55,12 @@ const Card = ({
           <p className="text-xs">Price:</p>
           <p className="font-semibold">${price}</p>
         </span>
-        <a
-          href="#"
+        <Link
+          to={`/view-property/${_id}`}
           className="text-white bg-blue-600 rounded-lg px-4 py-2 transition hover:scale-105"
         >
-          {' '}
-          View property details{' '}
-        </a>
+          View property details
+        </Link>
       </div>
     </div>
   );

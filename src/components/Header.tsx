@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { useGlobalContext } from '../context/userContext';
 
+//IMPORTING UI DEPENDENCIES
+import { CIcon } from '@coreui/icons-react';
+import { cilMenu } from '@coreui/icons';
+
 //IMPORTING ROUTING ASSETS
 import { Link } from 'react-router-dom';
 
@@ -19,11 +23,13 @@ const Header = () => {
           <h1 className="text-3xl font-bold text-blue-800"> Houser </h1>
         </Link>
         <div
-          className="w-8 h-8 bg-blue-400 cursor-pointer xmd:hidden"
+          className="w-8 h-8 cursor-pointer xmd:hidden"
           onClick={() => {
             setIsOpen(!isOpen);
           }}
-        ></div>
+        >
+          <CIcon icon={cilMenu} size="lg" />
+        </div>
       </div>
 
       <nav>
