@@ -59,10 +59,10 @@ const Header = () => {
           <ul className="flex flex-col gap-2 xmd:flex-row">
             <li>
               <Link
-                to={'/create-post'}
+                to={'/my-properties'}
                 className=" cursor-pointer p-1 border-2 rounded-lg block w-36 bg-blue-600 text-white hover:scale-110 transition duration-300"
               >
-                Post Vacancy
+                Your listings
               </Link>
             </li>
             <li>

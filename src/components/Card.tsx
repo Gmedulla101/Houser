@@ -10,7 +10,7 @@ type CardProps = {
   price: number;
   bedrooms: number;
   location: string;
-  type: string;
+  propertyType: string;
   featured: boolean;
   _id?: string;
 };
@@ -22,13 +22,13 @@ const Card = ({
   price,
   bedrooms,
   location,
-  type,
+  propertyType,
   featured,
   _id,
 }: CardProps) => {
   return (
     <div className="card shadow-3xl border-2 border-gray-300 shadow-xl rounded-lg p-2 w-[300px]">
-      <img src={imgUrl} alt="Houser home" />
+      <img src={imgUrl} alt="Houser home" className="h-64" />
       <h3 className="font-semibold mt-3 text-lg w-[300px]">{title}</h3>
       <p className="text-xs text-gray-400"> {featured ? 'Featured' : ''} </p>
       <p className="text-gray-600 text-sm mt-2">{desc.slice(0, 100)}...</p>
@@ -46,7 +46,7 @@ const Card = ({
 
         <span className="flex items-center gap-1 border-2 border-gray-400 px-3 py-2 rounded-3xl">
           <img src={villa} alt="" className="w-5" />
-          <p className="text-xs">{type}</p>
+          <p className="text-xs">{propertyType}</p>
         </span>
       </div>
 

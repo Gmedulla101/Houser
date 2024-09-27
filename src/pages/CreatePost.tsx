@@ -12,7 +12,7 @@ import { cilImage, cilX } from '@coreui/icons';
 const CreatePost = () => {
   const [displayImage, setDisplayImage] = useState<any>();
   const setImage = (e: any) => {
-    const { files, name } = e.target;
+    const { files } = e.target;
     setDisplayImage(URL.createObjectURL(files[0]));
   };
 
@@ -27,7 +27,7 @@ const CreatePost = () => {
           <label
             htmlFor="image"
             onChange={setImage}
-            className="border-2 border-gray-400 w-full h-64 rounded-xl flex flex-col items-center justify-center p-2"
+            className="border-2 border-gray-400 w-full h-64 rounded-xl flex flex-col items-center justify-center p-2 cursor-pointer"
           >
             <input type="file" id="image" name="imageFile" className="hidden" />
             {displayImage ? (
@@ -55,6 +55,56 @@ const CreatePost = () => {
               ''
             )}
           </div>
+
+          <div className="text-inputs flex flex-col gap-2 my-8">
+            <input
+              type="text"
+              name="title"
+              placeholder="Enter a title for your property (e.g. Name of Hostel etc.)"
+              className="border-2 border-gray-400 rounded-lg h-12 px-4 outine-none focus:border-blue-600"
+            />
+            <textarea
+              name="desc"
+              placeholder="Describe your property in good detail"
+              className="border-2 border-gray-400 rounded-lg h-56 py-2 px-4 outine-none focus:border-blue-600 resize-none"
+            />
+            <input
+              type="number"
+              name="bedrooms"
+              placeholder="How bedrooms are there"
+              className="border-2 border-gray-400 rounded-lg h-12 px-4 outine-none focus:border-blue-600"
+            />
+
+            <select
+              name="propertyType"
+              id="propertyType"
+              className="border-2 border-gray-400 rounded-lg h-12 px-4 outine-none focus:border-blue-600 cursor-pointer"
+            >
+              <option value="default"> Property type </option>
+              <option value="self-con"> Self-con </option>
+              <option value="a room and parlour"> A room and parlour </option>
+              <option value="2 bedroom flat"> 2 bedroom flat </option>
+              <option value="3 bedroom flat"> 3 bedroom flat </option>
+              <option value="bungalow"> Bungalow </option>
+              <option value="duplex"> Duplex </option>
+            </select>
+
+            <input
+              type="text"
+              name="location"
+              placeholder="Specify the property location"
+              className="border-2 border-gray-400 rounded-lg h-12 px-4 outine-none focus:border-blue-600"
+            />
+            <input
+              type="number"
+              name="price"
+              placeholder="How much does it cost?"
+              className="border-2 border-gray-400 rounded-lg h-12 px-4 outine-none focus:border-blue-600"
+            />
+          </div>
+          <button className="block font-semibold text-center px-2 py-3 w-full  rounded-md bg-blue-600 text-white  transition hover:bg-white hover:text-blue-600  active:bg-blue-800 lg:px-6 lg:py-3">
+            Add listing
+          </button>
         </section>
       </section>
       <Footer />

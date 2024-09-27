@@ -7,6 +7,7 @@ import Profile from './pages/Profile';
 import CreatePost from './pages/CreatePost';
 import AllProperties from './pages/AllProperties';
 import PropertyPage from './pages/PropertyPage';
+import MyProperties from './pages/MyProperties';
 
 //IMPORTING REAC ROUTER COMPONENTS
 import { Route, Routes } from 'react-router-dom';
@@ -22,6 +23,7 @@ const App = () => {
       <Route path="create-post" element={<CreatePost />} />
       <Route path="/all-properties" element={<AllProperties />} />
       <Route path="/view-property/:id" element={<PropertyPage />} />
+      <Route path="/my-properties" element={<MyProperties />} />
     </Routes>
   );
 };
