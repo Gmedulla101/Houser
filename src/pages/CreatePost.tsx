@@ -10,11 +10,44 @@ import { CIcon } from '@coreui/icons-react';
 import { cilImage, cilX } from '@coreui/icons';
 
 const CreatePost = () => {
+  type PropertyDetails = {
+    imgUrl: string;
+    title: string;
+    desc: string;
+    price: number | string;
+    bedrooms: number | string;
+    location: string;
+    propertyType: string;
+  };
+
   const [displayImage, setDisplayImage] = useState<any>();
+
   const setImage = (e: any) => {
     const { files } = e.target;
     setDisplayImage(URL.createObjectURL(files[0]));
   };
+
+  const [newPropDetails, setNewPropDetails] = useState<PropertyDetails>({
+    imgUrl: '',
+    title: '',
+    desc: '',
+    price: '',
+    bedrooms: '',
+    location: '',
+    propertyType: '',
+  });
+
+  const addNewPropDetails = (event: any) => {
+    const { name, value } = event.target;
+    setNewPropDetails((prevDetails) => {
+      return {
+        ...prevDetails,
+        [name]: value,
+      };
+    });
+  };
+
+  console.log(newPropDetails);
 
   return (
     <>
@@ -29,7 +62,7 @@ const CreatePost = () => {
             onChange={setImage}
             className="border-2 border-gray-400 w-full h-64 rounded-xl flex flex-col items-center justify-center p-2 cursor-pointer"
           >
-            <input type="file" id="image" name="imageFile" className="hidden" />
+            <input type="file" id="image" name="imgUrl" className="hidden" />
             {displayImage ? (
               <img src={displayImage} />
             ) : (
@@ -61,23 +94,31 @@ const CreatePost = () => {
               type="text"
               name="title"
               placeholder="Enter a title for your property (e.g. Name of Hostel etc.)"
+              value={newPropDetails.title}
+              onChange={addNewPropDetails}
               className="border-2 border-gray-400 rounded-lg h-12 px-4 outine-none focus:border-blue-600"
             />
             <textarea
               name="desc"
               placeholder="Describe your property in good detail"
+              value={newPropDetails.desc}
+              onChange={addNewPropDetails}
               className="border-2 border-gray-400 rounded-lg h-56 py-2 px-4 outine-none focus:border-blue-600 resize-none"
             />
             <input
               type="number"
               name="bedrooms"
-              placeholder="How bedrooms are there"
+              placeholder="How bedrooms are there?"
+              value={newPropDetails.bedrooms}
+              onChange={addNewPropDetails}
               className="border-2 border-gray-400 rounded-lg h-12 px-4 outine-none focus:border-blue-600"
             />
 
             <select
               name="propertyType"
               id="propertyType"
+              value={newPropDetails.propertyType}
+              onChange={addNewPropDetails}
               className="border-2 border-gray-400 rounded-lg h-12 px-4 outine-none focus:border-blue-600 cursor-pointer"
             >
               <option value="default"> Property type </option>
@@ -92,6 +133,8 @@ const CreatePost = () => {
             <input
               type="text"
               name="location"
+              value={newPropDetails.location}
+              onChange={addNewPropDetails}
               placeholder="Specify the property location"
               className="border-2 border-gray-400 rounded-lg h-12 px-4 outine-none focus:border-blue-600"
             />
@@ -99,6 +142,8 @@ const CreatePost = () => {
               type="number"
               name="price"
               placeholder="How much does it cost?"
+              value={newPropDetails.price}
+              onChange={addNewPropDetails}
               className="border-2 border-gray-400 rounded-lg h-12 px-4 outine-none focus:border-blue-600"
             />
           </div>

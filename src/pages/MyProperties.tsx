@@ -73,19 +73,21 @@ const MyProperties = () => {
     <>
       <Header />
       <section className="mt-24 xl:mt-28 md:p-0 px-2 xmd:px-12">
-        <h1 className="text-3xl font-semibold pb-5 lg:text-4xl">
-          {' '}
-          View and manage your
-          <span className="text-blue-600"> listings. </span>
-        </h1>
+        <span className="flex items-center justify-between">
+          <h1 className="text-3xl font-semibold pb-5 lg:text-4xl xl:text-6xl">
+            {' '}
+            View and manage your
+            <span className="text-blue-600"> listings. </span>
+          </h1>
 
-        <Link
-          to={'/create-property'}
-          className="block font-semibold text-center px-2 py-3 w-[50%] mx-auto  rounded-md bg-blue-600 text-white  transition hover:bg-white hover:text-blue-600  active:bg-blue-800 lg:px-6 lg:py-3"
-        >
-          {' '}
-          Create new listing{' '}
-        </Link>
+          <Link
+            to={'/create-property'}
+            className="font-semibold text-center px-2 py-3  rounded-md bg-blue-600 text-white  transition hover:bg-white hover:text-blue-600  active:bg-blue-800 lg:px-6 lg:py-3"
+          >
+            {' '}
+            Create new listing{' '}
+          </Link>
+        </span>
 
         <div className="filter mt-5 md:flex md:gap-2">
           <select
