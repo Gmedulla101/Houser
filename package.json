@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cloudinary/react": "^1.13.0",
+    "@cloudinary/url-gen": "^1.21.0",
     "@coreui/icons": "^3.0.1",
     "@coreui/icons-react": "^2.3.0",
     "axios": "^1.7.7",
