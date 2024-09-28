@@ -11,7 +11,7 @@ import home from '../assets/home.png';
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const { setIsSignedIn } = useGlobalContext();
+  const { setIsSignedIn, setUser } = useGlobalContext();
 
   const [form, setForm] = useState({
     email: '',
@@ -44,9 +44,16 @@ const SignIn = () => {
           password,
         }
       );
+      console.log(data);
       const userToken = data.data.token;
       localStorage.setItem('user', JSON.stringify(userToken));
       setIsSignedIn(true);
+      setUser({
+        username: data.data.username,
+        email: data.data.email,
+        fullName: data.data.fullName,
+      });
+      console.log(data);
       navigate('/');
     } catch (error: any) {
       console.error(error);
@@ -96,7 +103,7 @@ const SignIn = () => {
             onClick={handleSignIn}
             className="block text-sm text-center px-2 py-3 w-[70%]  rounded-md bg-blue-600 text-white hover:scale-110 transition active:bg-blue-800 lg:px-6 lg:py-3"
           >
-            Sign up
+            Sign in
           </button>
         </div>
       </section>

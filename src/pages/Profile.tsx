@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { setIsSignedIn } = useGlobalContext();
+  const { setIsSignedIn, user } = useGlobalContext();
 
   const logout = () => {
     localStorage.clear();
@@ -13,6 +13,7 @@ const Dashboard = () => {
     navigate('/');
   };
 
+  ('');
   return (
     <>
       <Header />
@@ -22,7 +23,7 @@ const Dashboard = () => {
           <span>
             <h3 className="text-xl font-semibold">Email</h3>
             <span className="flex gap-8">
-              <p> johndoe@gmail.com </p>
+              <p> {user?.email} </p>
               <button className="text-blue-600 hover:underline">Edit</button>
             </span>
           </span>
@@ -30,7 +31,7 @@ const Dashboard = () => {
           <span>
             <h3 className="text-xl font-semibold">Username</h3>
             <span className="flex gap-8">
-              <p> JohhnyBoy </p>
+              <p> {user?.username} </p>
               <button className="text-blue-600 hover:underline">Edit</button>
             </span>
           </span>
@@ -39,7 +40,7 @@ const Dashboard = () => {
         <div className="basicDetails mt-12 flex flex-col gap-3">
           <span>
             <p className="text-xl font-semibold">Full name:</p>
-            <p className="text-gray-600"> John Doe </p>
+            <p className="text-gray-600"> {user.fullName} </p>
           </span>
 
           <span>

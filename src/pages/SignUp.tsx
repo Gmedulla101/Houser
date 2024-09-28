@@ -11,13 +11,14 @@ import home from '../assets/home.png';
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const { setIsSignedIn } = useGlobalContext();
+  const { setIsSignedIn, setUser } = useGlobalContext();
 
   const [form, setForm] = useState({
     username: '',
     email: '',
     password: '',
     confirmPassword: '',
+    fullName: '',
   });
 
   const [errorMsg, setErrorMsg] = useState('');
@@ -33,7 +34,7 @@ const SignUp = () => {
   };
 
   const handleRegister = async () => {
-    const { confirmPassword, password, email, username } = form;
+    const { confirmPassword, password, email, username, fullName } = form;
     if (!form) {
       setErrorMsg('Please fill in the appopriate details');
       return;
@@ -49,11 +50,17 @@ const SignUp = () => {
           email,
           password,
           username,
+          fullName,
         }
       );
       const userToken = data.data.token;
       localStorage.setItem('user', JSON.stringify(userToken));
       setIsSignedIn(true);
+      setUser({
+        username: data.data.username,
+        email: data.data.email,
+        fullName: data.data.fullName,
+      });
       navigate('/');
     } catch (error: any) {
       console.error(error);
@@ -95,6 +102,15 @@ const SignUp = () => {
             placeholder="Enter your username"
             onChange={handleFormChange}
             value={form.username}
+            className="border-2 border-gray-300 w-full py-2 px-4 rounded-lg outline-none focus:border-blue-600"
+          />
+
+          <input
+            type="text"
+            name="fullName"
+            placeholder="Enter your full name"
+            onChange={handleFormChange}
+            value={form.fullName}
             className="border-2 border-gray-300 w-full py-2 px-4 rounded-lg outline-none focus:border-blue-600"
           />
 
