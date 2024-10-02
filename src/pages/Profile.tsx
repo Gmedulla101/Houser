@@ -13,7 +13,8 @@ const Dashboard = () => {
     navigate('/');
   };
 
-  ('');
+  console.log(user);
+
   return (
     <>
       <Header />
@@ -40,7 +41,7 @@ const Dashboard = () => {
         <div className="basicDetails mt-12 flex flex-col gap-3">
           <span>
             <p className="text-xl font-semibold">Full name:</p>
-            <p className="text-gray-600"> {user.fullName} </p>
+            <p className="text-gray-600"> {user?.fullName} </p>
           </span>
 
           <span>

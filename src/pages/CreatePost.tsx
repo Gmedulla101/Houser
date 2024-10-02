@@ -11,18 +11,20 @@ import { cilImage, cilX } from '@coreui/icons';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+export type PropertyDetails = {
+  imgUrl: string;
+  title: string;
+  desc: string;
+  price: number | string;
+  bedrooms: number | string;
+  location: string;
+  propertyType: string;
+  featured?: boolean;
+  _id?: string;
+};
+
 //MAIN COMPONENT BODY
 const CreatePost = () => {
-  type PropertyDetails = {
-    imgUrl: string;
-    title: string;
-    desc: string;
-    price: number | string;
-    bedrooms: number | string;
-    location: string;
-    propertyType: string;
-  };
-
   const [displayImage, setDisplayImage] = useState<any>();
   const [img, setImg] = useState<any>();
   const [isLoading, setIsLoading] = useState<boolean>(false);

@@ -3,17 +3,8 @@ import villa from '../assets/cardHome.png';
 import locationPointer from '../assets/location.png';
 import { Link } from 'react-router-dom';
 
-type Property = {
-  _id?: string;
-  imgUrl: string;
-  title: string;
-  desc: string;
-  bedrooms: number;
-  propertyType: string;
-  location: string;
-  price: number;
-  featured?: boolean;
-};
+//IMPORTING TYPES
+import { PropertyDetails } from '../pages/CreatePost';
 
 const DisplayCards = ({
   imgUrl,
@@ -25,7 +16,7 @@ const DisplayCards = ({
   price,
   featured,
   _id,
-}: Property) => {
+}: PropertyDetails) => {
   return (
     <div className="card flex flex-col justify-between shadow-3xl border-2 border-gray-300 shadow-xl rounded-lg p-2 w-[350px] h-[600px]">
       <img src={imgUrl} alt={`${title}`} className="h-[300px] rounded-lg" />

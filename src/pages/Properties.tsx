@@ -7,9 +7,11 @@ import Footer from '../components/Footer';
 import Loader from '../components/Loader';
 import searchIcon from '../assets/search.png';
 import Slider from '../components/Slider';
+//IMPORTING TYPES
+import { PropertyDetails } from './CreatePost';
 
 const Properties = () => {
-  const [properties, setProperties] = useState([]);
+  const [properties, setProperties] = useState<PropertyDetails>();
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +23,7 @@ const Properties = () => {
           setProperties(data.data.data);
           setIsLoading(false);
         } else {
-          setProperties([]);
+          setProperties(undefined);
           setIsLoading(false);
         }
       } catch (error) {
@@ -76,13 +78,21 @@ const Properties = () => {
               <Loader />
             ) : (
               <div className="overflow-hidden mt-12 relative xxsm:pl-10">
-                <Slider sliderDetails={properties} />
-                <Link
-                  to={'/all-properties'}
-                  className="block text-sm text-center px-2 py-3 w-36  rounded-md bg-blue-600 text-white hover:scale-110 transition active:bg-blue-800 lg:px-6 lg:py-3 lg:w-56 relative -top-10"
-                >
-                  All properties
-                </Link>
+                {properties ? (
+                  <>
+                    <Slider sliderDetails={properties} />
+                    <Link
+                      to={'/all-properties'}
+                      className="block text-sm text-center px-2 py-3 w-36  rounded-md bg-blue-600 text-white hover:scale-110 transition active:bg-blue-800 lg:px-6 lg:py-3 lg:w-56 relative -top-10"
+                    >
+                      All properties
+                    </Link>
+                  </>
+                ) : (
+                  <h1 className="text-3xl font-semibold pb-5 lg:text-4xl xl:text-6xl text-center">
+                    There are no properties available
+                  </h1>
+                )}
               </div>
             )}
           </div>

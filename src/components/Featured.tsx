@@ -1,8 +1,11 @@
+import { useState, useEffect } from 'react';
 import Slider from './Slider';
 import { homes } from '../dummy';
 import { Link } from 'react-router-dom';
+import { PropertyDetails } from '../pages/CreatePost';
 
 const Featured = () => {
+  const [featuredProps, setFeaturedProps] = useState<PropertyDetails>();
   const featured = homes.filter((home) => {
     return home.featured === true;
   });

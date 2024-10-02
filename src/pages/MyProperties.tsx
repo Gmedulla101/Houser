@@ -7,18 +7,11 @@ import Loader from '../components/Loader';
 import DisplayCards from '../components/DisplayCards';
 import axios from 'axios';
 
+//IMPORTING TYPES
+import { PropertyDetails } from './CreatePost';
+
 const MyProperties = () => {
-  type Property = {
-    imgUrl: string;
-    title: string;
-    desc: string;
-    bedrooms: number;
-    propertyType: string;
-    location: string;
-    price: number;
-    featured?: boolean;
-  };
-  const [properties, setProperties] = useState([]);
+  const [properties, setProperties] = useState<PropertyDetails[]>();
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
@@ -51,7 +44,7 @@ const MyProperties = () => {
     fetchData();
   }, []);
 
-  const propertyEl = properties.map((property: Property, i: number) => {
+  const propertyEl = properties?.map((property: PropertyDetails, i: number) => {
     return <DisplayCards key={i} {...property} />;
   });
 
@@ -68,6 +61,7 @@ const MyProperties = () => {
       return { ...prevObj, [name]: value };
     });
   };
+
   // MAIN COMPONENT BODY
   return (
     <>
@@ -153,7 +147,7 @@ const MyProperties = () => {
             {propertyEl}{' '}
           </div>
         )}
-        {properties.length < 1 ? (
+        {properties ? (
           <h1 className="text-3xl font-semibold pb-5 lg:text-4xl xl:text-6xl text-center">
             You haven't created any{' '}
             <span className="text-blue-600">listings</span> yet

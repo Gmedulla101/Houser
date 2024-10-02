@@ -47,6 +47,14 @@ const SignIn = () => {
       console.log(data);
       const userToken = data.data.token;
       localStorage.setItem('user', JSON.stringify(userToken));
+      localStorage.setItem(
+        'userData',
+        JSON.stringify({
+          username: data.data.username,
+          email: data.data.email,
+          fullName: data.data.fullName,
+        })
+      );
       setIsSignedIn(true);
       setUser({
         username: data.data.username,
