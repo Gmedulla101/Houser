@@ -32,8 +32,6 @@ const Featured = () => {
     getFeaturedPosts();
   }, []);
 
-  console.log(featuredProps);
-
   return (
     <section className="px-2 mt-10 lg:px-12">
       <h1 className="text-3xl font-semibold mb-3 lg:text-4xl xl:text-6xl">

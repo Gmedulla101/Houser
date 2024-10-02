@@ -8,6 +8,7 @@ import CreatePost from './pages/CreatePost';
 import AllProperties from './pages/AllProperties';
 import PropertyPage from './pages/PropertyPage';
 import MyProperties from './pages/MyProperties';
+import FeaturedProperties from './pages/FeaturedProperties';
 
 //IMPORTING REAC ROUTER COMPONENTS
 import { Route, Routes } from 'react-router-dom';
@@ -24,6 +25,7 @@ const App = () => {
       <Route path="/all-properties" element={<AllProperties />} />
       <Route path="/view-property/:id" element={<PropertyPage />} />
       <Route path="/my-properties" element={<MyProperties />} />
+      <Route path="/featured-properties" element={<FeaturedProperties />} />
     </Routes>
   );
 };

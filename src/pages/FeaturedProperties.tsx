@@ -8,14 +8,14 @@ import axios from 'axios';
 //IMPORTING TYPES
 import { PropertyDetails } from './CreatePost';
 
-const AllProperties = () => {
+const FeaturedProperties = () => {
   const [properties, setProperties] = useState<PropertyDetails[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await axios.get(
-          'http://localhost:5000/api/v1/properties/get-all-properties'
+          'http://localhost:5000/api/v1/properties/featured-properties'
         );
         if (data) {
           setProperties(data.data.data);
@@ -56,7 +56,7 @@ const AllProperties = () => {
       <section className="mt-24 xl:mt-28 md:p-0 px-2 xmd:px-12">
         <h1 className="text-3xl font-semibold pb-5 lg:text-4xl">
           {' '}
-          We have carefully curated the listings, just{' '}
+          These are our most trusted and vetted properties, just{' '}
           <span className="text-blue-600"> pick and choose. </span>
         </h1>
         <div className="filter mt-5 md:flex md:gap-2">
@@ -129,4 +129,4 @@ const AllProperties = () => {
   );
 };
 
-export default AllProperties;
+export default FeaturedProperties;
