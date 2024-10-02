@@ -104,7 +104,7 @@ const CreatePost = () => {
       }
       const token = JSON.parse(storedValue);
 
-      const resp = await axios.post(
+      await axios.post(
         'http://localhost:5000/api/v1/properties/add-property',
         newPropDetails,
         {
