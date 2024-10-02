@@ -19,7 +19,7 @@ const DisplayCards = ({
 }: PropertyDetails) => {
   return (
     <div className="card flex flex-col justify-between shadow-3xl border-2 border-gray-300 shadow-xl rounded-lg p-2 w-[350px] h-[600px]">
-      <img src={imgUrl} alt={`${title}`} className="h-[300px] rounded-lg" />
+      <img src={imgUrl} alt={`${title}`} className="h-[270px] rounded-lg" />
       <h3 className="font-semibold mt-3 text-lg w-[300px]">{title}</h3>
       <p className="text-xs text-gray-400"> {featured ? 'Featured' : ''} </p>
       <p className="text-gray-600 text-sm mt-2">{desc.slice(0, 100)}...</p>

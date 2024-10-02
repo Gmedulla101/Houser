@@ -96,7 +96,9 @@ const CreatePost = () => {
         };
       });
 
-      console.log(newPropDetails);
+      setTimeout(() => {
+        console.log(newPropDetails);
+      }, 5000);
 
       const storedValue = localStorage.getItem('user');
       if (!storedValue) {

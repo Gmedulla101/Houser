@@ -148,12 +148,12 @@ const MyProperties = () => {
           </div>
         )}
         {properties ? (
+          ''
+        ) : (
           <h1 className="text-3xl font-semibold pb-5 lg:text-4xl xl:text-6xl text-center">
             You haven't created any{' '}
             <span className="text-blue-600">listings</span> yet
           </h1>
-        ) : (
-          ''
         )}
       </section>
       <Footer />
