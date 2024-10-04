@@ -32,26 +32,29 @@ const Header = () => {
         </div>
       </div>
 
-      <nav>
-        <ul className="flex flex-col gap-4 xmd:flex-row">
-          <li className="hover:text-blue-600 cursor-pointer p-1">
-            {' '}
-            <Link to={'/'}> Home </Link>
-          </li>
+      <nav className="flex flex-col gap-4 xmd:flex-row">
+        <Link to={'/'} className="hover:text-blue-600 cursor-pointer p-1">
+          Home
+        </Link>
+        <Link
+          to={'/properties'}
+          className="hover:text-blue-600 cursor-pointer p-1"
+        >
+          About us
+        </Link>
+        <Link
+          to={'/properties'}
+          className="hover:text-blue-600 cursor-pointer p-1"
+        >
+          Properties
+        </Link>
 
-          <li className="hover:text-blue-600 cursor-pointer p-1">
-            <Link to={'/properties'}> About us </Link>
-          </li>
-
-          <li className="hover:text-blue-600 cursor-pointer p-1">
-            <Link to={'/properties'}>Properties</Link>
-          </li>
-
-          <li className="hover:text-blue-600 p-1">
-            {' '}
-            <Link to={'/properties'}>Services</Link>{' '}
-          </li>
-        </ul>
+        <Link
+          to={'/properties'}
+          className="hover:text-blue-600 cursor-pointer p-1"
+        >
+          Services
+        </Link>
       </nav>
 
       <nav>
