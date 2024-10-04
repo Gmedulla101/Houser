@@ -16,6 +16,7 @@ import { Route, Routes } from 'react-router-dom';
 //IMPORTING MANTINE UI DEPS
 import { MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
+import '@mantine/carousel/styles.css';
 
 const App = () => {
   return (

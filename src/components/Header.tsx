@@ -20,7 +20,7 @@ const Header = () => {
     >
       <div className="title-logo flex items-center justify-between w-full xmd:w-fit">
         <Link to={'/'}>
-          <h1 className="text-3xl font-bold text-blue-800"> Houser </h1>
+          <h1 className="text-3xl font-bold text-blue-600"> Houser </h1>
         </Link>
         <div
           className="w-8 h-8 cursor-pointer xmd:hidden"
