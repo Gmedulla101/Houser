@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Slider from './Slider';
-import Loader from './Loader';
+import LoaderComponent from './LoaderComponent';
 import { homes } from '../dummy';
 import { Link } from 'react-router-dom';
 import axios from 'axios';

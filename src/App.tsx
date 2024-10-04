@@ -10,23 +10,29 @@ import PropertyPage from './pages/PropertyPage';
 import MyProperties from './pages/MyProperties';
 import FeaturedProperties from './pages/FeaturedProperties';
 
-//IMPORTING REAC ROUTER COMPONENTS
+//IMPORTING REACT ROUTER COMPONENTS
 import { Route, Routes } from 'react-router-dom';
+
+//IMPORTING MANTINE UI DEPS
+import { MantineProvider } from '@mantine/core';
+import '@mantine/core/styles.css';
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/properties" element={<Properties />} />
-      <Route path="/sign-in" element={<SignIn />} />
-      <Route path="/sign-up" element={<SignUp />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="create-property" element={<CreatePost />} />
-      <Route path="/all-properties" element={<AllProperties />} />
-      <Route path="/view-property/:id" element={<PropertyPage />} />
-      <Route path="/my-properties" element={<MyProperties />} />
-      <Route path="/featured-properties" element={<FeaturedProperties />} />
-    </Routes>
+    <MantineProvider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/properties" element={<Properties />} />
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="create-property" element={<CreatePost />} />
+        <Route path="/all-properties" element={<AllProperties />} />
+        <Route path="/view-property/:id" element={<PropertyPage />} />
+        <Route path="/my-properties" element={<MyProperties />} />
+        <Route path="/featured-properties" element={<FeaturedProperties />} />
+      </Routes>
+    </MantineProvider>
   );
 };
 

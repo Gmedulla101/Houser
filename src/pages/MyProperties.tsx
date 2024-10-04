@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Loader from '../components/Loader';
+import LoaderComponent from '../components/LoaderComponent';
 import DisplayCards from '../components/DisplayCards';
 import axios from 'axios';
 
@@ -140,7 +140,7 @@ const MyProperties = () => {
         </div>
 
         {isLoading ? (
-          <Loader />
+          <LoaderComponent />
         ) : (
           <div className="flex flex-wrap gap-5 justify-center items-center my-12">
             {' '}
