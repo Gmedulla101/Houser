@@ -15,7 +15,7 @@ const AllProperties = () => {
     const fetchData = async () => {
       try {
         const data = await axios.get(
-          'http://localhost:5000/api/v1/properties/get-all-properties'
+          'https://houser-backend.onrender.com/api/v1/properties/get-all-properties'
         );
         if (data) {
           setProperties(data.data.data);

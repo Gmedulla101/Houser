@@ -30,7 +30,7 @@ const PropertyPage = () => {
     const fetchData = async () => {
       try {
         const data = await axios.get(
-          `http://localhost:5000/api/v1/properties/get-property/${propertyId}`
+          `https://houser-backend.onrender.com/api/v1/properties/get-property/${propertyId}`
         );
         if (data) {
           setProperty(data.data.data);

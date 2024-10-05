@@ -21,7 +21,7 @@ const Featured = () => {
     const getFeaturedPosts = async () => {
       try {
         const data = await axios.get(
-          'http://localhost:5000/api/v1/properties/featured-properties'
+          'https://houser-backend.onrender.com/api/v1/properties/featured-properties'
         );
         setFeaturedProps(data.data.data);
         setIsLoading(false);
@@ -49,23 +49,6 @@ const Featured = () => {
       {isLoading ? (
         <LoaderComponent />
       ) : (
-        /* <div>
-          {featuredProps ? (
-            <div className="overflow-hidden mt-12 relative">
-              <Slider sliderDetails={featuredProps} />
-              <Link
-                to={'/featured-properties'}
-                className="block text-sm text-center px-2 py-3 w-36  rounded-md bg-blue-600 text-white hover:scale-110 transition active:bg-blue-800 lg:px-6 lg:py-3 lg:w-56 relative -top-10"
-              >
-                {' '}
-                Featured properties{' '}
-              </Link>
-            </div>
-          ) : (
-            <h1> There are currently no featured posts available </h1>
-          )}
-        </div> */
-
         <div className="mt-12">
           <Carousel
             withIndicators

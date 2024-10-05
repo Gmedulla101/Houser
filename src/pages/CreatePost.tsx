@@ -107,7 +107,7 @@ const CreatePost = () => {
       const token = JSON.parse(storedValue);
 
       await axios.post(
-        'http://localhost:5000/api/v1/properties/add-property',
+        'https://houser-backend.onrender.com/api/v1/properties/add-property',
         newPropDetails,
         {
           headers: {

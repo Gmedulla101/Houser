@@ -45,7 +45,7 @@ const SignUp = () => {
     }
     try {
       const data = await axios.post(
-        'http://localhost:5000/api/v1/auth/register-user',
+        'https://houser-backend.onrender.com/api/v1/auth/register-user',
         {
           email,
           password,
@@ -55,14 +55,14 @@ const SignUp = () => {
       );
       const userToken = data.data.token;
       localStorage.setItem('user', JSON.stringify(userToken));
-          localStorage.setItem(
-            'userData',
-            JSON.stringify({
-              username: data.data.username,
-              email: data.data.email,
-              fullName: data.data.fullName,
-            })
-          );
+      localStorage.setItem(
+        'userData',
+        JSON.stringify({
+          username: data.data.username,
+          email: data.data.email,
+          fullName: data.data.fullName,
+        })
+      );
       setIsSignedIn(true);
       setUser({
         username: data.data.username,
