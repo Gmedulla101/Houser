@@ -7,11 +7,19 @@ import Footer from '../components/Footer';
 import Loader from '../components/LoaderComponent';
 import searchIcon from '../assets/search.png';
 import Slider from '../components/Slider';
+
+//IMPORTING MANTINE UI COMPONENTS
+import { Carousel } from '@mantine/carousel';
+import { rem } from '@mantine/core';
+import Card from '../components/Card';
+import CIcon from '@coreui/icons-react';
+import { cilArrowThickRight, cilArrowThickLeft } from '@coreui/icons';
+
 //IMPORTING TYPES
 import { PropertyDetails } from './CreatePost';
 
 const Properties = () => {
-  const [properties, setProperties] = useState<PropertyDetails>();
+  const [properties, setProperties] = useState<PropertyDetails[]>();
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
@@ -80,7 +88,38 @@ const Properties = () => {
               <div className="overflow-hidden mt-12 relative xxsm:pl-10">
                 {properties ? (
                   <>
-                    <Slider sliderDetails={properties} />
+                    <Carousel
+                      withIndicators
+                      slideSize={'25%'}
+                      slideGap={'lg'}
+                      loop
+                      align={'start'}
+                      slidesToScroll={1}
+                      height={600}
+                      nextControlIcon={
+                        <CIcon
+                          icon={cilArrowThickRight}
+                          style={{ width: rem(50), height: rem(50) }}
+                          className="rounded-full p-3"
+                        />
+                      }
+                      previousControlIcon={
+                        <CIcon
+                          icon={cilArrowThickLeft}
+                          style={{ width: rem(50), height: rem(50) }}
+                          className="rounded-full p-3"
+                        />
+                      }
+                    >
+                      {properties?.map((property, i) => {
+                        return (
+                          <Carousel.Slide key={i}>
+                            {' '}
+                            <Card {...property} key={i} />{' '}
+                          </Carousel.Slide>
+                        );
+                      })}
+                    </Carousel>
                     <Link
                       to={'/all-properties'}
                       className="block text-sm text-center px-2 py-3 w-36  rounded-md bg-blue-600 text-white hover:scale-110 transition active:bg-blue-800 lg:px-6 lg:py-3 lg:w-56 relative -top-10"
@@ -89,9 +128,7 @@ const Properties = () => {
                     </Link>
                   </>
                 ) : (
-                  <h1 className="text-3xl font-semibold pb-5 lg:text-4xl xl:text-6xl text-center">
-                    There are no properties available
-                  </h1>
+                  ''
                 )}
               </div>
             )}

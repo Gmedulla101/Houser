@@ -24,7 +24,7 @@ const Card = ({
       />
       <h3 className="font-semibold mt-3 text-lg w-[300px]">{title}</h3>
       <p className="text-xs text-gray-400"> {featured ? 'Featured' : ''} </p>
-      <p className="text-gray-600 text-sm mt-2">{desc.slice(0, 0)}...</p>
+      <p className="text-gray-600 text-sm mt-2">{desc.slice(0, 50)}...</p>
 
       <div className="properties flex mt-5 gap-2 flex-wrap">
         <span className="flex items-center gap-1 border-2 border-gray-400 px-3 py-2 rounded-3xl">
