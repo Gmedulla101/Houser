@@ -73,9 +73,9 @@ const Featured = () => {
               />
             }
           >
-            {featuredProps?.map((feature) => {
+            {featuredProps?.map((feature, i) => {
               return (
-                <Carousel.Slide>
+                <Carousel.Slide key={i}>
                   {' '}
                   <Card {...feature} />{' '}
                 </Carousel.Slide>
