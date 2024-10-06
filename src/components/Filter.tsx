@@ -7,10 +7,19 @@ import { useLocation } from 'react-router-dom';
 interface FilterProps {
   setFilteredData: Function;
   setIsLoading: Function;
+  token?: string;
 }
-const Filter: React.FC<FilterProps> = ({ setFilteredData, setIsLoading }) => {
+
+
+//MAIN COMPONENT BODY
+const Filter: React.FC<FilterProps> = ({
+  setFilteredData,
+  setIsLoading,
+  token,
+}) => {
   const currentLocation = useLocation();
-  console.log(currentLocation);
+
+  //UNSING A USEREF VARIABLE TO KEEP TRACK OF THE PAGE RENDER STATUS
   const isPageRendered = useRef(false);
 
   const [filterObj, setFilterObj] = useState({
@@ -31,13 +40,18 @@ const Filter: React.FC<FilterProps> = ({ setFilteredData, setIsLoading }) => {
     const filterData = async () => {
       setIsLoading(true);
       const data = await axios.get(
-        `http://localhost:5000/api/v1/properties${currentLocation.pathname}?${
-          filterObj.location ? `location=${filterObj.location}` : ''
-        }&${
+        `https://houser-backend.onrender.com/api/v1/properties${
+          currentLocation.pathname
+        }?${filterObj.location ? `location=${filterObj.location}` : ''}&${
           filterObj.propertyType ? `propertyType=${filterObj.propertyType}` : ''
         }&${
           filterObj.pricingRange ? `pricingRange=${filterObj.pricingRange}` : ''
-        }&${filterObj.bedrooms ? `bedrooms=${filterObj.bedrooms}` : ''}`
+        }&${filterObj.bedrooms ? `bedrooms=${filterObj.bedrooms}` : ''}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       setFilteredData(data.data.data);
       setIsLoading(false);
