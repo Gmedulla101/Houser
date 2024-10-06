@@ -28,8 +28,6 @@ const MyProperties = () => {
     }
   );
 
-  console.log(filteredData);
-
   //MAIN COMPONENT BODY
   return (
     <>
