@@ -3,7 +3,7 @@ import { useState } from 'react';
 //IMPORTING HELPER COMPONENTS
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Loader from '../components/LoaderComponent';
+import LoaderComponent from '../components/LoaderComponent';
 import DisplayCards from '../components/DisplayCards';
 import Filter from '../components/Filter';
 
@@ -37,7 +37,7 @@ const FeaturedProperties = () => {
         <Filter setFilteredData={setFilteredData} setIsLoading={setIsLoading} />
 
         {isLoading ? (
-          <Loader />
+          <LoaderComponent />
         ) : (
           <div className="flex flex-wrap gap-5 justify-center items-center my-12">
             {filteredData?.length > 0 ? (

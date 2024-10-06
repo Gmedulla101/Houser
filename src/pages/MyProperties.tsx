@@ -28,6 +28,8 @@ const MyProperties = () => {
     }
   );
 
+  console.log(filteredData);
+
   //MAIN COMPONENT BODY
   return (
     <>
@@ -59,8 +61,13 @@ const MyProperties = () => {
           <LoaderComponent />
         ) : (
           <div className="flex flex-wrap gap-5 justify-center items-center my-12">
-            {' '}
-            {displayDataEl}{' '}
+            {filteredData?.length > 0 ? (
+              displayDataEl
+            ) : (
+              <h1 className="font-semibold text-3xl text-center">
+                There are currently no properties that fit your preference
+              </h1>
+            )}
           </div>
         )}
         {filteredData ? (

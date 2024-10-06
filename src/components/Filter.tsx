@@ -10,7 +10,6 @@ interface FilterProps {
   token?: string;
 }
 
-
 //MAIN COMPONENT BODY
 const Filter: React.FC<FilterProps> = ({
   setFilteredData,
@@ -36,13 +35,16 @@ const Filter: React.FC<FilterProps> = ({
     });
   };
 
+  console.log(filterObj);
+  console.log(currentLocation);
+
   useEffect(() => {
     const filterData = async () => {
       setIsLoading(true);
       const data = await axios.get(
-        `https://houser-backend.onrender.com/api/v1/properties${
-          currentLocation.pathname
-        }?${filterObj.location ? `location=${filterObj.location}` : ''}&${
+        `http://localhost:5000/api/v1/properties${currentLocation.pathname}?${
+          filterObj.location ? `location=${filterObj.location}` : ''
+        }&${
           filterObj.propertyType ? `propertyType=${filterObj.propertyType}` : ''
         }&${
           filterObj.pricingRange ? `pricingRange=${filterObj.pricingRange}` : ''
