@@ -35,9 +35,6 @@ const Filter: React.FC<FilterProps> = ({
     });
   };
 
-  console.log(filterObj);
-  console.log(currentLocation);
-
   useEffect(() => {
     const filterData = async () => {
       setIsLoading(true);
