@@ -63,7 +63,8 @@ const MyProperties = () => {
               displayDataEl
             ) : (
               <h1 className="font-semibold text-3xl text-center">
-                There are currently no properties that fit your preference
+                You have added no properties that fit this
+                <span className="text-blue-600"> description </span>
               </h1>
             )}
           </div>

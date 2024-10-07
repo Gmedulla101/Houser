@@ -44,7 +44,8 @@ const FeaturedProperties = () => {
               displayDataEl
             ) : (
               <h1 className="font-semibold text-3xl text-center">
-                There are currently no properties that fit your preference
+                There are currently no properties that fit your{' '}
+                <span className="text-blue-600"> preference </span>
               </h1>
             )}
           </div>
