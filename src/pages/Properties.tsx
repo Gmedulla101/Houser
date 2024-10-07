@@ -6,7 +6,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Loader from '../components/LoaderComponent';
 import searchIcon from '../assets/search.png';
-import Slider from '../components/Slider';
 
 //IMPORTING MANTINE UI COMPONENTS
 import { Carousel } from '@mantine/carousel';

@@ -8,7 +8,6 @@ import Footer from '../components/Footer';
 import Loader from '../components/LoaderComponent';
 
 import bed from '../assets/bed.png';
-import villa from '../assets/cardHome.png';
 import locationPointer from '../assets/location.png';
 
 const PropertyPage = () => {
