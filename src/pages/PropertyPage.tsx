@@ -60,24 +60,24 @@ const PropertyPage = () => {
         </h1>
 
         <span className="priceAndLocation flex justify-between">
-          <span className="flex items-center gap-3 border-2 border-gray-400 px-3 py-2 rounded-xl justify-center w-36 xl:w-72">
+          <span className="flex items-center gap-3 border-2 border-gray-200 px-3 py-2 rounded-xl justify-center w-36 xl:w-72">
             <img src={locationPointer} alt="" className="w-5" />
             <p className="text-xs capitalize ">{property?.location}</p>
           </span>
 
-          <span className="flex items-center gap-3 border-2 border-gray-400 px-3 py-2 rounded-xl justify-center w-24 xl:w-72">
+          <span className="flex items-center gap-3 border-2 border-gray-200 px-3 py-2 rounded-xl justify-center w-24 xl:w-72">
             <img src={bed} alt="" className="w-5" />
             <p className="text-xs capitalize ">{property?.bedrooms}</p>
           </span>
 
-          <span className="flex items-center justify-center gap-2 border-2 border-gray-400 px-3 py-2 rounded-xl xl:w-72">
+          <span className="flex items-center justify-center gap-2 border-2 border-gray-200 px-3 py-2 rounded-xl xl:w-72">
             <p className="font-semibold"> Price:</p>
             <p> N{property?.price} </p>
           </span>
         </span>
 
         <div className="xl:flex xl:justify-between">
-          <div className="img my-5 mx-auto overflow-hidden p-5 border-2 border-gray-700 rounded-xl xl:w-[50%]">
+          <div className="img my-5 mx-auto overflow-hidden p-2 border-2 border-gray-200 rounded-xl xl:w-[50%]">
             <img
               src={property?.imgUrl}
               alt={`${property?.title}`}
@@ -85,9 +85,11 @@ const PropertyPage = () => {
             />
           </div>
 
-          <div className="img my-5 mx-auto overflow-hidden p-5 border-2 border-gray-700 rounded-xl xl:w-[40%]">
-            <h3 className="font-semibold text-lg"> Description </h3>
-            <p>{property?.desc}</p>
+          <div className="img my-5 mx-auto overflow-hidden p-5 border-2 border-gray-200 rounded-xl xl:w-[40%] flex flex-col justify-between">
+            <div>
+              <h3 className="font-semibold text-lg mb-5"> Description </h3>
+              <p>{property?.desc}</p>
+            </div>
             <button className="block font-semibold text-center px-2 py-3 mt-12 mx-auto w-full rounded-md bg-blue-600 text-white transition  hover:bg-white hover:text-blue-600 active:bg-blue-800 lg:px-6 lg:py-3">
               Request a tour
             </button>
