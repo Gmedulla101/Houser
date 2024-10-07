@@ -8,7 +8,7 @@ const Hero = () => {
       <div className="heroText  flex flex-col justify-center items-center text-center gap-3 md:w-[40%] md:ml-2 lg:ml-12 md:text-left md:items-start">
         <h1 className="text-3xl font-semibold lg:text-4xl xl:text-6xl">
           Get rid of housing hassles with
-          <span className="text-blue-800">Houser</span>
+          <span className="text-blue-800"> Houser</span>
         </h1>
         <p className="text-sm text-gray-600">
           Your journey to finding the perfect house for you begins here. Explore
