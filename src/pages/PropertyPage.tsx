@@ -76,7 +76,7 @@ const PropertyPage = () => {
         </span>
 
         <div className="xl:flex xl:justify-between">
-          <div className="img h-[400px] my-5 mx-auto overflow-hidden p-2 border-2 border-gray-200 rounded-xl xl:w-[50%] xl:h-[507px]">
+          <div className="img h-[400px] my-5 mx-auto overflow-hidden p-2 border-2 border-gray-200 rounded-xl xmd:h-[520px] xl:w-[50%]">
             <img
               src={property?.imgUrl}
               alt={`${property?.title}`}
