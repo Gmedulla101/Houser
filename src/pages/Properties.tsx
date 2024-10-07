@@ -25,7 +25,7 @@ const Properties = () => {
     const fetchData = async () => {
       try {
         const data = await axios.get(
-          'https://houser-backend.onrender.com/api/v1/properties/get-all-properties'
+          'https://houser-backend.onrender.com/api/v1/properties/all-properties'
         );
         if (data) {
           setProperties(data.data.data);
