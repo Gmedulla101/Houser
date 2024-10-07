@@ -16,7 +16,7 @@ const Card = ({
   _id,
 }: PropertyDetails) => {
   return (
-    <div className="card shadow-3xl border-2 border-gray-300 shadow-xl rounded-lg p-2 w-[300px]">
+    <div className="card shadow-3xl border-2 border-gray-300 shadow-xl rounded-lg p-2 w-[300px] h-[550px] flex flex-col justify-between">
       <img
         src={imgUrl}
         alt="Houser home"
