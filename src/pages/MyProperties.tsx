@@ -62,9 +62,9 @@ const MyProperties = () => {
             {filteredData?.length > 0 ? (
               displayDataEl
             ) : (
-              <h1 className="font-semibold text-3xl text-center">
-                You have added no properties that fit this
-                <span className="text-blue-600"> description </span>
+              <h1 className="text-3xl font-semibold pb-5 lg:text-4xl xl:text-6xl text-center">
+                You haven't created any{' '}
+                <span className="text-blue-600">listings</span> yet
               </h1>
             )}
           </div>
