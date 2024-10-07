@@ -76,11 +76,11 @@ const PropertyPage = () => {
         </span>
 
         <div className="xl:flex xl:justify-between">
-          <div className="img my-5 mx-auto overflow-hidden p-2 border-2 border-gray-200 rounded-xl xl:w-[50%]">
+          <div className="img h-[400px] my-5 mx-auto overflow-hidden p-2 border-2 border-gray-200 rounded-xl xl:w-[50%] xl:h-[507px]">
             <img
               src={property?.imgUrl}
               alt={`${property?.title}`}
-              className="w-full rounded-xl"
+              className="w-full h-full rounded-xl"
             />
           </div>
 
