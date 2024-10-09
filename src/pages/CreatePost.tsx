@@ -50,6 +50,7 @@ const CreatePost = () => {
     propertyType: '',
   });
 
+  //FUNCTIONALITY TO UPLOAD IMAGES TO CLOUDINARY
   const uploadImage = async (image: any) => {
     try {
       if (
