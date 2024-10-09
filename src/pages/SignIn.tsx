@@ -44,7 +44,7 @@ const SignIn = () => {
           password,
         }
       );
-      console.log(data);
+
       const userToken = data.data.token;
       localStorage.setItem('user', JSON.stringify(userToken));
       localStorage.setItem(
