@@ -1,5 +1,5 @@
 //REACT HOOKS
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 //HELPER COMPONENTS
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -82,24 +82,30 @@ const CreatePost = () => {
     });
   };
 
+  //FUNCTIONALITY TO CHANGE STATE ACCORDING TO IMAGE URL GOTTEN FROM CLOUDINARY
   const submitDetails = async () => {
     try {
       setIsLoading(true);
       const imageUrl = await uploadImage(img);
-      if (!imageUrl) {
-        throw new Error('No image');
-      }
+      console.log(imageUrl);
+
       setNewPropDetails((prev) => {
         return {
           ...prev,
-          imgUrl: `${imageUrl}`,
+          imgUrl: imageUrl,
         };
       });
+      console.log(newPropDetails);
+    } catch (error: any) {
+      console.error(error);
+      setIsLoading(false);
+      setErrorMsg(error.response.data.msg);
+    }
+  };
 
-      setTimeout(() => {
-        console.log(newPropDetails);
-      }, 5000);
-
+  //TRIGGER USEEFFECT ONCE IMAGE URL IS CONFIRMED
+  useEffect(() => {
+    const finalSubmit = async () => {
       const storedValue = localStorage.getItem('user');
       if (!storedValue) {
         throw new Error('There is no user logged in');
@@ -116,12 +122,11 @@ const CreatePost = () => {
         }
       );
       navigate('/my-properties');
-    } catch (error: any) {
-      console.error(error);
-      setIsLoading(false);
-      setErrorMsg(error.response.data.msg);
+    };
+    if (newPropDetails.imgUrl) {
+      finalSubmit();
     }
-  };
+  }, [newPropDetails.imgUrl]);
 
   return (
     <>
