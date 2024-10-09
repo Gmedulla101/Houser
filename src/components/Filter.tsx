@@ -39,9 +39,9 @@ const Filter: React.FC<FilterProps> = ({
     const filterData = async () => {
       setIsLoading(true);
       const data = await axios.get(
-        `https://houser-backend.onrender.com/api/v1/properties${
-          currentLocation.pathname
-        }?${filterObj.location ? `location=${filterObj.location}` : ''}&${
+        `http://localhost:5000/api/v1/properties${currentLocation.pathname}?${
+          filterObj.location ? `location=${filterObj.location}` : ''
+        }&${
           filterObj.propertyType ? `propertyType=${filterObj.propertyType}` : ''
         }&${
           filterObj.pricingRange ? `pricingRange=${filterObj.pricingRange}` : ''
@@ -97,13 +97,13 @@ const Filter: React.FC<FilterProps> = ({
         className="w-full border-2 border-gray-200 rounded-lg py-2 mb-3 outline-none text-center cursor-pointer"
       >
         <option value=""> Pricing range </option>
-        <option value="50000 - 100000"> N50,000 - N100,000 </option>
-        <option value="100000 - 200000"> N100,000 - N200,000 </option>
-        <option value="200000 - 300000"> N200,000 - N300,000 </option>
-        <option value="300000 - 400000"> N300,000 - N400,000 </option>
-        <option value="400000 - 500000"> N400,000 - N500,000 </option>
-        <option value="500000 - 1000000"> N500,000 - N1000,000 </option>
-        <option value="1000000 - e"> 1000,000 - </option>
+        <option value="50000-100000"> N50,000 - N100,000 </option>
+        <option value="100000-200000"> N100,000 - N200,000 </option>
+        <option value="200000-300000"> N200,000 - N300,000 </option>
+        <option value="300000-400000"> N300,000 - N400,000 </option>
+        <option value="400000-500000"> N400,000 - N500,000 </option>
+        <option value="500000-1000000"> N500,000 - N1000,000 </option>
+        <option value="1000000-e"> {'> 1000,000'} </option>
       </select>
 
       <select
