@@ -30,7 +30,7 @@ const Dashboard = () => {
       try {
         setIsLoading(true);
         const data = await axios.get(
-          'http://localhost:5000/api/v1/auth/getUser',
+          'https://houser-backend.onrender.com/api/v1/auth/getUser',
           {
             headers: {
               Authorization: `Bearer ${token}`,
