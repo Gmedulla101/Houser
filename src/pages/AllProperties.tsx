@@ -21,7 +21,7 @@ const AllProperties = () => {
   return (
     <>
       <Header />
-      <section className="mt-24 xl:mt-28 md:p-0 px-2 xmd:px-12">
+      <section className="mt-24 xl:mt-28 md:p-0 px-2 xmd:px-5">
         <h1 className="text-3xl font-semibold pb-5 lg:text-4xl">
           {' '}
           We have carefully curated the listings, just{' '}
@@ -32,7 +32,7 @@ const AllProperties = () => {
         {isLoading ? (
           <Loader />
         ) : (
-          <div className="flex flex-wrap gap-5 justify-center items-center my-12">
+          <div className="flex flex-wrap gap-16 justify-center items-center my-12">
             {filteredData?.length > 0 ? (
               displayDataEl
             ) : (
