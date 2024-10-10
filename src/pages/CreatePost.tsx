@@ -27,15 +27,15 @@ const CreatePost = () => {
   const [imgUrl, setImgUrl] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState();
-  const navigate = useNavigate();
-
   const [img, setImg] = useState<any>([]);
+
+  const navigate = useNavigate();
 
   const upload_preset = import.meta.env.VITE_UPLOAD_PRESET;
   const cloud_name = import.meta.env.VITE_CLOUD_NAME;
 
   const [newPropDetails, setNewPropDetails] = useState<PropertyDetails>({
-    imgUrl: '',
+    imgUrl: [],
     title: '',
     desc: '',
     price: '',
@@ -47,30 +47,34 @@ const CreatePost = () => {
 
   //FUNCTIONALITY TO UPLOAD IMAGES TO CLOUDINARY
   const uploadImage = async (imageArray: any) => {
-    imageArray.forEach(async (image: any) => {
-      try {
-        if (
-          (image && image.type === 'image/png') ||
-          (image && image.type === 'image/jpg') ||
-          (image && image.type === 'image/jpeg')
-        ) {
-          const imageObject = new FormData();
-          imageObject.append('file', image);
-          imageObject.append('upload_preset', upload_preset);
+    const uploadedUrls = await Promise.all(
+      imageArray.map(async (image: any) => {
+        try {
+          if (
+            (image && image.type === 'image/png') ||
+            (image && image.type === 'image/jpg') ||
+            (image && image.type === 'image/jpeg') ||
+            (image && image.type === 'image/webp')
+          ) {
+            const imageObject = new FormData();
+            imageObject.append('file', image);
+            imageObject.append('upload_preset', upload_preset);
 
-          const data = await axios.post(
-            `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
-            imageObject
-          );
-          setImgUrl((prevUrl) => {
-            return [...prevUrl, data.data.url];
-          });
-          return data.data.url;
+            const { data } = await axios.post(
+              `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
+              imageObject
+            );
+            return data.url;
+          }
+        } catch (error) {
+          console.error(error);
         }
-      } catch (error) {
-        console.error(error);
-      }
-    });
+
+        return null;
+      })
+    );
+
+    return uploadedUrls.filter((url) => url !== null);
   };
 
   console.log(img);
@@ -90,13 +94,13 @@ const CreatePost = () => {
   const submitDetails = async () => {
     try {
       setIsLoading(true);
-      const imageUrl = await uploadImage(img);
-      console.log(imageUrl);
+      const imageUrls = await uploadImage(img);
+      console.log(imageUrls);
 
       setNewPropDetails((prev) => {
         return {
           ...prev,
-          imgUrl: imageUrl,
+          imgUrl: imageUrls,
         };
       });
       console.log(newPropDetails);
@@ -110,27 +114,28 @@ const CreatePost = () => {
   //TRIGGER USEEFFECT ONCE IMAGE URL IS CONFIRMED
   useEffect(() => {
     const finalSubmit = async () => {
-      const storedValue = localStorage.getItem('user');
-      if (!storedValue) {
-        throw new Error('There is no user logged in');
-      }
-      const token = JSON.parse(storedValue);
-      alert(`Listing added! with token ${token}`);
-
-      setIsLoading(false);
-
-      /*  await axios.post(
-        'https://houser-backend.onrender.com/api/v1/properties/add-property',
-        newPropDetails,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+      try {
+        const storedValue = localStorage.getItem('user');
+        if (!storedValue) {
+          throw new Error('There is no user logged in');
         }
-      );
-      navigate('/my-properties'); */
+        const token = JSON.parse(storedValue);
+
+        await axios.post(
+          'http://localhost:5000/api/v1/properties/add-property',
+          newPropDetails,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        navigate('/my-properties');
+      } catch (error) {
+        console.error(error);
+      }
     };
-    if (newPropDetails.imgUrl) {
+    if (newPropDetails.imgUrl && newPropDetails.imgUrl.length > 0) {
       finalSubmit();
     }
   }, [newPropDetails.imgUrl]);
@@ -154,12 +159,33 @@ const CreatePost = () => {
               index={0}
               img={img}
             />
-            <div className="mt-12 flex flex-col gap-5 justify-between items-center lg:flex-row">
+            <div className="mt-5 flex gap-5 items-center lg:flex-row">
               <ImageBox
                 setImg={setImg}
                 width={'w-52'}
                 height="h-60"
                 index={1}
+                img={img}
+              />
+              <ImageBox
+                setImg={setImg}
+                width={'w-52'}
+                height="h-60"
+                index={2}
+                img={img}
+              />
+              <ImageBox
+                setImg={setImg}
+                width={'w-52'}
+                height="h-60"
+                index={3}
+                img={img}
+              />
+              <ImageBox
+                setImg={setImg}
+                width={'w-52'}
+                height="h-60"
+                index={4}
                 img={img}
               />
             </div>
