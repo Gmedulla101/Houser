@@ -4,15 +4,14 @@ import { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Loader from '../components/LoaderComponent';
-//UI COMPONENTS
-import { CIcon } from '@coreui/icons-react';
-import { cilImage, cilX } from '@coreui/icons';
+import ImageBox from '../components/ImageBox';
+
 //OTHER DEPS
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export type PropertyDetails = {
-  imgUrl: string;
+  imgUrl: any;
   title: string;
   desc: string;
   price: number | string;
@@ -25,20 +24,15 @@ export type PropertyDetails = {
 
 //MAIN COMPONENT BODY
 const CreatePost = () => {
-  const [displayImage, setDisplayImage] = useState<any>();
-  const [img, setImg] = useState<any>();
+  const [imgUrl, setImgUrl] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState();
   const navigate = useNavigate();
 
+  const [img, setImg] = useState<any>([]);
+
   const upload_preset = import.meta.env.VITE_UPLOAD_PRESET;
   const cloud_name = import.meta.env.VITE_CLOUD_NAME;
-
-  const setImage = (e: any) => {
-    const { files } = e.target;
-    setImg(files[0]);
-    setDisplayImage(URL.createObjectURL(files[0]));
-  };
 
   const [newPropDetails, setNewPropDetails] = useState<PropertyDetails>({
     imgUrl: '',
@@ -52,27 +46,35 @@ const CreatePost = () => {
   });
 
   //FUNCTIONALITY TO UPLOAD IMAGES TO CLOUDINARY
-  const uploadImage = async (image: any) => {
-    try {
-      if (
-        (image && image.type === 'image/png') ||
-        (image && image.type === 'image/jpg') ||
-        (image && image.type === 'image/jpeg')
-      ) {
-        const imageObject = new FormData();
-        imageObject.append('file', image);
-        imageObject.append('upload_preset', upload_preset);
+  const uploadImage = async (imageArray: any) => {
+    imageArray.forEach(async (image: any) => {
+      try {
+        if (
+          (image && image.type === 'image/png') ||
+          (image && image.type === 'image/jpg') ||
+          (image && image.type === 'image/jpeg')
+        ) {
+          const imageObject = new FormData();
+          imageObject.append('file', image);
+          imageObject.append('upload_preset', upload_preset);
 
-        const data = await axios.post(
-          `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
-          imageObject
-        );
-        return data.data.url;
+          const data = await axios.post(
+            `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
+            imageObject
+          );
+          setImgUrl((prevUrl) => {
+            return [...prevUrl, data.data.url];
+          });
+          return data.data.url;
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
-    }
+    });
   };
+
+  console.log(img);
+  console.log(imgUrl);
 
   const addNewPropDetails = (event: any) => {
     const { name, value, checked, type } = event.target;
@@ -113,8 +115,11 @@ const CreatePost = () => {
         throw new Error('There is no user logged in');
       }
       const token = JSON.parse(storedValue);
+      alert(`Listing added! with token ${token}`);
 
-      await axios.post(
+      setIsLoading(false);
+
+      /*  await axios.post(
         'https://houser-backend.onrender.com/api/v1/properties/add-property',
         newPropDetails,
         {
@@ -123,7 +128,7 @@ const CreatePost = () => {
           },
         }
       );
-      navigate('/my-properties');
+      navigate('/my-properties'); */
     };
     if (newPropDetails.imgUrl) {
       finalSubmit();
@@ -142,40 +147,21 @@ const CreatePost = () => {
             Be part of the housing experience.
           </h1>
           <section className="createInputs my-10">
-            <label
-              htmlFor="image"
-              onChange={setImage}
-              className="border-2 border-gray-400 w-full h-96 rounded-xl flex flex-col items-center justify-center p-2 cursor-pointer overflow-hidden"
-            >
-              <input type="file" id="image" name="imgUrl" className="hidden" />
-              {displayImage ? (
-                <img src={displayImage} className="w-full h-full" />
-              ) : (
-                <div className="flex flex-col items-center justify-center">
-                  {' '}
-                  <CIcon
-                    icon={cilImage}
-                    size="xl"
-                    className="w-[50%] h-[50%]"
-                  />
-                  <p> Add an image of your property </p>{' '}
-                </div>
-              )}
-            </label>
-            <div className="flex justify-end">
-              {displayImage ? (
-                <button
-                  onClick={() => {
-                    setDisplayImage(undefined);
-                  }}
-                  className="bg-white rounded-full py-1 px-4 mt-1 opacity-60 flex items-center"
-                >
-                  {' '}
-                  <CIcon icon={cilX} size="xl" className="w-6" /> Remove image
-                </button>
-              ) : (
-                ''
-              )}
+            <ImageBox
+              setImg={setImg}
+              width="w-full"
+              height="h-96"
+              index={0}
+              img={img}
+            />
+            <div className="mt-12 flex flex-col gap-5 justify-between items-center lg:flex-row">
+              <ImageBox
+                setImg={setImg}
+                width={'w-52'}
+                height="h-60"
+                index={1}
+                img={img}
+              />
             </div>
 
             <div className="errorPopup">
