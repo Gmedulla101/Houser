@@ -48,6 +48,7 @@ const CreatePost = () => {
     bedrooms: '',
     location: '',
     propertyType: '',
+    featured: false,
   });
 
   //FUNCTIONALITY TO UPLOAD IMAGES TO CLOUDINARY
@@ -74,11 +75,11 @@ const CreatePost = () => {
   };
 
   const addNewPropDetails = (event: any) => {
-    const { name, value } = event.target;
+    const { name, value, checked, type } = event.target;
     setNewPropDetails((prevDetails) => {
       return {
         ...prevDetails,
-        [name]: value,
+        [name]: type === 'checkbox' ? checked : value,
       };
     });
   };
@@ -244,6 +245,17 @@ const CreatePost = () => {
                 onChange={addNewPropDetails}
                 className="border-2 border-gray-400 rounded-lg h-12 px-4 outine-none focus:border-blue-600"
               />
+              <label htmlFor="featured" className="flex gap-3 mt-6">
+                <p> Do you want your listing to be featured? </p>
+                <input
+                  type="checkbox"
+                  id="featured"
+                  name="featured"
+                  checked={newPropDetails.featured}
+                  onChange={addNewPropDetails}
+                  className="cursor-pointer"
+                />
+              </label>
             </div>
             <button
               onClick={submitDetails}
