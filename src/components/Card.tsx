@@ -18,7 +18,7 @@ const Card = ({
   return (
     <div className="card shadow-3xl border-2 border-gray-300 shadow-xl rounded-lg p-2 w-[300px] h-[550px] flex flex-col justify-between">
       <img
-        src={imgUrl}
+        src={imgUrl[0]}
         alt="Houser home"
         className="h-[250px] w-full rounded-lg"
       />
