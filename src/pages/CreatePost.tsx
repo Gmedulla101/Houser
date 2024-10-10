@@ -4,15 +4,14 @@ import { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Loader from '../components/LoaderComponent';
-//UI COMPONENTS
-import { CIcon } from '@coreui/icons-react';
-import { cilImage, cilX } from '@coreui/icons';
+import ImageBox from '../components/ImageBox';
+
 //OTHER DEPS
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export type PropertyDetails = {
-  imgUrl: string;
+  imgUrl: any;
   title: string;
   desc: string;
   price: number | string;
@@ -25,60 +24,68 @@ export type PropertyDetails = {
 
 //MAIN COMPONENT BODY
 const CreatePost = () => {
-  const [displayImage, setDisplayImage] = useState<any>();
-  const [img, setImg] = useState<any>();
+  const [imgUrl, setImgUrl] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState();
+  const [img, setImg] = useState<any>([]);
+
   const navigate = useNavigate();
 
   const upload_preset = import.meta.env.VITE_UPLOAD_PRESET;
   const cloud_name = import.meta.env.VITE_CLOUD_NAME;
 
-  const setImage = (e: any) => {
-    const { files } = e.target;
-    setImg(files[0]);
-    setDisplayImage(URL.createObjectURL(files[0]));
-  };
-
   const [newPropDetails, setNewPropDetails] = useState<PropertyDetails>({
-    imgUrl: '',
+    imgUrl: [],
     title: '',
     desc: '',
     price: '',
     bedrooms: '',
     location: '',
     propertyType: '',
+    featured: false,
   });
 
   //FUNCTIONALITY TO UPLOAD IMAGES TO CLOUDINARY
-  const uploadImage = async (image: any) => {
-    try {
-      if (
-        (image && image.type === 'image/png') ||
-        (image && image.type === 'image/jpg') ||
-        (image && image.type === 'image/jpeg')
-      ) {
-        const imageObject = new FormData();
-        imageObject.append('file', image);
-        imageObject.append('upload_preset', upload_preset);
+  const uploadImage = async (imageArray: any) => {
+    const uploadedUrls = await Promise.all(
+      imageArray.map(async (image: any) => {
+        try {
+          if (
+            (image && image.type === 'image/png') ||
+            (image && image.type === 'image/jpg') ||
+            (image && image.type === 'image/jpeg') ||
+            (image && image.type === 'image/webp')
+          ) {
+            const imageObject = new FormData();
+            imageObject.append('file', image);
+            imageObject.append('upload_preset', upload_preset);
 
-        const data = await axios.post(
-          `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
-          imageObject
-        );
-        return data.data.url;
-      }
-    } catch (error) {
-      console.error(error);
-    }
+            const { data } = await axios.post(
+              `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
+              imageObject
+            );
+            return data.url;
+          }
+        } catch (error) {
+          console.error(error);
+        }
+
+        return null;
+      })
+    );
+
+    return uploadedUrls.filter((url) => url !== null);
   };
 
+  console.log(img);
+  console.log(imgUrl);
+
   const addNewPropDetails = (event: any) => {
-    const { name, value } = event.target;
+    const { name, value, checked, type } = event.target;
     setNewPropDetails((prevDetails) => {
       return {
         ...prevDetails,
-        [name]: value,
+        [name]: type === 'checkbox' ? checked : value,
       };
     });
   };
@@ -87,13 +94,13 @@ const CreatePost = () => {
   const submitDetails = async () => {
     try {
       setIsLoading(true);
-      const imageUrl = await uploadImage(img);
-      console.log(imageUrl);
+      const imageUrls = await uploadImage(img);
+      console.log(imageUrls);
 
       setNewPropDetails((prev) => {
         return {
           ...prev,
-          imgUrl: imageUrl,
+          imgUrl: imageUrls,
         };
       });
       console.log(newPropDetails);
@@ -107,24 +114,28 @@ const CreatePost = () => {
   //TRIGGER USEEFFECT ONCE IMAGE URL IS CONFIRMED
   useEffect(() => {
     const finalSubmit = async () => {
-      const storedValue = localStorage.getItem('user');
-      if (!storedValue) {
-        throw new Error('There is no user logged in');
-      }
-      const token = JSON.parse(storedValue);
-
-      await axios.post(
-        'https://houser-backend.onrender.com/api/v1/properties/add-property',
-        newPropDetails,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+      try {
+        const storedValue = localStorage.getItem('user');
+        if (!storedValue) {
+          throw new Error('There is no user logged in');
         }
-      );
-      navigate('/my-properties');
+        const token = JSON.parse(storedValue);
+
+        await axios.post(
+          'http://localhost:5000/api/v1/properties/add-property',
+          newPropDetails,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        navigate('/my-properties');
+      } catch (error) {
+        console.error(error);
+      }
     };
-    if (newPropDetails.imgUrl) {
+    if (newPropDetails.imgUrl && newPropDetails.imgUrl.length > 0) {
       finalSubmit();
     }
   }, [newPropDetails.imgUrl]);
@@ -141,40 +152,42 @@ const CreatePost = () => {
             Be part of the housing experience.
           </h1>
           <section className="createInputs my-10">
-            <label
-              htmlFor="image"
-              onChange={setImage}
-              className="border-2 border-gray-400 w-full h-96 rounded-xl flex flex-col items-center justify-center p-2 cursor-pointer overflow-hidden"
-            >
-              <input type="file" id="image" name="imgUrl" className="hidden" />
-              {displayImage ? (
-                <img src={displayImage} className="w-full h-full" />
-              ) : (
-                <div className="flex flex-col items-center justify-center">
-                  {' '}
-                  <CIcon
-                    icon={cilImage}
-                    size="xl"
-                    className="w-[50%] h-[50%]"
-                  />
-                  <p> Add an image of your property </p>{' '}
-                </div>
-              )}
-            </label>
-            <div className="flex justify-end">
-              {displayImage ? (
-                <button
-                  onClick={() => {
-                    setDisplayImage(undefined);
-                  }}
-                  className="bg-white rounded-full py-1 px-4 mt-1 opacity-60 flex items-center"
-                >
-                  {' '}
-                  <CIcon icon={cilX} size="xl" className="w-6" /> Remove image
-                </button>
-              ) : (
-                ''
-              )}
+            <ImageBox
+              setImg={setImg}
+              width="w-full"
+              height="h-96"
+              index={0}
+              img={img}
+            />
+            <div className="mt-5 flex gap-5 items-center lg:flex-row">
+              <ImageBox
+                setImg={setImg}
+                width={'w-52'}
+                height="h-60"
+                index={1}
+                img={img}
+              />
+              <ImageBox
+                setImg={setImg}
+                width={'w-52'}
+                height="h-60"
+                index={2}
+                img={img}
+              />
+              <ImageBox
+                setImg={setImg}
+                width={'w-52'}
+                height="h-60"
+                index={3}
+                img={img}
+              />
+              <ImageBox
+                setImg={setImg}
+                width={'w-52'}
+                height="h-60"
+                index={4}
+                img={img}
+              />
             </div>
 
             <div className="errorPopup">
@@ -244,6 +257,17 @@ const CreatePost = () => {
                 onChange={addNewPropDetails}
                 className="border-2 border-gray-400 rounded-lg h-12 px-4 outine-none focus:border-blue-600"
               />
+              <label htmlFor="featured" className="flex gap-3 mt-6">
+                <p> Do you want your listing to be featured? </p>
+                <input
+                  type="checkbox"
+                  id="featured"
+                  name="featured"
+                  checked={newPropDetails.featured}
+                  onChange={addNewPropDetails}
+                  className="cursor-pointer"
+                />
+              </label>
             </div>
             <button
               onClick={submitDetails}
