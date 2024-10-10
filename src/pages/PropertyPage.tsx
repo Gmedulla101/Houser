@@ -86,7 +86,10 @@ const PropertyPage = () => {
 
           <div className="img my-5 mx-auto overflow-hidden p-5 border-2 border-gray-200 rounded-xl xl:w-[40%] flex flex-col justify-between">
             <div>
-              <h3 className="font-semibold text-lg mb-5"> Description </h3>
+              <h3 className="font-semibold text-lg"> Description </h3>
+              <p className="text-sm text-gray-400 mb-3">
+                {property?.featured ? 'Featured' : ''}
+              </p>
               <p>{property?.desc}</p>
             </div>
             <button className="block font-semibold text-center px-2 py-3 mt-12 mx-auto w-full rounded-md bg-blue-600 text-white transition  hover:bg-white hover:text-blue-600 active:bg-blue-800 lg:px-6 lg:py-3">
