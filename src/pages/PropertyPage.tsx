@@ -111,7 +111,7 @@ const PropertyPage = () => {
                 </p>
                 <p>{property?.desc}</p>
               </div>
-              <button className="block font-semibold text-center px-2 py-3 mt-12 mx-auto w-full rounded-md bg-blue-600 text-white transition  hover:bg-white hover:text-blue-600 active:bg-blue-800 lg:px-6 lg:py-3">
+              <button className="block font-semibold text-center px-2 py-3 mt-12 mx-auto w-full rounded-md bg-blue-600 text-white transition  hover:bg-gray-200 hover:text-blue-600 active:bg-blue-800 lg:px-6 lg:py-3">
                 Request a tour
               </button>
             </div>
