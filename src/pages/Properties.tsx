@@ -65,7 +65,7 @@ const Properties = () => {
             <button className="bg-blue-600 flex gap-2 items-center py-2 px-4 rounded-lg justify-between hover:bg-blue-700">
               <img className="w-5" src={searchIcon} alt="Search icon" />
 
-              <p className="bg-blue-600 text-white text-xs hidden xsm:block">
+              <p className="text-white text-xs hidden xsm:block">
                 Find property
               </p>
             </button>
