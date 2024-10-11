@@ -59,35 +59,37 @@ const Header = () => {
 
       <nav>
         {isSignedIn ? (
-          <ul className="flex flex-col gap-2 xmd:flex-row">
-            <li>
-              <Link
-                to={'/my-properties'}
-                className=" cursor-pointer p-1 border-2 rounded-lg block w-36 bg-blue-600 text-white hover:scale-110 transition duration-300"
-              >
-                Your listings
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={'/profile'}
-                className="cursor-pointer p-1 bg-gray-200 text-blue-600 rounded-lg block w-36 hover:scale-110 transition duration-300"
-              >
-                Profile
-              </Link>
-            </li>
-          </ul>
+          <div className="flex flex-col gap-2 xmd:flex-row">
+            <Link
+              to={'/my-properties'}
+              className=" cursor-pointer p-1 border-2 rounded-lg block w-36 bg-blue-600 text-white hover:scale-110 transition duration-300"
+            >
+              Your listings
+            </Link>
+
+            <Link
+              to={'/profile'}
+              className="cursor-pointer p-1 bg-gray-200 text-blue-600 rounded-lg block w-36 hover:scale-110 transition duration-300"
+            >
+              Profile
+            </Link>
+          </div>
         ) : (
-          <ul className="flex flex-col gap-2 xmd:flex-row">
-            <li className=" cursor-pointer p-1 border-2 rounded-lg block w-36 bg-blue-600 text-white hover:scale-110 transition duration-300">
-              {' '}
-              <Link to={'/sign-up'}> Sign up </Link>{' '}
-            </li>
-            <li className="cursor-pointer p-1 bg-gray-200 text-blue-600 rounded-lg block w-36 hover:scale-110 transition duration-300">
-              {' '}
-              <Link to={'/sign-in'}> Sign in </Link>{' '}
-            </li>
-          </ul>
+          <div className="flex flex-col gap-2 xmd:flex-row">
+            <Link
+              to={'/sign-up'}
+              className=" cursor-pointer p-1 border-2 rounded-lg block w-36 bg-blue-600 text-white hover:scale-110 transition duration-300"
+            >
+              Sign up
+            </Link>
+
+            <Link
+              to={'/sign-in'}
+              className="cursor-pointer p-1 bg-gray-200 text-blue-600 rounded-lg block w-36 hover:scale-110 transition duration-300"
+            >
+              Sign in
+            </Link>
+          </div>
         )}
       </nav>
     </header>

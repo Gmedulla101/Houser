@@ -61,22 +61,22 @@ const Featured = () => {
               <CIcon
                 icon={cilArrowThickRight}
                 style={{ width: rem(50), height: rem(50) }}
-                className="rounded-full p-3"
+                className="rounded-full p-3 relative transition hover:scale-110 active:scale-90"
               />
             }
             previousControlIcon={
               <CIcon
                 icon={cilArrowThickLeft}
                 style={{ width: rem(50), height: rem(50) }}
-                className="rounded-full p-3"
+                className="rounded-full p-3 transition hover:scale-110 active:scale-90"
               />
             }
+            className="px-3 xmd:px-20"
           >
             {featuredProps?.map((feature, i) => {
               return (
                 <Carousel.Slide key={i}>
-                  {' '}
-                  <Card {...feature} />{' '}
+                  <Card {...feature} />
                 </Carousel.Slide>
               );
             })}
@@ -85,8 +85,7 @@ const Featured = () => {
             to={'/featured-properties'}
             className="block text-sm text-center px-2 py-3 w-36  rounded-md bg-blue-600 text-white hover:scale-110 transition active:bg-blue-800 lg:px-6 lg:py-3 lg:w-56 relative -top-5"
           >
-            {' '}
-            Featured properties{' '}
+            Featured properties
           </Link>
         </div>
       )}

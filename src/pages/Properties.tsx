@@ -109,6 +109,7 @@ const Properties = () => {
                           className="rounded-full p-3"
                         />
                       }
+                      className="px-3 xmd:px-20"
                     >
                       {properties?.map((property, i) => {
                         return (
