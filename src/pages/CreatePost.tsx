@@ -24,7 +24,6 @@ export type PropertyDetails = {
 
 //MAIN COMPONENT BODY
 const CreatePost = () => {
-  const [imgUrl, setImgUrl] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState();
   const [img, setImg] = useState<any>([]);
@@ -76,9 +75,6 @@ const CreatePost = () => {
 
     return uploadedUrls.filter((url) => url !== null);
   };
-
-  console.log(img);
-  console.log(imgUrl);
 
   const addNewPropDetails = (event: any) => {
     const { name, value, checked, type } = event.target;
