@@ -10,6 +10,10 @@ import ImageBox from '../components/ImageBox';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+//UI COMPONENTS
+import CIcon from '@coreui/icons-react';
+import { cilPlus } from '@coreui/icons';
+
 export type PropertyDetails = {
   imgUrl: any;
   title: string;
@@ -27,6 +31,7 @@ const CreatePost = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState();
   const [img, setImg] = useState<any>([]);
+  const [moreImages, setMoreImages] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -148,43 +153,58 @@ const CreatePost = () => {
             Be part of the housing experience.
           </h1>
           <section className="createInputs my-10">
-            <ImageBox
-              setImg={setImg}
-              width="w-full"
-              height="h-96"
-              index={0}
-              img={img}
-            />
-            <div className="mt-5 flex gap-5 items-center lg:flex-row">
+            <div className="mx-auto lg:justify-center lg:w-[80%]">
               <ImageBox
                 setImg={setImg}
-                width={'w-52'}
-                height="h-60"
-                index={1}
-                img={img}
-              />
-              <ImageBox
-                setImg={setImg}
-                width={'w-52'}
-                height="h-60"
-                index={2}
-                img={img}
-              />
-              <ImageBox
-                setImg={setImg}
-                width={'w-52'}
-                height="h-60"
-                index={3}
-                img={img}
-              />
-              <ImageBox
-                setImg={setImg}
-                width={'w-52'}
-                height="h-60"
-                index={4}
+                width="w-full"
+                height="h-96"
+                index={0}
                 img={img}
               />
             </div>
+            {moreImages ? (
+              <div className="mt-5 flex flex-col gap-5 items-center justify-center lg:flex-row">
+                <ImageBox
+                  setImg={setImg}
+                  width={'w-full'}
+                  height="h-60"
+                  index={1}
+                  img={img}
+                />
+                <ImageBox
+                  setImg={setImg}
+                  width={'w-full'}
+                  height="h-60"
+                  index={2}
+                  img={img}
+                />
+                <ImageBox
+                  setImg={setImg}
+                  width={'w-full'}
+                  height="h-60"
+                  index={3}
+                  img={img}
+                />
+                <ImageBox
+                  setImg={setImg}
+                  width={'w-full'}
+                  height="h-60"
+                  index={4}
+                  img={img}
+                />
+              </div>
+            ) : (
+              <div className="mt-5 flex flex-col items-center gap-2 ">
+                <CIcon
+                  icon={cilPlus}
+                  onClick={() => {
+                    setMoreImages(true);
+                  }}
+                  className="w-16 bg-blue-200 text-blue-600 rounded-full p-3 cursor-pointer transition hover:scale-110"
+                />
+                Add more images
+              </div>
+            )}
 
             <div className="errorPopup">
               {' '}
