@@ -50,18 +50,6 @@ const PropertyPage = () => {
     fetchData();
   }, []);
 
-  const imgEl = property?.imgUrl.map((img: string, i: number) => {
-    return (
-      <Carousel.Slide key={i}>
-        <img
-          src={img}
-          alt={`${property?.title}`}
-          className="w-full h-full rounded-xl"
-        />
-      </Carousel.Slide>
-    );
-  });
-
   return (
     <>
       <Header />
@@ -101,7 +89,17 @@ const PropertyPage = () => {
                 align="start"
                 className="flex-1"
               >
-                {imgEl}
+                {property?.imgUrl.map((img: string, i: number) => {
+                  return (
+                    <Carousel.Slide key={i}>
+                      <img
+                        src={img}
+                        alt={`${property?.title}`}
+                        className="w-full h-full rounded-xl"
+                      />
+                    </Carousel.Slide>
+                  );
+                })}
               </Carousel>
             </div>
 
