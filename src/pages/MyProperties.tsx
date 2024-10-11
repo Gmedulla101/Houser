@@ -42,7 +42,7 @@ const MyProperties = () => {
 
           <Link
             to={'/create-property'}
-            className="font-semibold text-center px-2 py-3  rounded-md bg-blue-600 text-white  transition hover:bg-white hover:text-blue-600  active:bg-blue-800 lg:px-6 lg:py-3"
+            className="font-semibold text-center px-2 py-3  rounded-md bg-blue-600 text-white  transition hover:bg-gray-200 hover:text-blue-600  active:bg-blue-800 lg:px-6 lg:py-3"
           >
             {' '}
             Create new listing{' '}
