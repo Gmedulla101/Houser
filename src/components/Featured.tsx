@@ -88,6 +88,7 @@ const Featured = () => {
           >
             Featured properties
           </Link>
+          <div className="flex justify-center">{errorMsg}</div>
         </div>
       )}
     </section>

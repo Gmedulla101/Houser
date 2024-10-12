@@ -1,6 +1,13 @@
 import { createContext, useState, useContext } from 'react';
 
-export const GlobalContext = createContext(null);
+interface AuthContextType {
+  user: any;
+  setUser: Function;
+  isSignedIn: boolean;
+  setIsSignedIn: Function;
+}
+
+export const GlobalContext = createContext<AuthContextType | null>(null);
 
 export const useGlobalContext = () => {
   const { user, setUser, isSignedIn, setIsSignedIn }: any =
@@ -21,9 +28,8 @@ const AppContext = ({ children }: any) => {
   }
   const userData = JSON.parse(storedUserData);
 
-  const [user, setUser] = useState(userData ? userData: null);
+  const [user, setUser] = useState(userData ? userData : null);
   const [isSignedIn, setIsSignedIn] = useState(userToken ? true : false);
-
 
   return (
     <GlobalContext.Provider
