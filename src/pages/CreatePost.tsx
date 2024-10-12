@@ -96,7 +96,6 @@ const CreatePost = () => {
     try {
       setIsLoading(true);
       const imageUrls = await uploadImage(img);
-      console.log(imageUrls);
 
       setNewPropDetails((prev) => {
         return {
@@ -104,7 +103,6 @@ const CreatePost = () => {
           imgUrl: imageUrls,
         };
       });
-      console.log(newPropDetails);
     } catch (error: any) {
       console.error(error);
       setIsLoading(false);

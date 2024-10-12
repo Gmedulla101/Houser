@@ -1,5 +1,6 @@
 //IMPORTING NEEDED DEPENDENCIES
 import { Link, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 //IMPORTING IMAGE ASSETS
 import bed from '../assets/bed.png';
@@ -24,7 +25,33 @@ const DisplayCards = ({
   featured,
   _id,
 }: PropertyDetails) => {
+  //ASSERTATING LOCATION TO DISPLAY DELETE BUTTON
   const currLocation = useLocation();
+
+  //SETTING UP DELETE FUNCTIONALITY
+  const deleteProperty = async () => {
+    try {
+      const storedValue = localStorage.getItem('user');
+      if (!storedValue) {
+        console.error('There is no user logged in');
+        return;
+      }
+
+      const token = JSON.parse(storedValue);
+
+      await axios.delete(
+        `http://localhost:5000/api/v1/properties/delete-property/${_id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="card flex flex-col justify-between shadow-3xl border-2 border-gray-300 shadow-xl rounded-lg p-2 w-[350px] h-[600px]">
@@ -65,7 +92,10 @@ const DisplayCards = ({
 
       {/* DELETE BUTTON */}
       {currLocation.pathname === '/my-properties' ? (
-        <div className="flex items-center justify-center gap-2 mt-3 bg-blue-600 rounded-lg text-white p-2 transition hover:bg-gray-200 hover:text-blue-600 cursor-pointer">
+        <div
+          onClick={deleteProperty}
+          className="flex items-center justify-center gap-2 mt-3 bg-blue-600 rounded-lg text-white p-2 transition hover:bg-gray-200 hover:text-blue-600 cursor-pointer"
+        >
           <CIcon icon={cilTrash} className="w-5" />
           <p>Delete Property</p>
         </div>

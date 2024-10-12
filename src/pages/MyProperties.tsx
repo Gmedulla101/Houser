@@ -1,6 +1,9 @@
+//IMPORTING DEPS
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+
+//IMPORTING HELPER COMPONENTS
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LoaderComponent from '../components/LoaderComponent';
@@ -27,6 +30,8 @@ const MyProperties = () => {
       return <DisplayCards key={i} {...filteredData} />;
     }
   );
+
+ 
 
   //MAIN COMPONENT BODY
   return (
