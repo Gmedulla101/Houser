@@ -49,12 +49,12 @@ const Header = () => {
           Properties
         </Link>
 
-        <Link
+        {/*    <Link
           to={'/properties'}
           className="hover:text-blue-600 cursor-pointer p-1"
         >
           Services
-        </Link>
+        </Link> */}
       </nav>
 
       <nav>

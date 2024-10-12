@@ -40,7 +40,7 @@ const DisplayCards = ({
       const token = JSON.parse(storedValue);
 
       await axios.delete(
-        `http://localhost:5000/api/v1/properties/delete-property/${_id}`,
+        `https://houser-backend.onrender.com/api/v1/properties/delete-property/${_id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
