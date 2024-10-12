@@ -25,8 +25,6 @@ const Filter: React.FC<FilterProps> = ({
     bedrooms: '',
   });
 
-  const [loaded, setLoaded] = useState<boolean>(false);
-
   const handleChange = (e: any) => {
     const { value, name } = e.target;
     setFilterObj((prevObj) => {
@@ -57,12 +55,7 @@ const Filter: React.FC<FilterProps> = ({
     };
 
     filterData();
-  }, [filterObj, loaded]);
-
-  setTimeout(() => {
-    setLoaded(true);
-  }, 2000);
-  console.log(loaded);
+  }, [filterObj]);
 
   return (
     <div className="filter mt-5 md:flex md:gap-2">
