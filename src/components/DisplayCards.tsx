@@ -1,10 +1,17 @@
+//IMPORTING NEEDED DEPENDENCIES
+import { Link, useLocation } from 'react-router-dom';
+
+//IMPORTING IMAGE ASSETS
 import bed from '../assets/bed.png';
 import villa from '../assets/cardHome.png';
 import locationPointer from '../assets/location.png';
-import { Link } from 'react-router-dom';
 
 //IMPORTING TYPES
 import { PropertyDetails } from '../pages/CreatePost';
+
+//IMPORTING UI DEPS
+import CIcon from '@coreui/icons-react';
+import { cilTrash } from '@coreui/icons';
 
 const DisplayCards = ({
   imgUrl,
@@ -17,8 +24,10 @@ const DisplayCards = ({
   featured,
   _id,
 }: PropertyDetails) => {
+  const currLocation = useLocation();
+
   return (
-    <div className="card flex flex-col justify-between shadow-3xl border-2 border-gray-300 shadow-xl rounded-lg p-2 w-[350px] h-[600px]">
+    <div className="card flex flex-col justify-between shadow-3xl border-2 border-red-300 shadow-xl rounded-lg p-2 w-[350px] h-[600px]">
       <img src={imgUrl[0]} alt={`${title}`} className="h-[270px] rounded-lg" />
       <h3 className="font-semibold mt-3 text-lg w-[300px]">{title}</h3>
       <p className="text-xs text-gray-400"> {featured ? 'Featured' : ''} </p>
@@ -53,6 +62,16 @@ const DisplayCards = ({
           View property details
         </Link>
       </div>
+
+      {/* DELETE BUTTON */}
+      {currLocation.pathname === '/my-properties' ? (
+        <div className="flex items-center justify-center gap-2 mt-3 bg-blue-600 rounded-lg text-white p-2 transition hover:bg-gray-200 hover:text-blue-600 cursor-pointer">
+          <CIcon icon={cilTrash} className="w-5" />
+          <p>Delete Property</p>
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   );
 };
