@@ -61,6 +61,7 @@ const SignUp = () => {
           username: data.data.username,
           email: data.data.email,
           fullName: data.data.fullName,
+          id: data.data.id,
         })
       );
       setIsSignedIn(true);
@@ -68,6 +69,7 @@ const SignUp = () => {
         username: data.data.username,
         email: data.data.email,
         fullName: data.data.fullName,
+        id: data.data.id,
       });
       navigate('/');
     } catch (error: any) {

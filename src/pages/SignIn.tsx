@@ -53,6 +53,7 @@ const SignIn = () => {
           username: data.data.username,
           email: data.data.email,
           fullName: data.data.fullName,
+          id: data.data.id,
         })
       );
       setIsSignedIn(true);
@@ -60,6 +61,7 @@ const SignIn = () => {
         username: data.data.username,
         email: data.data.email,
         fullName: data.data.fullName,
+        id: data.data.id,
       });
       console.log(data);
       navigate('/');

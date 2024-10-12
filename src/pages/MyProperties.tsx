@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-
 //IMPORTING HELPER COMPONENTS
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -30,8 +29,6 @@ const MyProperties = () => {
       return <DisplayCards key={i} {...filteredData} />;
     }
   );
-
- 
 
   //MAIN COMPONENT BODY
   return (

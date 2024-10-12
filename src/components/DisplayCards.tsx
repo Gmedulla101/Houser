@@ -94,7 +94,7 @@ const DisplayCards = ({
       {currLocation.pathname === '/my-properties' ? (
         <div
           onClick={deleteProperty}
-          className="flex items-center justify-center gap-2 mt-3 bg-blue-600 rounded-lg text-white p-2 transition hover:bg-gray-200 hover:text-blue-600 cursor-pointer"
+          className="flex items-center justify-center gap-2 mt-3 bg-red-600 rounded-lg text-white p-2 transition hover:bg-gray-200 hover:text-red-600 cursor-pointer"
         >
           <CIcon icon={cilTrash} className="w-5" />
           <p>Delete Property</p>
