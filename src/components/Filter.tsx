@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 
@@ -17,9 +17,6 @@ const Filter: React.FC<FilterProps> = ({
   token,
 }) => {
   const currentLocation = useLocation();
-
-  //UNSING A USEREF VARIABLE TO KEEP TRACK OF THE PAGE RENDER STATUS
-  const isPageRendered = useRef(false);
 
   const [filterObj, setFilterObj] = useState({
     location: '',
@@ -56,14 +53,8 @@ const Filter: React.FC<FilterProps> = ({
       setIsLoading(false);
     };
 
-    if (isPageRendered.current) {
-      filterData();
-    }
-
-    isPageRendered.current = true;
+    filterData();
   }, [filterObj]);
-
-  console.log(filterObj);
 
   return (
     <div className="filter mt-5 md:flex md:gap-2">
