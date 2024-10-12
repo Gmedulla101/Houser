@@ -22,7 +22,6 @@ const Featured = () => {
         const data = await axios.get(
           'https://houser-backend.onrender.com/api/v1/properties/featured-properties'
         );
-        console.log(data.data.data);
         setFeaturedProps(data.data.data);
         setIsLoading(false);
       } catch (error: any) {

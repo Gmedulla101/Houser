@@ -63,6 +63,8 @@ const Filter: React.FC<FilterProps> = ({
     isPageRendered.current = true;
   }, [filterObj]);
 
+  console.log(filterObj);
+
   return (
     <div className="filter mt-5 md:flex md:gap-2">
       <select

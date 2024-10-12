@@ -63,7 +63,6 @@ const SignIn = () => {
         fullName: data.data.fullName,
         id: data.data.id,
       });
-      console.log(data);
       navigate('/');
     } catch (error: any) {
       console.error(error);
