@@ -37,7 +37,7 @@ const Header = () => {
           Home
         </Link>
         <Link
-          to={'/properties'}
+          to={'/about-us'}
           className="hover:text-blue-600 cursor-pointer p-1"
         >
           About us
