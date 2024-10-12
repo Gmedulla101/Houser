@@ -27,7 +27,7 @@ const DisplayCards = ({
   const currLocation = useLocation();
 
   return (
-    <div className="card flex flex-col justify-between shadow-3xl border-2 border-red-300 shadow-xl rounded-lg p-2 w-[350px] h-[600px]">
+    <div className="card flex flex-col justify-between shadow-3xl border-2 border-gray-300 shadow-xl rounded-lg p-2 w-[350px] h-[600px]">
       <img src={imgUrl[0]} alt={`${title}`} className="h-[270px] rounded-lg" />
       <h3 className="font-semibold mt-3 text-lg w-[300px]">{title}</h3>
       <p className="text-xs text-gray-400"> {featured ? 'Featured' : ''} </p>
