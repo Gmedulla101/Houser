@@ -3,15 +3,20 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../context/userContext';
 
+//IMPORTING HELPER COMPONENTS
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import home from '../assets/home.png';
 
-//IMPORTNG REGISTRATION HOOKS
+//IMPORTING IMAGE ASSETS
+import home from '../assets/home.png';
+import hidden from '../assets/hidden.png';
+import eye from '../assets/eye.png';
 
 const SignUp = () => {
   const navigate = useNavigate();
   const { setIsSignedIn, setUser } = useGlobalContext();
+
+  const [isPassword, setIsPassword] = useState<boolean>(true);
 
   const [form, setForm] = useState({
     username: '',
@@ -124,24 +129,45 @@ const SignUp = () => {
             className="border-2 border-gray-300 w-full py-2 px-4 rounded-lg outline-none focus:border-blue-600"
           />
 
-          <input
-            type="text"
-            name="password"
-            id="password"
-            placeholder="Enter your password"
-            onChange={handleFormChange}
-            value={form.password}
-            className="border-2 border-gray-300 w-full py-2 px-4 rounded-lg outline-none focus:border-blue-600"
-          />
-          <input
-            type="text"
-            name="confirmPassword"
-            id="confirmPassword"
-            placeholder="Confirm your password"
-            onChange={handleFormChange}
-            value={form.confirmPassword}
-            className="border-2 border-gray-300 w-full py-2 px-4 rounded-lg outline-none focus:border-blue-600"
-          />
+          <div className="w-full flex items-center relative">
+            <input
+              type={isPassword ? 'password' : 'text'}
+              name="password"
+              id="password"
+              placeholder="Enter your password"
+              onChange={handleFormChange}
+              value={form.password}
+              className="border-2 border-gray-300 w-full py-2 px-4 rounded-lg outline-none focus:border-blue-600"
+            />
+            <span
+              className="absolute right-[10px] cursor-pointer"
+              onClick={() => {
+                setIsPassword(!isPassword);
+              }}
+            >
+              <img src={isPassword ? hidden : eye} alt="" className="w-7" />
+            </span>
+          </div>
+
+          <div className="w-full flex items-center relative">
+            <input
+              type={isPassword ? 'password' : 'text'}
+              name="confirmPassword"
+              id="confirmPassword"
+              placeholder="Confirm your password"
+              onChange={handleFormChange}
+              value={form.password}
+              className="border-2 border-gray-300 w-full py-2 px-4 rounded-lg outline-none focus:border-blue-600"
+            />
+            <span
+              className="absolute right-[10px] cursor-pointer"
+              onClick={() => {
+                setIsPassword(!isPassword);
+              }}
+            >
+              <img src={isPassword ? hidden : eye} alt="" className="w-7" />
+            </span>
+          </div>
 
           <button
             onClick={handleRegister}
