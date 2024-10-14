@@ -53,7 +53,6 @@ const Featured = () => {
             withIndicators
             slideSize={'25%'}
             slideGap={'lg'}
-            loop
             align={'start'}
             slidesToScroll={1}
             height={600}
