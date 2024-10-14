@@ -50,7 +50,6 @@ const Featured = () => {
       ) : (
         <div className="mt-12">
           <Carousel
-            withIndicators
             slideSize={'25%'}
             slideGap={'lg'}
             align={'start'}

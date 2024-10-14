@@ -88,7 +88,6 @@ const Properties = () => {
                 {properties ? (
                   <>
                     <Carousel
-                      withIndicators
                       slideSize={'25%'}
                       slideGap={'lg'}
                       loop
