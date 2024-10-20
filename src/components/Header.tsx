@@ -14,7 +14,7 @@ const Header = () => {
 
   return (
     <header
-      className={`absolute top-0 left-0 w-full flex flex-col gap-2 text-center justify-between py-4 px-10 items-center bg-white mx-auto ${
+      className={`fixed top-0 left-0 w-full flex flex-col gap-2 text-center justify-between py-4 px-10 items-center transition-all duration-500 bg-white mx-auto ${
         isOpen ? 'h-auto' : 'h-[4em]'
       }  overflow-hidden z-50 xmd:flex-row shadow-md`}
     >

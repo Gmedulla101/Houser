@@ -49,7 +49,6 @@ const Filter: React.FC<FilterProps> = ({
           },
         }
       );
-      console.log(data);
       setFilteredData(data.data.data);
       setIsLoading(false);
     };
