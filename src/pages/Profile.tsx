@@ -12,8 +12,11 @@ import { useNavigate } from 'react-router-dom';
 type UserDetails = {
   _id: string;
   username: string;
-  fullName: string;
+  firstName?: string;
+  lastName?: string;
+  fullName?: string;
   email: string;
+  phoneNumber?: string;
 };
 
 const Dashboard = () => {
@@ -57,6 +60,8 @@ const Dashboard = () => {
     navigate('/');
   };
 
+  console.log(userData);
+
   return (
     <>
       <Header />
@@ -71,28 +76,126 @@ const Dashboard = () => {
             </h1>
           ) : (
             <>
-              {' '}
-              <h1 className="text-3xl font-semibold">Edit Profile</h1>
-              <div className="editableDetails mt-8 flex flex-col gap-5">
-                <span>
-                  <h3 className="text-xl font-semibold">Email</h3>
-                  <span className="flex gap-8">
-                    <p> {userData?.email} </p>
+              {/* USER INFO */}
+              <div className="mt-8 px-8 lg:px-36">
+                <h1 className="font-bold text-2xl mb-12 lg:text-3xl">
+                  Personal Information
+                </h1>
+                {/* FIRST NAME AND LAST NAME */}
+                <div className="flex flex-col gap-6 lg:flex-row">
+                  <span className="flex flex-col gap-1 w-full">
+                    <label htmlFor="firstName" className="font-medium text-sm">
+                      {' '}
+                      First Name{' '}
+                    </label>
+                    <input
+                      type="text"
+                      id="firstName"
+                      placeholder={
+                        userData?.fullName?.split(' ')[0] || userData?.firstName
+                      }
+                      name="firstName"
+                      className="border-2 border-slate-400 h-12 rounded-md px-3 text-sm outline-none focus:border-2 focus:border-[#12362A]"
+                    />
                   </span>
-                </span>
 
-                <span>
-                  <h3 className="text-xl font-semibold">Username</h3>
-                  <span className="flex gap-8">
-                    <p> {userData?.username} </p>
+                  <span className="flex flex-col gap-1 w-full">
+                    <label htmlFor="firstName" className="font-medium text-sm">
+                      {' '}
+                      Last Name{' '}
+                    </label>
+                    <input
+                      type="text"
+                      id="lastName"
+                      placeholder={
+                        userData?.fullName?.split(' ')[1] || userData?.lastName
+                      }
+                      name="lastName"
+                      className="border-2 border-slate-400 h-12 rounded-md px-3 text-sm outline-none focus:border-2 focus:border-[#12362A]"
+                    />
                   </span>
-                </span>
-              </div>
-              <div className="basicDetails mt-12 flex flex-col gap-3">
-                <span>
-                  <p className="text-xl font-semibold">Full name:</p>
-                  <p className="text-gray-600"> {userData?.fullName} </p>
-                </span>
+                </div>
+
+                {/* EMAIL AND PHONE NUMBER */}
+                <div className="flex flex-col gap-6 mt-8 lg:flex-row">
+                  <span className="flex flex-col gap-1 w-full">
+                    <label htmlFor="firstName" className="font-medium text-sm">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      placeholder={`${userData?.email}`}
+                      name="email"
+                      className="border-2 border-slate-400 h-12 rounded-md px-3 text-sm outline-none focus:border-2 focus:border-[#12362A]"
+                    />
+                  </span>
+
+                  <span className="flex flex-col gap-1 w-full">
+                    <label
+                      htmlFor="phoneNumber"
+                      className="font-medium text-sm"
+                    >
+                      Phone Number
+                    </label>
+                    <input
+                      type="number"
+                      id="phonerNumber"
+                      placeholder={`${
+                        Number(userData?.phoneNumber) ||
+                        'Please add your phone number'
+                      }`}
+                      name="phoneNumber"
+                      className="border-2 border-slate-400 h-12 rounded-md px-3 text-sm outline-none focus:border-2 focus:border-[#12362A]"
+                    />
+                  </span>
+                </div>
+
+                {/* JOIN DATE */}
+                <div className="flex gap-6 mt-8">
+                  <span className="flex flex-col gap-1 w-full">
+                    <label htmlFor="joinDate" className="font-medium text-sm">
+                      Join Date
+                    </label>
+                    <input
+                      type="text"
+                      id="joinDate"
+                      placeholder="User Created at"
+                      disabled
+                      name="joinDate"
+                      className="border-2 border-slate-400 h-12 rounded-md px-3 text-sm outline-none focus:border-2 focus:border-[#12362A]"
+                    />
+                  </span>
+                </div>
+
+                {/* COUNTRY AND CITY */}
+                <div className="flex flex-col gap-6 mt-8 lg:flex-row">
+                  <span className="flex flex-col gap-1 w-full">
+                    <label htmlFor="country" className="font-medium text-sm">
+                      Country
+                    </label>
+                    <input
+                      type="text"
+                      id="country"
+                      placeholder="User Country"
+                      name="country"
+                      className="border-2 border-slate-400 h-12 rounded-md px-3 text-sm"
+                    />
+                  </span>
+
+                  <span className="flex flex-col gap-1 w-full">
+                    <label htmlFor="city" className="font-medium text-sm">
+                      City
+                    </label>
+                    <input
+                      type="text"
+                      id="city"
+                      placeholder="User City"
+                      name="city"
+                      className="border-2 border-slate-400 h-12 rounded-md px-3 text-sm"
+                    />
+                  </span>
+                </div>
               </div>
               <div className="logout flex justify-center">
                 <button

@@ -50,7 +50,7 @@ const Card = ({
         </span>
         <Link
           to={`/view-property/${_id}`}
-          className="text-white bg-blue-600 rounded-lg px-4 py-2 transition hover:scale-105"
+          className="text-white text-sm bg-blue-600 rounded-lg px-4 py-2 transition hover:scale-105"
         >
           View property details
         </Link>

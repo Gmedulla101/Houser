@@ -56,7 +56,7 @@ const PropertyPage = () => {
       {isLoading ? (
         <LoaderComponent />
       ) : (
-        <section className="mt-24 xl:mt-28 md:p-0 px-2 xmd:px-12">
+        <section className="mt-24 xl:mt-28 md:p-0 px-4 xmd:px-12">
           <h1 className="text-3xl font-semibold pb-5 lg:text-4xl xl:text-6xl">
             {property?.title}
           </h1>

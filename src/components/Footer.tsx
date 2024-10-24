@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <section className="px-2 mt-10 lg:px-12 flex flex-col bg-gray-100 pb-12 md:justify-between">
+    <section className="px-4 mt-10 lg:px-12 flex flex-col bg-gray-100 pb-12 md:justify-between">
       <h1 className="text-3xl font-semibold text-blue-600 mb-3 lg:text-4xl">
         {' '}
         Houser{' '}

@@ -20,6 +20,7 @@ import { PropertyDetails } from './CreatePost';
 const Properties = () => {
   const [properties, setProperties] = useState<PropertyDetails[]>();
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -44,7 +45,7 @@ const Properties = () => {
   return (
     <>
       <Header />
-      <section className="mt-24 xl:mt-28 md:p-0 px-2 xmd:px-12">
+      <section className="mt-24 xl:mt-28 md:p-0 px-4 xmd:px-12">
         <section>
           <h1 className="text-3xl font-semibold pb-5 lg:text-4xl xl:text-6xl">
             Find your dream property
@@ -94,18 +95,19 @@ const Properties = () => {
                       align={'start'}
                       slidesToScroll={1}
                       height={600}
+                      withControls={window.innerWidth > 1024 ? true : false}
                       nextControlIcon={
                         <CIcon
                           icon={cilArrowThickRight}
                           style={{ width: rem(50), height: rem(50) }}
-                          className="rounded-full p-3"
+                          className="rounded-full p-3 hidden lg:block"
                         />
                       }
                       previousControlIcon={
                         <CIcon
                           icon={cilArrowThickLeft}
                           style={{ width: rem(50), height: rem(50) }}
-                          className="rounded-full p-3"
+                          className="rounded-full p-3 hidden lg:block"
                         />
                       }
                       className="px-3 xmd:px-20"

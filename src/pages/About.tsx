@@ -15,7 +15,7 @@ const About = () => {
     <>
       <Header />
 
-      <section className="px-2 mt-24 lg:px-12">
+      <section className="px-4 mt-24 lg:px-12">
         <article className="flex flex-col gap-10 md:flex-row-reverse md:items-center md:justify-between">
           <div className="rounded-lg md:w-full">
             <img src={handHouse} alt="" className="w-full h-full" />

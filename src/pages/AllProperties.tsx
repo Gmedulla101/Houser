@@ -21,7 +21,7 @@ const AllProperties = () => {
   return (
     <>
       <Header />
-      <section className="mt-24 xl:mt-28 md:p-0 px-2 xmd:px-5">
+      <section className="mt-24 xl:mt-28 md:p-0 px-4 xmd:px-5">
         <h1 className="text-3xl font-semibold pb-5 lg:text-4xl">
           {' '}
           We have carefully curated the listings, just{' '}

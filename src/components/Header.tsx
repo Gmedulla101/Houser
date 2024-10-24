@@ -62,14 +62,14 @@ const Header = () => {
           <div className="flex flex-col gap-2 xmd:flex-row">
             <Link
               to={'/my-properties'}
-              className=" cursor-pointer p-1 border-2 rounded-lg block w-36 bg-blue-600 text-white hover:scale-110 transition duration-300"
+              className=" cursor-pointer text-sm p-2 border-2 rounded-lg block w-36 bg-blue-600 text-white hover:scale-110 transition duration-300"
             >
               Your listings
             </Link>
 
             <Link
               to={'/profile'}
-              className="cursor-pointer p-1 bg-gray-200 text-blue-600 rounded-lg block w-36 hover:scale-110 transition duration-300"
+              className="cursor-pointer text-sm p-2 bg-gray-200 text-blue-600 rounded-lg block w-36 hover:scale-110 transition duration-300"
             >
               Profile
             </Link>
@@ -78,14 +78,14 @@ const Header = () => {
           <div className="flex flex-col gap-2 xmd:flex-row">
             <Link
               to={'/sign-up'}
-              className=" cursor-pointer p-1 border-2 rounded-lg block w-36 bg-blue-600 text-white hover:scale-110 transition duration-300"
+              className=" cursor-pointer text-sm p-2 border-2 rounded-lg block w-36 bg-blue-600 text-white hover:scale-110 transition duration-300"
             >
               Sign up
             </Link>
 
             <Link
               to={'/sign-in'}
-              className="cursor-pointer p-1 bg-gray-200 text-blue-600 rounded-lg block w-36 hover:scale-110 transition duration-300"
+              className="cursor-pointer text-sm p-2 bg-gray-200 text-blue-600 rounded-lg block w-36 hover:scale-110 transition duration-300"
             >
               Sign in
             </Link>

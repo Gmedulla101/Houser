@@ -22,7 +22,8 @@ const Featured = () => {
         const data = await axios.get(
           'https://houser-backend.onrender.com/api/v1/properties/featured-properties'
         );
-        setFeaturedProps(data.data.data);
+        const limitedFeatures = data.data.data.slice(0, 6);
+        setFeaturedProps(limitedFeatures);
         setIsLoading(false);
       } catch (error: any) {
         setIsLoading(false);
@@ -35,7 +36,7 @@ const Featured = () => {
   }, []);
 
   return (
-    <section className="px-2 mt-10 lg:px-12">
+    <section className="px-4 mt-10 lg:px-12">
       <h1 className="text-3xl font-semibold mb-3 lg:text-4xl xl:text-6xl">
         Featured properties
       </h1>
@@ -55,18 +56,19 @@ const Featured = () => {
             align={'start'}
             slidesToScroll={1}
             height={600}
+            withControls={window.innerWidth > 1024 ? true : false}
             nextControlIcon={
               <CIcon
                 icon={cilArrowThickRight}
                 style={{ width: rem(50), height: rem(50) }}
-                className="rounded-full p-3 relative transition hover:scale-110 active:scale-90"
+                className="rightBtn hidden rounded-full p-3 relative transition hover:scale-110 active:scale-90 lg:block"
               />
             }
             previousControlIcon={
               <CIcon
                 icon={cilArrowThickLeft}
                 style={{ width: rem(50), height: rem(50) }}
-                className="rounded-full p-3 transition hover:scale-110 active:scale-90"
+                className="leftBtn hidden rounded-full p-3 transition hover:scale-110 active:scale-90 lg:block"
               />
             }
             className="px-3 xmd:px-20"
@@ -83,7 +85,7 @@ const Featured = () => {
             to={'/featured-properties'}
             className="block text-sm text-center px-2 py-3 w-36  rounded-md bg-blue-600 text-white hover:scale-110 transition active:bg-blue-800 lg:px-6 lg:py-3 lg:w-56 relative -top-5"
           >
-            Featured properties
+            See more
           </Link>
           <div className="flex justify-center">{errorMsg}</div>
         </div>
