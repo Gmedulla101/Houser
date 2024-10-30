@@ -9,6 +9,7 @@ import AllProperties from './pages/AllProperties';
 import PropertyPage from './pages/PropertyPage';
 import MyProperties from './pages/MyProperties';
 import FeaturedProperties from './pages/FeaturedProperties';
+import Names from './pages/signup-flow/Names';
 
 //IMPORTING REACT ROUTER COMPONENTS
 import { Route, Routes } from 'react-router-dom';
@@ -33,6 +34,7 @@ const App = () => {
         <Route path="/view-property/:id" element={<PropertyPage />} />
         <Route path="/my-properties" element={<MyProperties />} />
         <Route path="/featured-properties" element={<FeaturedProperties />} />
+        <Route path="/signup-flow_name&username" element={<Names />} />
       </Routes>
     </MantineProvider>
   );

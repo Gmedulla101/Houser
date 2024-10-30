@@ -25,6 +25,9 @@ const SignUp = () => {
     password: '',
     confirmPassword: '',
     fullName: '',
+    status: '',
+    phoneNumber: '',
+    country: '',
   });
 
   const [errorMsg, setErrorMsg] = useState('');
