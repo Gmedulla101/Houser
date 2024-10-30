@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 //IMPORTING HELPER COMPONENTS
 import Header from '../components/Header';
@@ -11,6 +11,14 @@ import Filter from '../components/Filter';
 import { PropertyDetails } from './CreatePost';
 
 const FeaturedProperties = () => {
+  //SCROLL TO TOP ON COMPONENT MOUNT
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, []);
+
   const [isLoading, setIsLoading] = useState(true);
 
   //FILTER VARIABLES
@@ -27,7 +35,7 @@ const FeaturedProperties = () => {
   return (
     <>
       <Header />
-      <section className="mt-24 xl:mt-28 md:p-0 px-2 xmd:px-5">
+      <section className="mt-24 xl:mt-28 px-8 xmd:px-12">
         <h1 className="text-3xl font-semibold pb-5 lg:text-4xl">
           {' '}
           These are our most trusted and vetted properties, just{' '}

@@ -24,6 +24,11 @@ const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+
     const fetchUserData = async () => {
       let token;
       const storedValue = localStorage.getItem('user');
@@ -59,8 +64,6 @@ const Dashboard = () => {
     setIsSignedIn(false);
     navigate('/');
   };
-
-  console.log(userData);
 
   return (
     <>

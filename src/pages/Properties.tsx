@@ -5,7 +5,7 @@ import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Loader from '../components/LoaderComponent';
-import searchIcon from '../assets/search.png';
+
 
 //IMPORTING MANTINE UI COMPONENTS
 import { Carousel } from '@mantine/carousel';
@@ -56,21 +56,7 @@ const Properties = () => {
             each offering a unique story and a chance to redefine your life.
           </p>
 
-          <div className="searchInput flex justify-between mt-12 p-2 border-2 border-gray-200 rounded-lg shadow-lg">
-            <input
-              type="text"
-              placeholder="Search for a property"
-              className="outline-none w-[80%] bg-transparent"
-            />
-
-            <button className="bg-blue-600 flex gap-2 items-center py-2 px-4 rounded-lg justify-between hover:bg-blue-700">
-              <img className="w-5" src={searchIcon} alt="Search icon" />
-
-              <p className="text-white text-xs hidden xsm:block">
-                Find property
-              </p>
-            </button>
-          </div>
+    
 
           <div className="mt-12">
             <h1 className="text-3xl font-semibold pb-5 lg:text-4xl xl:text-6xl">

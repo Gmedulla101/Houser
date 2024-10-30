@@ -1,5 +1,5 @@
 //IMPORTING DEPS
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 //IMPORTING HELPER COMPONENTS
@@ -13,6 +13,14 @@ import Filter from '../components/Filter';
 import { PropertyDetails } from './CreatePost';
 
 const MyProperties = () => {
+  //SCROLL TO TOP ON COMPONENT MOUNT
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, []);
+
   const [filteredData, setFilteredData] = useState<PropertyDetails[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 

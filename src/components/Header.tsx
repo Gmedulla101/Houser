@@ -43,7 +43,7 @@ const Header = () => {
           About us
         </Link>
         <Link
-          to={'/properties'}
+          to={'/all-properties'}
           className="hover:text-blue-600 cursor-pointer p-1"
         >
           Properties

@@ -29,7 +29,15 @@ const PropertyPage = () => {
   const propertyId = useParams().id;
   const [property, setProperty] = useState<Property>();
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
+    //SCROLL TO TOP ON COMPONENT MOUNT
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+
     const fetchData = async () => {
       try {
         const data = await axios.get(
