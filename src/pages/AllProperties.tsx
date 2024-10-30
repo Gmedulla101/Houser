@@ -30,10 +30,15 @@ const AllProperties = () => {
   );
 
   const handleSearchBarChange = async (event: any) => {
+    const { value } = event.target;
+    if (value === '') {
+      return;
+    }
+
     try {
       setIsLoading(true);
       const data = await axios.get(
-        `http://localhost:5000/api/v1/properties/all-Properties?searchValue=${event.target.value}`
+        `http://localhost:5000/api/v1/properties/all-Properties?searchValue=${value}`
       );
       setSearchedData(data.data.searchedProps);
       setIsLoading(false);
