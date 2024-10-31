@@ -1,47 +1,78 @@
-/* import { useDispatch, useSelector } from 'react-redux';
-import { setIsSignedIn } from '../reducer/features/auth/authSlice';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useGlobalContext } from '../context/userContext';
 
-type LoginDetails = {
-  password: string;
-  email: string;
-};
+//ALL THINGS REDUX TOOLKIT
+import { useSelector } from 'react-redux';
+import {
+  handleFormChange,
+  setIsLoading,
+  setErrorMsg,
+} from '../features/auth/authSlice';
 
-//SIGN IN FUNCTIONALITY
-export const useLogin = async (loginDetails: LoginDetails) => {
-  const dispatch = useDispatch();
-  const { password, email } = loginDetails;
-  if (!loginDetails) {
-    alert('Please fill in the appopriate details');
-    return;
-  }
-  try {
-    const data = await axios.post(
-      'https://houser-backend.onrender.com/api/v1/auth/user-login',
-      {
-        email,
-        password,
-      }
-    );
-    console.log(data);
-    const userToken = data.data.token;
-    localStorage.setItem('user', JSON.stringify(userToken));
-    localStorage.setItem(
-      'userData',
-      JSON.stringify({
+const useAuth = () => {
+  const navigate = useNavigate();
+  const { setIsSignedIn, setUser } = useGlobalContext();
+
+  const { form, isLoading, errorMsg } = useSelector((store: any) => store.auth);
+
+  const handleRegister = async (e: any) => {
+    e.preventDefault();
+    const { confirmPassword, password, email, username, fullName } = form;
+    if (!form) {
+      setErrorMsg('Please fill in the appopriate details');
+      return;
+    }
+    if (confirmPassword !== password) {
+      setErrorMsg('Passwords do not match');
+      return;
+    }
+    try {
+      setIsLoading(true);
+      const data = await axios.post(
+        'https://houser-backend.onrender.com/api/v1/auth/register-user',
+        {
+          email,
+          password,
+          username,
+          fullName,
+        }
+      );
+      const userToken = data.data.token;
+      localStorage.setItem('user', JSON.stringify(userToken));
+      localStorage.setItem(
+        'userData',
+        JSON.stringify({
+          username: data.data.username,
+          email: data.data.email,
+          fullName: data.data.fullName,
+          id: data.data.id,
+        })
+      );
+      setIsSignedIn(true);
+      setUser({
         username: data.data.username,
         email: data.data.email,
         fullName: data.data.fullName,
-      })
-    );
-    dispatch(setIsSignedIn());
-    console.log(data);
-  } catch (error: any) {
-    console.error(error);
-    return error.response.data.msg;
-  }
+        id: data.data.id,
+      });
+      navigate('/');
+    } catch (error: any) {
+      setIsLoading(false);
+      console.error(error);
+      setErrorMsg(error.response.data.msg);
+    }
+  };
+
+  return {
+    form,
+    errorMsg,
+    isLoading,
+    setIsLoading,
+    setErrorMsg,
+    handleFormChange,
+    handleRegister,
+  };
 };
 
-
- */
+export default useAuth;

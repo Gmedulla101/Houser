@@ -77,7 +77,7 @@ const Header = () => {
         ) : (
           <div className="flex flex-col gap-2 xmd:flex-row">
             <Link
-              to={'/sign-up'}
+              to={'/signupflow-name&username'}
               className=" cursor-pointer text-sm p-2 border-2 rounded-lg block w-36 bg-blue-600 text-white hover:scale-110 transition duration-300"
             >
               Sign up

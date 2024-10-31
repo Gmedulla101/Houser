@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 
 //IMPORTING HELPER COMPONENTS
@@ -10,49 +8,38 @@ import LoaderComponent from '../../components/LoaderComponent';
 //IMPORTING IMAGE ASSETS
 import home from '../../assets/home.png';
 
+//IMPORTING STATE MANAGEMENT TOOLS
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  handleFormChange,
+  setIsLoading,
+  setErrorMsg,
+} from '../../features/auth/authSlice';
+
 const Names = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const [form, setForm] = useState({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    fullName: '',
-    status: '',
-    phoneNumber: '',
-    country: '',
-  });
-
-  const [errorMsg, setErrorMsg] = useState('');
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  const handleFormChange = (e: any) => {
-    const { name, value } = e.target;
-    setForm((prevForm) => {
-      return {
-        ...prevForm,
-        [name]: value,
-      };
-    });
-  };
+  const { isLoading, errorMsg, form } = useSelector((state: any) => state.auth);
 
   const handleRegister = (e: any) => {
     e.preventDefault();
     try {
-      setIsLoading(true);
+      dispatch(setIsLoading(true));
       const { username, fullName } = form;
 
       if (!username || !fullName) {
         throw new Error('Please fill in all appopriate details');
       }
-      navigate('/signupflow-email');
-      setIsLoading(false);
+      navigate('/signupflow-email_confirmation');
+      dispatch(setIsLoading(false));
     } catch (err: any) {
-      setIsLoading(false);
-      setErrorMsg(err.message);
+      dispatch(setIsLoading(false));
+      dispatch(setErrorMsg(err.message));
     }
   };
+
+  console.log(form);
 
   return (
     <>
@@ -79,7 +66,14 @@ const Names = () => {
               type="text"
               name="fullName"
               placeholder="Enter your full name"
-              onChange={handleFormChange}
+              onChange={(e) => {
+                dispatch(
+                  handleFormChange({
+                    name: e.target.name,
+                    value: e.target.value,
+                  })
+                );
+              }}
               value={form.fullName}
               className="border-2 border-gray-300 w-full py-2 px-4 rounded-lg outline-none focus:border-blue-600"
             />
@@ -88,10 +82,18 @@ const Names = () => {
               type="text"
               name="username"
               placeholder="Enter your username"
-              onChange={handleFormChange}
+              onChange={(e) => {
+                dispatch(
+                  handleFormChange({
+                    name: e.target.name,
+                    value: e.target.value,
+                  })
+                );
+              }}
               value={form.username}
               className="border-2 border-gray-300 w-full py-2 px-4 rounded-lg outline-none focus:border-blue-600"
             />
+            
 
             <button
               onClick={handleRegister}
