@@ -32,7 +32,7 @@ const EmailConfirmation = () => {
       dispatch(setIsLoading(true));
 
       await axios.get(
-        `http://localhost:5000/api/v1/auth/checkUser?${
+        `https://houser-backend.onrender.com/api/v1/auth/checkUser?${
           email ? `email=${email}` : ''
         }`
       );
