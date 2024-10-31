@@ -55,10 +55,10 @@ const Passwords = () => {
         <section className="mt-24 flex flex-col items-center">
           <img src={home} alt="home" className="w-48 mb-12" />
 
-          <div className="errorPopup">
+          <div className="errorPopup w-[80%] mx-auto">
             {' '}
             {errorMsg ? (
-              <p className="border-2 border-red-400 bg-red-300 text-white font-semibold px-4 py-2 mb-2 rounded-lg transtion">
+              <p className="border-2 border-red-400 bg-red-300 text-white font-semibold px-4 py-2 mb-2 rounded-lg transtion text-center">
                 {errorMsg}
               </p>
             ) : (

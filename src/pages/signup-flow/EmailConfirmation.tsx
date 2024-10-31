@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 //IMPORTING HELPER COMPONENTS
 import Header from '../../components/Header';
@@ -30,12 +31,19 @@ const EmailConfirmation = () => {
       if (!email) throw new Error('Please put in your email');
       dispatch(setIsLoading(true));
 
+      await axios.get(
+        `http://localhost:5000/api/v1/auth/checkUser?${
+          email ? `email=${email}` : ''
+        }`
+      );
+
+      dispatch(setErrorMsg(''));
       navigate('/signupflow-passwords');
       dispatch(setIsLoading(false));
     } catch (error: any) {
       dispatch(setIsLoading(false));
 
-      dispatch(setErrorMsg(error.message));
+      dispatch(setErrorMsg(error.response.data.msg));
     }
   };
 
@@ -50,10 +58,10 @@ const EmailConfirmation = () => {
         <section className="mt-24 flex flex-col items-center">
           <img src={home} alt="home" className="w-48 mb-12" />
 
-          <div className="errorPopup">
+          <div className="errorPopup w-[80%] mx-auto">
             {' '}
             {errorMsg ? (
-              <p className="border-2 border-red-400 bg-red-300 text-white font-semibold px-4 py-2 mb-2 rounded-lg transtion">
+              <p className="border-2 border-red-400 bg-red-300 text-white font-semibold px-4 py-2 mb-2 rounded-lg transtion text-center">
                 {errorMsg}
               </p>
             ) : (

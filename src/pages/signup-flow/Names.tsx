@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 //IMPORTING HELPER COMPONENTS
 import Header from '../../components/Header';
@@ -22,7 +23,7 @@ const Names = () => {
 
   const { isLoading, errorMsg, form } = useSelector((state: any) => state.auth);
 
-  const handleRegister = (e: any) => {
+  const handleRegister = async (e: any) => {
     e.preventDefault();
     try {
       dispatch(setIsLoading(true));
@@ -31,11 +32,19 @@ const Names = () => {
       if (!username || !fullName) {
         throw new Error('Please fill in all appopriate details');
       }
+
+      await axios.get(
+        `http://localhost:5000/api/v1/auth/checkUser?${
+          username ? `username=${username}` : ''
+        }`
+      );
+
       navigate('/signupflow-email_confirmation');
+      dispatch(setErrorMsg(''));
       dispatch(setIsLoading(false));
-    } catch (err: any) {
+    } catch (error: any) {
       dispatch(setIsLoading(false));
-      dispatch(setErrorMsg(err.message));
+      dispatch(setErrorMsg(error.response.data.msg));
     }
   };
 
@@ -50,10 +59,10 @@ const Names = () => {
         <section className="mt-24 flex flex-col items-center">
           <img src={home} alt="home" className="w-48 mb-12" />
 
-          <div className="errorPopup">
+          <div className="errorPopup w-[80%] mx-auto">
             {' '}
             {errorMsg ? (
-              <p className="border-2 border-red-400 bg-red-300 text-white font-semibold px-4 py-2 mb-2 rounded-lg transtion">
+              <p className="border-2 border-red-400 bg-red-300 text-white font-semibold px-4 py-2 mb-2 rounded-lg transtion text-center">
                 {errorMsg}
               </p>
             ) : (
@@ -93,7 +102,6 @@ const Names = () => {
               value={form.username}
               className="border-2 border-gray-300 w-full py-2 px-4 rounded-lg outline-none focus:border-blue-600"
             />
-            
 
             <button
               onClick={handleRegister}

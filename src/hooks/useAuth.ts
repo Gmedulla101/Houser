@@ -3,40 +3,22 @@ import { useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../context/userContext';
 
 //ALL THINGS REDUX TOOLKIT
-import { useSelector } from 'react-redux';
-import {
-  handleFormChange,
-  setIsLoading,
-  setErrorMsg,
-} from '../features/auth/authSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { setIsLoading, setErrorMsg } from '../features/auth/authSlice';
 
 const useAuth = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { setIsSignedIn, setUser } = useGlobalContext();
 
-  const { form, isLoading, errorMsg } = useSelector((store: any) => store.auth);
+  const { form } = useSelector((store: any) => store.auth);
 
-  const handleRegister = async (e: any) => {
-    e.preventDefault();
-    const { confirmPassword, password, email, username, fullName } = form;
-    if (!form) {
-      setErrorMsg('Please fill in the appopriate details');
-      return;
-    }
-    if (confirmPassword !== password) {
-      setErrorMsg('Passwords do not match');
-      return;
-    }
+  const handleRegister = async () => {
     try {
-      setIsLoading(true);
+      dispatch(setIsLoading(true));
       const data = await axios.post(
         'https://houser-backend.onrender.com/api/v1/auth/register-user',
-        {
-          email,
-          password,
-          username,
-          fullName,
-        }
+        form
       );
       const userToken = data.data.token;
       localStorage.setItem('user', JSON.stringify(userToken));
@@ -57,20 +39,15 @@ const useAuth = () => {
         id: data.data.id,
       });
       navigate('/');
+      dispatch(setIsLoading(false));
     } catch (error: any) {
-      setIsLoading(false);
+      dispatch(setIsLoading(false));
       console.error(error);
-      setErrorMsg(error.response.data.msg);
+      dispatch(setErrorMsg(error.response.data.msg));
     }
   };
 
   return {
-    form,
-    errorMsg,
-    isLoading,
-    setIsLoading,
-    setErrorMsg,
-    handleFormChange,
     handleRegister,
   };
 };
