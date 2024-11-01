@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { useGlobalContext } from '../context/userContext';
+import { createPortal } from 'react-dom';
 
 //IMPORTING HELPER COMPONENTS
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LoaderComponent from '../components/LoaderComponent';
+import AuthModal from '../components/AuthModal';
 
 //IMPORTING UI COMPONENTS
 import { Carousel } from '@mantine/carousel';
@@ -58,13 +61,25 @@ const PropertyPage = () => {
     fetchData();
   }, []);
 
+  const { user } = useGlobalContext();
+
+  const [isModal, setIsModal] = useState<boolean>(false);
+  const requestTour = () => {
+    if (!user) {
+      setIsModal(true);
+      return;
+    }
+
+    console.log('Requesting a tour');
+  };
+
   return (
     <>
       <Header />
       {isLoading ? (
         <LoaderComponent />
       ) : (
-        <section className="mt-24 xl:mt-28 md:p-0 px-4 xmd:px-12">
+        <section className="mt-24 xl:mt-28 md:p-0 px-4 xmd:px-12 propertyPage">
           <h1 className="text-3xl font-semibold pb-5 lg:text-4xl xl:text-6xl">
             {property?.title}
           </h1>
@@ -119,11 +134,16 @@ const PropertyPage = () => {
                 </p>
                 <p>{property?.desc}</p>
               </div>
-              <button className="block font-semibold text-center px-2 py-3 mt-12 mx-auto w-full rounded-md bg-blue-600 text-white transition  hover:bg-gray-200 hover:text-blue-600 active:bg-blue-800 lg:px-6 lg:py-3">
+              <button
+                onClick={requestTour}
+                className="block font-semibold text-center px-2 py-3 mt-12 mx-auto w-full rounded-md bg-blue-600 text-white transition  hover:bg-gray-200 hover:text-blue-600 active:bg-blue-800 lg:px-6 lg:py-3"
+              >
                 Request a tour
               </button>
             </div>
           </div>
+
+          <div>{isModal ? createPortal(<AuthModal />, document.body) : ''}</div>
         </section>
       )}
       <Footer />

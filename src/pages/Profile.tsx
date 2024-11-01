@@ -58,11 +58,12 @@ const Dashboard = () => {
   }, []);
 
   const navigate = useNavigate();
-  const { setIsSignedIn, isSignedIn } = useGlobalContext();
+  const { setIsSignedIn, isSignedIn, setUser } = useGlobalContext();
 
   const logout = () => {
     localStorage.clear();
     setIsSignedIn(false);
+    setUser(null);
     navigate('/');
   };
 

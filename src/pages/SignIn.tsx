@@ -1,5 +1,5 @@
 //IMPORTING DEPS
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../context/userContext';
@@ -27,6 +27,13 @@ const SignIn = () => {
 
   const [isPassword, setIsPassword] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, []);
 
   const handleFormChange = (e: any) => {
     const { name, value } = e.target;
@@ -91,7 +98,6 @@ const SignIn = () => {
           <img src={home} alt="home" className="w-48 mb-12" />
 
           <div className="errorPopup">
-           
             {' '}
             {errorMsg ? (
               <p className="border-2 border-red-400 bg-red-300 text-white font-semibold px-4 py-2 mb-2 rounded-lg transtion">
