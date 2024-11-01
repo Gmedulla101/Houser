@@ -1,8 +1,22 @@
 import { Link } from 'react-router-dom';
+import { CIcon } from '@coreui/icons-react';
+import { cilX } from '@coreui/icons';
 
-const AuthModal = () => {
+type AuthModalProps = {
+  isModal: boolean;
+  setIsModal: Function;
+};
+
+const AuthModal: React.FC<AuthModalProps> = ({ setIsModal }) => {
   return (
     <section className=" transition duration-100 w-full h-full top-0 left-0 z-[100] fixed">
+      <CIcon
+        onClick={() => {
+          setIsModal(false);
+        }}
+        icon={cilX}
+        className="w-16 relative z-[101] left-[85%] border-2 border-slate-400 bg-white rounded-full p-2 cursor-pointer"
+      />
       <div className="w-[80%] h-[40vh] z-[101] relative top-36 mx-auto bg-white shadow border-2 border-slate-200 p-4 rounded-lg flex flex-col justify-around">
         <span>
           <h1 className="text-3xl text-center font-semibold">
@@ -28,7 +42,9 @@ const AuthModal = () => {
           </Link>
         </span>
       </div>
-      <div className="w-full h-[100vh] bg-white opacity-65 absolute top-0 z-[90]"></div>
+
+      {/* DIV FOR WHITE OPACITY */}
+      <div className="w-full h-[100vh] bg-white opacity-75 absolute top-0 z-[90]"></div>
     </section>
   );
 };

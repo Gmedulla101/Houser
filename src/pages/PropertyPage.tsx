@@ -143,7 +143,14 @@ const PropertyPage = () => {
             </div>
           </div>
 
-          <div>{isModal ? createPortal(<AuthModal />, document.body) : ''}</div>
+          <div>
+            {isModal
+              ? createPortal(
+                  <AuthModal isModal={isModal} setIsModal={setIsModal} />,
+                  document.body
+                )
+              : ''}
+          </div>
         </section>
       )}
       <Footer />
