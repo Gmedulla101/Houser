@@ -17,6 +17,7 @@ type UserDetails = {
   fullName?: string;
   email: string;
   phoneNumber?: string;
+  createdAt?: string;
 };
 
 const Dashboard = () => {
@@ -163,7 +164,9 @@ const Dashboard = () => {
                     <input
                       type="text"
                       id="joinDate"
-                      placeholder="User Created at"
+                      placeholder={
+                        userData?.createdAt?.split('T')[0] || 'When you joined'
+                      }
                       disabled
                       name="joinDate"
                       className="border-2 border-slate-400 h-12 rounded-md px-3 text-sm outline-none focus:border-2 focus:border-[#12362A]"
