@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../context/userContext';
+import { BASE_API_URL } from '../components/Featured';
 
 //ALL THINGS REDUX TOOLKIT
 import { useSelector, useDispatch } from 'react-redux';
@@ -17,7 +18,7 @@ const useAuth = () => {
     try {
       dispatch(setIsLoading(true));
       const data = await axios.post(
-        'https://houser-backend.onrender.com/api/v1/auth/register-user',
+        `${BASE_API_URL}/api/v1/auth/register-user`,
         form
       );
       const userToken = data.data.token;

@@ -11,6 +11,9 @@ import { cilArrowThickRight, cilArrowThickLeft } from '@coreui/icons';
 //IMPORTING TYPES
 import { PropertyDetails } from '../pages/CreatePost';
 
+//IMPORTING AND THEN EXPORT THE BASE API URL
+export const BASE_API_URL = import.meta.env.VITE_API_URL;
+
 const Featured = () => {
   const [featuredProps, setFeaturedProps] = useState<PropertyDetails[]>();
   const [isLoading, setIsLoading] = useState(true);
@@ -20,7 +23,7 @@ const Featured = () => {
     const getFeaturedPosts = async () => {
       try {
         const data = await axios.get(
-          'https://houser-backend.onrender.com/api/v1/properties/featured-properties'
+          `${BASE_API_URL}/api/v1/properties/featured-properties`
         );
         const limitedFeatures = data.data.data.slice(0, 6);
         setFeaturedProps(limitedFeatures);

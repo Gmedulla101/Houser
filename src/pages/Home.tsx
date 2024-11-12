@@ -15,6 +15,8 @@ const Home = () => {
     });
   }, []);
 
+  
+
   return (
     <main>
       <Header />

@@ -6,7 +6,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Loader from '../components/LoaderComponent';
 
-
 //IMPORTING MANTINE UI COMPONENTS
 import { Carousel } from '@mantine/carousel';
 import { rem } from '@mantine/core';
@@ -17,6 +16,9 @@ import { cilArrowThickRight, cilArrowThickLeft } from '@coreui/icons';
 //IMPORTING TYPES
 import { PropertyDetails } from './CreatePost';
 
+//IMPORTING BASE API URL
+import { BASE_API_URL } from '../components/Featured';
+
 const Properties = () => {
   const [properties, setProperties] = useState<PropertyDetails[]>();
   const [isLoading, setIsLoading] = useState(true);
@@ -25,7 +27,7 @@ const Properties = () => {
     const fetchData = async () => {
       try {
         const data = await axios.get(
-          'https://houser-backend.onrender.com/api/v1/properties/all-properties'
+          `${BASE_API_URL}/api/v1/properties/all-properties`
         );
         if (data) {
           setProperties(data.data.data);
@@ -55,8 +57,6 @@ const Properties = () => {
             of our beautiful world. Explore our curated selection of properties,
             each offering a unique story and a chance to redefine your life.
           </p>
-
-    
 
           <div className="mt-12">
             <h1 className="text-3xl font-semibold pb-5 lg:text-4xl xl:text-6xl">

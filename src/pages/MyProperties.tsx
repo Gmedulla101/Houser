@@ -12,6 +12,7 @@ import Filter from '../components/Filter';
 //IMPORTING TYPES
 import { PropertyDetails } from './CreatePost';
 
+//MAIN COMPONENT BODY
 const MyProperties = () => {
   //SCROLL TO TOP ON COMPONENT MOUNT
   useEffect(() => {
@@ -23,13 +24,6 @@ const MyProperties = () => {
 
   const [filteredData, setFilteredData] = useState<PropertyDetails[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  //GETTING USER TOKEN FROM LOCALSTORAGE
-  const storedValue = localStorage.getItem('user');
-  if (!storedValue) {
-    throw new Error('There is no user logged in');
-  }
-  const token = JSON.parse(storedValue);
 
   //MAPPING THROUGH AND DISPLAYING DATA
   const displayDataEl = filteredData?.map(
@@ -59,11 +53,7 @@ const MyProperties = () => {
           </Link>
         </span>
 
-        <Filter
-          setIsLoading={setIsLoading}
-          setFilteredData={setFilteredData}
-          token={token}
-        />
+        <Filter setIsLoading={setIsLoading} setFilteredData={setFilteredData} />
 
         {isLoading ? (
           <LoaderComponent />

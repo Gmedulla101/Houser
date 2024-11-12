@@ -2,20 +2,20 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 
+import { useGlobalContext } from '../context/userContext';
+
+//IMPORTING THE BASE API URL
+import { BASE_API_URL } from './Featured';
+
 //IMPORTING TYPES
 
 interface FilterProps {
   setFilteredData: Function;
   setIsLoading: Function;
-  token?: string;
 }
 
 //MAIN COMPONENT BODY
-const Filter: React.FC<FilterProps> = ({
-  setFilteredData,
-  setIsLoading,
-  token,
-}) => {
+const Filter: React.FC<FilterProps> = ({ setFilteredData, setIsLoading }) => {
   const currentLocation = useLocation();
 
   const [filterObj, setFilterObj] = useState({
@@ -32,20 +32,22 @@ const Filter: React.FC<FilterProps> = ({
     });
   };
 
+  const { userToken } = useGlobalContext();
+
   useEffect(() => {
     const filterData = async () => {
       setIsLoading(true);
       const data = await axios.get(
-        `https://houser-backend.onrender.com/api/v1/properties${
-          currentLocation.pathname
-        }?${filterObj.location ? `location=${filterObj.location}` : ''}&${
+        `${BASE_API_URL}/api/v1/properties${currentLocation.pathname}?${
+          filterObj.location ? `location=${filterObj.location}` : ''
+        }&${
           filterObj.propertyType ? `propertyType=${filterObj.propertyType}` : ''
         }&${
           filterObj.pricingRange ? `pricingRange=${filterObj.pricingRange}` : ''
         }&${filterObj.bedrooms ? `bedrooms=${filterObj.bedrooms}` : ''}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${userToken}`,
           },
         }
       );

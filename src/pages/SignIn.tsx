@@ -95,6 +95,10 @@ const SignIn = () => {
         <LoaderComponent />
       ) : (
         <form className="mt-24 flex flex-col items-center">
+          <h1 className="text-center text-3xl font-semibold mb-5">
+            {' '}
+            Sign in to <span className="text-blue-600">Houser!</span>
+          </h1>
           <img src={home} alt="home" className="w-48 mb-12" />
 
           <div className="errorPopup">

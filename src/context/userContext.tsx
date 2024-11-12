@@ -5,14 +5,16 @@ interface AuthContextType {
   setUser: Function;
   isSignedIn: boolean;
   setIsSignedIn: Function;
+  userToken?: string;
+  userData?: string;
 }
 
 export const GlobalContext = createContext<AuthContextType | null>(null);
 
 export const useGlobalContext = () => {
-  const { user, setUser, isSignedIn, setIsSignedIn }: any =
+  const { user, setUser, isSignedIn, setIsSignedIn, userToken, userData }: any =
     useContext(GlobalContext);
-  return { user, setUser, isSignedIn, setIsSignedIn };
+  return { user, setUser, isSignedIn, setIsSignedIn, userToken, userData };
 };
 
 const AppContext = ({ children }: any) => {
@@ -33,7 +35,7 @@ const AppContext = ({ children }: any) => {
 
   return (
     <GlobalContext.Provider
-      value={{ user, setUser, isSignedIn, setIsSignedIn }}
+      value={{ user, setUser, isSignedIn, setIsSignedIn, userToken, userData }}
     >
       {children}
     </GlobalContext.Provider>

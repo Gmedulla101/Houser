@@ -9,6 +9,9 @@ import axios from 'axios';
 import { useGlobalContext } from '../context/userContext';
 import { useNavigate } from 'react-router-dom';
 
+///
+import { BASE_API_URL } from '../components/Featured';
+
 type UserDetails = {
   _id: string;
   username: string;
@@ -21,6 +24,7 @@ type UserDetails = {
 };
 
 const Dashboard = () => {
+  const { setIsSignedIn, isSignedIn, setUser, userToken } = useGlobalContext();
   const [userData, setUserData] = useState<UserDetails>();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -31,21 +35,13 @@ const Dashboard = () => {
     });
 
     const fetchUserData = async () => {
-      let token;
-      const storedValue = localStorage.getItem('user');
-      if (storedValue) {
-        token = JSON.parse(storedValue);
-      }
       try {
         setIsLoading(true);
-        const data = await axios.get(
-          'https://houser-backend.onrender.com/api/v1/auth/getUser',
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const data = await axios.get(`${BASE_API_URL}/api/v1/auth/getUser`, {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        });
         setUserData(data.data.data[0]);
         setIsLoading(false);
       } catch (error) {
@@ -58,7 +54,6 @@ const Dashboard = () => {
   }, []);
 
   const navigate = useNavigate();
-  const { setIsSignedIn, isSignedIn, setUser } = useGlobalContext();
 
   const logout = () => {
     localStorage.clear();

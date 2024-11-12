@@ -26,6 +26,9 @@ export type PropertyDetails = {
   _id?: string;
 };
 
+//
+import { BASE_API_URL } from '../components/Featured';
+
 //MAIN COMPONENT BODY
 const CreatePost = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -121,7 +124,7 @@ const CreatePost = () => {
         const token = JSON.parse(storedValue);
 
         await axios.post(
-          'https://houser-backend.onrender.com/api/v1/properties/add-property',
+          `${BASE_API_URL}/api/v1/properties/add-property`,
           newPropDetails,
           {
             headers: {

@@ -17,6 +17,8 @@ import { Carousel } from '@mantine/carousel';
 import bed from '../assets/bed.png';
 import locationPointer from '../assets/location.png';
 
+import { BASE_API_URL } from '../components/Featured';
+
 const PropertyPage = () => {
   type Property = {
     imgUrl: any;
@@ -44,7 +46,7 @@ const PropertyPage = () => {
     const fetchData = async () => {
       try {
         const data = await axios.get(
-          `https://houser-backend.onrender.com/api/v1/properties/get-property/${propertyId}`
+          `${BASE_API_URL}/api/v1/properties/get-property/${propertyId}`
         );
         if (data) {
           setProperty(data.data.data);
