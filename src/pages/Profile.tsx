@@ -21,6 +21,7 @@ type UserDetails = {
   email: string;
   phoneNumber?: string;
   createdAt?: string;
+  status?: string;
 };
 
 const Dashboard = () => {
@@ -37,7 +38,7 @@ const Dashboard = () => {
     const fetchUserData = async () => {
       try {
         setIsLoading(true);
-        const data = await axios.get(`${BASE_API_URL}/api/v1/auth/getUser`, {
+        const data = await axios.get(`${BASE_API_URL}/api/v1/user/getUser`, {
           headers: {
             Authorization: `Bearer ${userToken}`,
           },

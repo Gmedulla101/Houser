@@ -60,8 +60,8 @@ const UserRole = () => {
                     onClick={() => {
                       dispatch(
                         handleFormChange({
-                          name: 'status',
-                          value: 'seeker',
+                          name: 'role',
+                          value: 'hunter',
                         })
                       );
                     }}
@@ -108,7 +108,7 @@ const UserRole = () => {
                     onClick={() => {
                       dispatch(
                         handleFormChange({
-                          name: 'status',
+                          name: 'role',
                           value: 'owner',
                         })
                       );

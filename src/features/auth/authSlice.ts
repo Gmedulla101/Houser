@@ -7,7 +7,7 @@ const initialState = {
     password: '',
     confirmPassword: '',
     fullName: '',
-    status: '',
+    role: '',
     phoneNumber: '',
     country: '',
   },

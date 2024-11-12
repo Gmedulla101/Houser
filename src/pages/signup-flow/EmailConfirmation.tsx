@@ -17,6 +17,9 @@ import {
   setErrorMsg,
 } from '../../features/auth/authSlice';
 
+//IMPORTING BASE API URL
+import { BASE_API_URL } from '../../components/Featured';
+
 const EmailConfirmation = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,9 +35,7 @@ const EmailConfirmation = () => {
       dispatch(setIsLoading(true));
 
       await axios.get(
-        `https://houser-backend.onrender.com/api/v1/auth/checkUser?${
-          email ? `email=${email}` : ''
-        }`
+        `${BASE_API_URL}/api/v1/user/checkUser?${email ? `email=${email}` : ''}`
       );
 
       dispatch(setErrorMsg(''));
