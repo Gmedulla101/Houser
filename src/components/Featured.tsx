@@ -25,12 +25,12 @@ const Featured = () => {
         const data = await axios.get(
           `${BASE_API_URL}/api/v1/properties/featured-properties`
         );
-        const limitedFeatures = data.data.data.slice(0, 6);
+        const limitedFeatures = data?.data?.data?.slice(0, 6);
         setFeaturedProps(limitedFeatures);
         setIsLoading(false);
       } catch (error: any) {
         setIsLoading(false);
-        setErrorMsg(error.response.data.msg);
+        setErrorMsg(error?.response?.data?.msg);
         console.error(error);
       }
     };

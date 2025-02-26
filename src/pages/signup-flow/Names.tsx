@@ -5,6 +5,7 @@ import axios from 'axios';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import LoaderComponent from '../../components/LoaderComponent';
+import GoogleAuth from '../../components/GoogleAuth';
 
 //IMPORTING IMAGE ASSETS
 import home from '../../assets/home.png';
@@ -33,22 +34,26 @@ const Names = () => {
         throw new Error('Please fill in all appopriate details');
       }
 
-      await axios.get(
-        `https://houser-backend.onrender.com/api/v1/auth/checkUser?${
+      const response = await axios.get(
+        `http://localhost:5000/api/v1/user/checkUser?${
           username ? `username=${username}` : ''
         }`
       );
 
-      navigate('/signupflow-email_confirmation');
-      dispatch(setErrorMsg(''));
-      dispatch(setIsLoading(false));
+      console.log(response);
+      if (response.data.data === 'proceed') {
+        navigate('/signupflow-email_confirmation');
+        dispatch(setErrorMsg(''));
+        dispatch(setIsLoading(false));
+      } else {
+        return;
+      }
     } catch (error: any) {
       dispatch(setIsLoading(false));
-      dispatch(setErrorMsg(error.response.data.msg));
+      dispatch(setErrorMsg(error.message));
+      dispatch(setErrorMsg(error.response.data.msg || error.message));
     }
   };
-
-  console.log(form);
 
   return (
     <>
@@ -73,6 +78,10 @@ const Names = () => {
             ) : (
               ''
             )}
+          </div>
+
+          <div className="w-[90%] md:w-96">
+            <GoogleAuth />
           </div>
 
           <form className="signUpForm flex flex-col gap-5 items-center w-[90%] md:w-96">
