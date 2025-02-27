@@ -67,7 +67,7 @@ const PropertyPage = () => {
 
   const [isModal, setIsModal] = useState<boolean>(false);
   const requestTour = () => {
-    if (!user) {
+    if (!isSignedIn) {
       setIsModal(true);
       return;
     }
