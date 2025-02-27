@@ -12,7 +12,7 @@ import Names from './pages/signup-flow/Names';
 import EmailConfirmation from './pages/signup-flow/EmailConfirmation';
 import Passwords from './pages/signup-flow/Passwords';
 import UserRole from './pages/signup-flow/UserRole';
-
+import GoogleConfirmation from './pages/signup-flow/GoogleConfirmation';
 //IMPORTING REACT ROUTER COMPONENTS
 import { Route, Routes } from 'react-router-dom';
 
@@ -42,6 +42,7 @@ const App = () => {
           path="/signupflow-email_confirmation"
           element={<EmailConfirmation />}
         />
+        <Route path="/google-success/token" element={<GoogleConfirmation />} />
       </Routes>
     </MantineProvider>
   );

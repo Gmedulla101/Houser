@@ -1,8 +1,7 @@
 import googleLogo from '../assets/google-symbol.png';
-import axios from 'axios';
 
-const handleGoogleAuth = () => {
-  console.log('Googling');
+const handleGoogleAuth = async () => {
+  window.location.href = 'http://localhost:5000/api/v1/auth/google-working';
 };
 
 const GoogleAuth = () => {
