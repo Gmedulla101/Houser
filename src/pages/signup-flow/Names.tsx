@@ -18,6 +18,7 @@ import {
   setIsLoading,
   setErrorMsg,
 } from '../../features/auth/authSlice';
+import { BASE_API_URL } from '../../components/Featured';
 
 const Names = () => {
   //SCROLL TO TOP ON COMPONENT MOUNT
@@ -44,7 +45,7 @@ const Names = () => {
       }
 
       const response = await axios.get(
-        `http://localhost:5000/api/v1/user/checkUser?${
+        `${BASE_API_URL}/api/v1/user/checkUser?${
           username ? `username=${username}` : ''
         }`
       );

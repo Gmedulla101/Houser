@@ -14,6 +14,8 @@ import home from '../assets/home.png';
 import hidden from '../assets/hidden.png';
 import eye from '../assets/eye.png';
 
+import { BASE_API_URL } from '../components/Featured';
+
 const SignIn = () => {
   const navigate = useNavigate();
   const { setIsSignedIn, setUser } = useGlobalContext();
@@ -53,13 +55,10 @@ const SignIn = () => {
     }
     try {
       setIsLoading(true);
-      const data = await axios.post(
-        'https://houser-backend.onrender.com/api/v1/auth/user-login',
-        {
-          email,
-          password,
-        }
-      );
+      const data = await axios.post(`${BASE_API_URL}/api/v1/auth/user-login`, {
+        email,
+        password,
+      });
 
       const userToken = data.data.token;
       localStorage.setItem('houser-user', JSON.stringify(userToken));

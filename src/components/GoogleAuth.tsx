@@ -1,7 +1,8 @@
 import googleLogo from '../assets/google-symbol.png';
+import { BASE_API_URL } from './Featured';
 
 const handleGoogleAuth = async () => {
-  window.location.href = 'http://localhost:5000/api/v1/auth/google-working';
+  window.location.href = `${BASE_API_URL}/api/v1/auth/google-working`;
 };
 
 const GoogleAuth = () => {
