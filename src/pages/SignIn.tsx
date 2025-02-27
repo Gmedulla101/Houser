@@ -8,6 +8,7 @@ import { useGlobalContext } from '../context/userContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LoaderComponent from '../components/LoaderComponent';
+import GoogleAuth from '../components/GoogleAuth';
 
 //IMPORTING IMAGE ASSETS
 import home from '../assets/home.png';
@@ -112,6 +113,9 @@ const SignIn = () => {
           </div>
 
           <div className="signUpForm flex flex-col gap-5 items-center w-[90%] md:w-96">
+            <div className="w-full md:w-96">
+              <GoogleAuth />
+            </div>
             <input
               type="text"
               name="email"

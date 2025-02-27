@@ -59,6 +59,7 @@ const Dashboard = () => {
   const logout = async () => {
     await axios.get(`${BASE_API_URL}/api/v1/auth/logout`);
     localStorage.removeItem('houser-user');
+    localStorage.removeItem('userData');
     setIsSignedIn(false);
     setUser(null);
     navigate('/');

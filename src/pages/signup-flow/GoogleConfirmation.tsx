@@ -1,5 +1,6 @@
 import Header from '../../components/Header';
 import { useEffect } from 'react';
+import { useGlobalContext } from '../../context/userContext';
 
 //IMPORTING IMAGE ASSETS
 import home from '../../assets/home.png';
@@ -11,11 +12,14 @@ import { Link } from 'react-router-dom';
 const GoogleConfirmation = () => {
   const [searchParams] = useSearchParams();
   const token: any = searchParams.get('token');
+
+  const { setIsSignedIn } = useGlobalContext();
   useEffect(() => {
     if (!token) {
       throw new Error('Auth failure: Token is not present');
     }
     localStorage.setItem('houser-user', JSON.stringify(token));
+    setIsSignedIn(true);
   }, []);
 
   return (
