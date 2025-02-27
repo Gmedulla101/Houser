@@ -63,7 +63,7 @@ const PropertyPage = () => {
     fetchData();
   }, []);
 
-  const { user } = useGlobalContext();
+  const { isSignedIn } = useGlobalContext();
 
   const [isModal, setIsModal] = useState<boolean>(false);
   const requestTour = () => {
