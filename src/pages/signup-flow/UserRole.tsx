@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 //IMPORTING REQUIRED COMPONENTS
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -15,6 +17,14 @@ import { handleFormChange } from '../../features/auth/authSlice';
 import useAuth from '../../hooks/useAuth';
 
 const UserRole = () => {
+  //SCROLL TO TOP ON COMPONENT MOUNT
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, []);
+
   const dispatch = useDispatch();
   const { isLoading, form, errorMsg } = useSelector((state: any) => state.auth);
   const { handleRegister } = useAuth();

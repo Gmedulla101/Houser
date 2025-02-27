@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 //IMPORTING HELPER COMPONENTS
 import Header from '../../components/Header';
@@ -20,6 +21,14 @@ import {
 } from '../../features/auth/authSlice';
 
 const Passwords = () => {
+  //SCROLL TO TOP ON COMPONENT MOUNT
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, []);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

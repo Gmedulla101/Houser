@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useEffect } from 'react';
 
 //IMPORTING HELPER COMPONENTS
 import Header from '../../components/Header';
@@ -21,6 +22,14 @@ import {
 import { BASE_API_URL } from '../../components/Featured';
 
 const EmailConfirmation = () => {
+  //SCROLL TO TOP ON COMPONENT MOUNT
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, []);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

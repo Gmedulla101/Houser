@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import axios from 'axios';
 
 //IMPORTING HELPER COMPONENTS
@@ -19,6 +20,14 @@ import {
 } from '../../features/auth/authSlice';
 
 const Names = () => {
+  //SCROLL TO TOP ON COMPONENT MOUNT
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, []);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
