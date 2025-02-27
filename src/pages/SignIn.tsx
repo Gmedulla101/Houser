@@ -62,7 +62,7 @@ const SignIn = () => {
       );
 
       const userToken = data.data.token;
-      localStorage.setItem('user', JSON.stringify(userToken));
+      localStorage.setItem('houser-user', JSON.stringify(userToken));
       localStorage.setItem(
         'userData',
         JSON.stringify({

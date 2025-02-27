@@ -15,7 +15,7 @@ const GoogleConfirmation = () => {
     if (!token) {
       throw new Error('Auth failure: Token is not present');
     }
-    localStorage.setItem('user', JSON.stringify(token));
+    localStorage.setItem('houser-user', JSON.stringify(token));
   }, []);
 
   return (
