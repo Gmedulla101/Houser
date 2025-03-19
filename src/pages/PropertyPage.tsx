@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useGlobalContext } from '../context/userContext';
 import { createPortal } from 'react-dom';
+import { useNavigate } from 'react-router-dom';
 
 //IMPORTING HELPER COMPONENTS
 import Header from '../components/Header';
@@ -66,13 +67,16 @@ const PropertyPage = () => {
   const { isSignedIn } = useGlobalContext();
 
   const [isModal, setIsModal] = useState<boolean>(false);
+
+  const navigate = useNavigate();
+
   const requestTour = () => {
     if (!isSignedIn) {
       setIsModal(true);
       return;
+    } else {
+      navigate('/request-tour');
     }
-
-    console.log('Requesting a tour');
   };
 
   return (
@@ -128,17 +132,19 @@ const PropertyPage = () => {
               </Carousel>
             </div>
 
-            <div className="img my-5 mx-auto overflow-hidden p-5 border-2 border-gray-200 rounded-xl xl:w-[40%] flex flex-col justify-between">
+            <div className="img h-[450px] my-5 mx-auto overflow-hidden p-5 border-2 border-gray-200 rounded-xl xl:w-[40%] flex flex-col justify-between">
               <div>
                 <h3 className="font-semibold text-lg"> Description </h3>
-                <p className="text-sm text-gray-400 my-3">
+                <p className="text-sm text-gray-400 my-2">
                   {property?.featured ? 'Featured' : ''}
                 </p>
-                <p>{property?.desc}</p>
+                <div className="h-[250px] overflow-y-scroll">
+                  <p>{property?.desc}</p>
+                </div>
               </div>
               <button
                 onClick={requestTour}
-                className="block font-semibold text-center px-2 py-3 mt-12 mx-auto w-full rounded-md bg-blue-600 text-white transition  hover:bg-gray-200 hover:text-blue-600 active:bg-blue-800 lg:px-6 lg:py-3"
+                className="block font-semibold text-center px-2 py-3 mt-8 mx-auto w-full rounded-md bg-blue-600 text-white transition  hover:bg-gray-200 hover:text-blue-600 active:bg-blue-800 lg:px-6 lg:py-3"
               >
                 Request a tour
               </button>

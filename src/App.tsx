@@ -13,6 +13,7 @@ import EmailConfirmation from './pages/signup-flow/EmailConfirmation';
 import Passwords from './pages/signup-flow/Passwords';
 import UserRole from './pages/signup-flow/UserRole';
 import GoogleConfirmation from './pages/signup-flow/GoogleConfirmation';
+import RequestATour from './pages/RequestATour';
 //IMPORTING REACT ROUTER COMPONENTS
 import { Route, Routes } from 'react-router-dom';
 
@@ -43,6 +44,7 @@ const App = () => {
           element={<EmailConfirmation />}
         />
         <Route path="/google-success/token" element={<GoogleConfirmation />} />
+        <Route path="/request-tour" element={<RequestATour />} />
       </Routes>
     </MantineProvider>
   );
