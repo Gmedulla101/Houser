@@ -20,13 +20,13 @@ export const useGlobalContext = () => {
 const AppContext = ({ children }: any) => {
   const storedTokenValue: any = localStorage.getItem('houser-user');
   if (!storedTokenValue) {
-    console.error('No token present');
+    console.warn('No token present');
   }
   const userToken = JSON.parse(storedTokenValue);
 
   const storedUserData: any = localStorage.getItem('userData');
   if (!storedUserData) {
-    console.error('No user is logged in');
+    console.warn('No user is logged in');
   }
   const userData = JSON.parse(storedUserData);
 

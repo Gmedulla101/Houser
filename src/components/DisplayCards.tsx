@@ -80,7 +80,7 @@ const DisplayCards = ({
       <div className="priceView flex items-center justify-between mt-5">
         <span>
           <p className="text-xs">Price:</p>
-          <p className="font-semibold">N{price}</p>
+          <p className="font-semibold">N{price.toLocaleString()}</p>
         </span>
         <Link
           to={`/view-property/${_id}`}

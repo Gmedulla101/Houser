@@ -103,7 +103,7 @@ const PropertyPage = () => {
 
             <span className="flex items-center justify-center gap-2 border-2 border-gray-200 px-3 py-2 rounded-xl xl:w-72">
               <p className="font-semibold"> Price:</p>
-              <p> N{property?.price} </p>
+              <p> N{property?.price.toLocaleString()} </p>
             </span>
           </span>
 
