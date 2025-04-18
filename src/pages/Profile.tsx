@@ -69,7 +69,7 @@ const Dashboard = () => {
     <>
       <Header />
       {isLoading ? (
-        <LoaderComponent />
+        <LoaderComponent size="100" />
       ) : (
         <section className="px-4 mt-24">
           {!isSignedIn ? (

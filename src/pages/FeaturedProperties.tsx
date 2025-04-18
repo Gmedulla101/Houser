@@ -45,7 +45,7 @@ const FeaturedProperties = () => {
         <Filter setFilteredData={setFilteredData} setIsLoading={setIsLoading} />
 
         {isLoading ? (
-          <LoaderComponent />
+          <LoaderComponent size={'100'} />
         ) : (
           <div className="flex flex-wrap gap-16 justify-center items-center my-12">
             {filteredData?.length > 0 ? (

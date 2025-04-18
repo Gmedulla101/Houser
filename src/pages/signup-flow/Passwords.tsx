@@ -18,7 +18,7 @@ import {
   handleFormChange,
   setErrorMsg,
   setIsLoading,
-} from '../../features/auth/authSlice';
+} from '../../redux/features/auth/authSlice';
 
 const Passwords = () => {
   //SCROLL TO TOP ON COMPONENT MOUNT
@@ -59,7 +59,7 @@ const Passwords = () => {
     <>
       <Header />
       {isLoading ? (
-        <LoaderComponent />
+        <LoaderComponent size={'100'} />
       ) : (
         <section className="mt-24 flex flex-col items-center">
           <h1 className="text-center text-3xl font-semibold mb-5">

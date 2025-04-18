@@ -17,7 +17,7 @@ import {
   handleFormChange,
   setIsLoading,
   setErrorMsg,
-} from '../../features/auth/authSlice';
+} from '../../redux/features/auth/authSlice';
 import { BASE_API_URL } from '../../components/Featured';
 
 const Names = () => {
@@ -50,7 +50,6 @@ const Names = () => {
         }`
       );
 
-      console.log(response);
       if (response.data.data === 'proceed') {
         navigate('/signupflow-email_confirmation');
         dispatch(setErrorMsg(''));
@@ -69,7 +68,7 @@ const Names = () => {
     <>
       <Header />
       {isLoading ? (
-        <LoaderComponent />
+        <LoaderComponent size={'100'} />
       ) : (
         <section className="mt-24 flex flex-col items-center">
           <h1 className="text-center text-3xl font-semibold mb-5">

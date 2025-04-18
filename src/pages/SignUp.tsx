@@ -95,7 +95,7 @@ const SignUp = () => {
     <>
       <Header />
       {isLoading ? (
-        <LoaderComponent />
+        <LoaderComponent size="100" />
       ) : (
         <section className="mt-24 flex flex-col items-center">
           <img src={home} alt="home" className="w-48 mb-12" />

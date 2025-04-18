@@ -69,7 +69,7 @@ const Properties = () => {
               resonates with your vision of home.
             </p>
             {isLoading ? (
-              <Loader />
+              <Loader size="100" />
             ) : (
               <div className="overflow-hidden mt-12 relative xxsm:pl-10">
                 {properties ? (

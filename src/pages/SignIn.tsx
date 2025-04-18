@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../context/userContext';
+import { Link } from 'react-router-dom';
 
 //IMPORITNG HELPER COMPONENTS
 import Header from '../components/Header';
@@ -92,7 +93,7 @@ const SignIn = () => {
       <Header />
 
       {isLoading ? (
-        <LoaderComponent />
+        <LoaderComponent size="100" />
       ) : (
         <form className="mt-24 flex flex-col items-center">
           <h1 className="text-center text-3xl font-semibold mb-5">
@@ -144,6 +145,14 @@ const SignIn = () => {
               >
                 <img src={isPassword ? hidden : eye} alt="" className="w-7" />
               </span>
+            </div>
+
+            <div className="w-full">
+              <Link to={'/forgot-password'}>
+                <span className="border-2 border-gray-300  py-2 px-4 rounded-lg outline-none focus:border-blue-600 text-xs active:bg-gray-300">
+                  Forgot Password
+                </span>
+              </Link>
             </div>
 
             <button

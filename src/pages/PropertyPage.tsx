@@ -83,7 +83,7 @@ const PropertyPage = () => {
     <>
       <Header />
       {isLoading ? (
-        <LoaderComponent />
+        <LoaderComponent size="100" />
       ) : (
         <section className="mt-24 xl:mt-28 md:p-0 px-4 xmd:px-12 propertyPage">
           <h1 className="text-3xl font-semibold pb-5 lg:text-4xl xl:text-6xl">

@@ -11,7 +11,7 @@ import landlord from '../../assets/house-owner (1).png';
 
 //IMPORTING REDUX TOOLKIT TOOLS
 import { useSelector, useDispatch } from 'react-redux';
-import { handleFormChange } from '../../features/auth/authSlice';
+import { handleFormChange } from '../../redux/features/auth/authSlice';
 
 //IMPORTING AUTH HOOK
 import useAuth from '../../hooks/useAuth';
@@ -29,12 +29,10 @@ const UserRole = () => {
   const { isLoading, form, errorMsg } = useSelector((state: any) => state.auth);
   const { handleRegister } = useAuth();
 
-  console.log(form);
-
   return (
     <>
       {isLoading ? (
-        <LoaderComponent />
+        <LoaderComponent size={'100'} />
       ) : (
         <section>
           <Header />

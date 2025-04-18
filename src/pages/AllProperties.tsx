@@ -77,7 +77,7 @@ const AllProperties = () => {
         </div>
 
         {isLoading ? (
-          <Loader />
+          <Loader size={'100'} />
         ) : (
           <div className="flex flex-wrap gap-16 justify-center items-center my-12">
             {filteredData?.length > 0 ? (
