@@ -5,7 +5,7 @@ const LoaderComponent = ({
   margin,
   color,
 }: {
-  size: string;
+  size?: string;
   margin?: string;
   color?: string;
 }) => {
