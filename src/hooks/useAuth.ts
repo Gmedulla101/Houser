@@ -8,6 +8,7 @@ import { AppDispatch, RootState } from '../redux/store';
 //ALL THINGS REDUX TOOLKIT
 import { useSelector, useDispatch } from 'react-redux';
 import { setIsLoading, setErrorMsg } from '../redux/features/auth/authSlice';
+import { setLoader } from '../redux/features/reset-pswd/resetSlice';
 
 const TEST_API = import.meta.env.VITE_DEV_API;
 
@@ -52,15 +53,17 @@ const useAuth = () => {
       dispatch(setErrorMsg(error.response.data.msg));
     }
   };
+
+  //FORGOT PASSWORD FUNCTIONALITY STARTS
   const getPasswordResetCode = async () => {
     const { email } = reset;
     try {
-      dispatch(setIsLoading(true));
+      dispatch(setLoader(true));
       await axios.post(`${TEST_API}/api/v1/auth/confirm-email`, { email });
       toast.success('Email confirmed!');
-      dispatch(setIsLoading(false));
+      dispatch(setLoader(false));
     } catch (error: any) {
-      dispatch(setIsLoading(false));
+      dispatch(setLoader(false));
       if (error?.response?.data?.msg) {
         toast.error(error?.response?.data?.msg);
       } else {
@@ -76,7 +79,7 @@ const useAuth = () => {
         toast.error('Please fill all fields');
       }
 
-      dispatch(setIsLoading(true));
+      dispatch(setLoader(true));
 
       await axios.post(`${TEST_API}/api/v1/auth/reset-password`, {
         email,
@@ -85,13 +88,13 @@ const useAuth = () => {
       });
 
       toast.success('Password reset successfully!');
-      dispatch(setIsLoading(false));
+      dispatch(setLoader(false));
 
       setTimeout(() => {
         navigate('/sign-in');
       }, 3000);
     } catch (error: any) {
-      dispatch(setIsLoading(false));
+      dispatch(setLoader(false));
       if (error.response.data.msg) {
         toast.error(error?.response?.data?.msg);
       } else {

@@ -16,10 +16,14 @@ const reset = createSlice({
       const { name, value } = action.payload;
       state[name] = value;
     },
+
+    setLoader: (state, action) => {
+      state.isLoading = action.payload;
+    },
   },
 });
 
-export const { handleChange } = reset.actions;
+export const { handleChange, setLoader } = reset.actions;
 
 const resetReducer = reset.reducer;
 

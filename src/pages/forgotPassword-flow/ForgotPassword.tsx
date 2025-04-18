@@ -6,6 +6,7 @@ import { handleChange } from '../../redux/features/reset-pswd/resetSlice';
 //OTHER DEPS AND HOOKS
 import { ToastContainer } from 'react-toastify';
 import useAuth from '../../hooks/useAuth';
+import LoaderComponent from '../../components/LoaderComponent';
 
 const ForgotPassword = () => {
   const { email, code, password, confirmPassword, isLoading } = useSelector(
@@ -64,7 +65,11 @@ const ForgotPassword = () => {
                   }
                   className="bg-blue-500 text-white font-semibold py-2 px-2 rounded-lg cursor-pointer w-36"
                 >
-                  <p> Get code </p>
+                  {isLoading ? (
+                    <LoaderComponent size="25" margin="0" color="white" />
+                  ) : (
+                    <p> Get code </p>
+                  )}
                 </button>
               </div>
 
@@ -115,7 +120,11 @@ const ForgotPassword = () => {
                 }
                 className="bg-blue-500 text-white font-semibold py-2 px-6 rounded-lg cursor-pointer mt-3 w-56"
               >
-                <p> Proceed </p>
+                {isLoading ? (
+                  <LoaderComponent size="25" margin="0" color="white" />
+                ) : (
+                  <p> Proceed </p>
+                )}
               </button>
             </div>
           </div>
