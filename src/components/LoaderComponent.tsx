@@ -15,7 +15,7 @@ const LoaderComponent = ({
         margin ? `my-${margin}` : 'my-48'
       }`}
     >
-      <Loader size={`${size}`} color={color ? color : 'blue'} type="dots" />
+      <Loader size={`${size}`} color={color ? color : '#155dfc'} type="dots" />
     </div>
   );
 };

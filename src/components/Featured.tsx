@@ -50,7 +50,7 @@ const Featured = () => {
       </p>
 
       {isLoading ? (
-        <LoaderComponent />
+        <LoaderComponent size="100" />
       ) : (
         <div className="mt-12">
           <Carousel
