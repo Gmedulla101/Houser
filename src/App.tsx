@@ -15,6 +15,7 @@ import UserRole from './pages/signup-flow/UserRole';
 import GoogleConfirmation from './pages/signup-flow/GoogleConfirmation';
 import RequestATour from './pages/RequestATour';
 import ForgotPassword from './pages/forgotPassword-flow/ForgotPassword';
+import PaymentConfirmation from './pages/PaymentConfirmation';
 
 //IMPORTING REACT ROUTER COMPONENTS
 import { Route, Routes } from 'react-router-dom';
@@ -48,6 +49,7 @@ const App = () => {
         <Route path="/google-success/token" element={<GoogleConfirmation />} />
         <Route path="/request-tour/:id" element={<RequestATour />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/confirm-payment/:id" element={<PaymentConfirmation />} />
       </Routes>
     </MantineProvider>
   );

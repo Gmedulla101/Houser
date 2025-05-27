@@ -52,7 +52,7 @@ const RequestATour = () => {
     try {
       setPaymentLoading(true);
       const { email } = userData;
-      const amount = (5 / 100) * property!.price * 100;
+      const amount = property!.price;
 
       const response = await axios.post(
         `${TEST_API}/payments/initialize-payment`,
