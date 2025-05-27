@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useGlobalContext } from '../context/userContext';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Property } from './PropertyPage';
 
 import { BASE_API_URL } from '../components/Featured';
+const TEST_API = import.meta.env.VITE_TEST_API;
 
 //IMPORTING HELPER COMPONENTS
 import Header from '../components/Header';
@@ -15,6 +17,8 @@ const RequestATour = () => {
   const propertyId = useParams().id;
   const [property, setProperty] = useState<Property>();
   const [isLoading, setIsLoading] = useState(true);
+  const [paymentLoading, setPaymentLoading] = useState(false);
+  const { userData } = useGlobalContext();
 
   useEffect(() => {
     //SCROLL TO TOP ON COMPONENT MOUNT
@@ -43,6 +47,23 @@ const RequestATour = () => {
 
     fetchData();
   }, []);
+
+  const makePayment = async () => {
+    try {
+      setPaymentLoading(true);
+      const { email } = userData;
+      const amount = (5 / 100) * property!.price * 100;
+
+      const response = await axios.post(
+        `${TEST_API}/payments/initialize-payment`,
+        { email, amount, propertyId }
+      );
+
+      const { authorization_url } = response.data;
+      setPaymentLoading(false);
+      window.location.href = authorization_url;
+    } catch (error) {}
+  };
 
   return (
     <>
@@ -91,8 +112,15 @@ const RequestATour = () => {
 
             <div>
               {' '}
-              <button className="block font-semibold text-center px-2 py-3 mt-8 mx-auto w-1/2 rounded-md bg-blue-600 text-white transition  hover:bg-gray-200 hover:text-blue-600 active:bg-blue-800 lg:px-6 lg:py-3">
-                Make payment
+              <button
+                onClick={makePayment}
+                className="block font-semibold text-center px-2 py-3 mt-8 mx-auto w-1/2 rounded-md bg-blue-600 text-white transition active:bg-blue-800 lg:px-6 lg:py-3"
+              >
+                {paymentLoading ? (
+                  <LoaderComponent size="30" margin="1" color="white" />
+                ) : (
+                  'Make payment'
+                )}
               </button>{' '}
             </div>
           </>
