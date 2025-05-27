@@ -46,7 +46,7 @@ const App = () => {
           element={<EmailConfirmation />}
         />
         <Route path="/google-success/token" element={<GoogleConfirmation />} />
-        <Route path="/request-tour" element={<RequestATour />} />
+        <Route path="/request-tour/:id" element={<RequestATour />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
     </MantineProvider>

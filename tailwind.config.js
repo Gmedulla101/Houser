@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-import daisyui from 'daisyui';
+
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
@@ -8,6 +8,9 @@ export default {
         xmd: '800px',
         xsm: '720px',
         xxsm: '500px',
+      },
+      boxShadow: {
+        perfect: '0 0 5px lightgray',
       },
     },
   },

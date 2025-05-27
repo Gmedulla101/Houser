@@ -1,8 +1,49 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { Property } from './PropertyPage';
+
+import { BASE_API_URL } from '../components/Featured';
+
 //IMPORTING HELPER COMPONENTS
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
+import hunting from '../assets/hunting.png';
+import LoaderComponent from '../components/LoaderComponent';
 const RequestATour = () => {
+  const propertyId = useParams().id;
+  const [property, setProperty] = useState<Property>();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    //SCROLL TO TOP ON COMPONENT MOUNT
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+
+    const fetchData = async () => {
+      try {
+        const data = await axios.get(
+          `${BASE_API_URL}/api/v1/properties/get-property/${propertyId}`
+        );
+        if (data) {
+          setProperty(data.data.data);
+          setIsLoading(false);
+        } else {
+          setProperty(undefined);
+          setIsLoading(false);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <Header />
@@ -11,47 +52,51 @@ const RequestATour = () => {
           Let's get your <span className="text-blue-600">house hunting</span>{' '}
           started!
         </h1>
-        <p className="mt-10">
+        <p className="mt-5">
           Finding properties and connecting to caretakers and landlords has
           never been easier or{' '}
           <span className="text-blue-600 font-semibold">cheaper!</span>
         </p>
 
-        <p className="mt-10">
+        <p className="mt-5">
           To keep <span className="text-blue-600 font-semibold">Houser</span>{' '}
           running, we require a fee to connect our users (You lovely people) to
           overseers of their desired property
         </p>
 
-        <div className="mt-10">
-          <table className="flex flex-col mx-auto w-[90%] border rounded-xl overflow-hidden">
-            <thead className="w-full p-2 bg-blue-600 text-white font-semibold text-lg">
-              <tr className="flex justify-between">
-                <td className="w-full text-center">Fee</td>
-                <td className="w-full text-center">Amount</td>
-              </tr>
-            </thead>
-            <tbody className="w-full font-semibold">
-              <tr className="flex justify-between">
-                <td className="w-full text-center border border-gray-500 rounded-bl-xl p-2">
+        {isLoading ? (
+          <LoaderComponent size="50px" />
+        ) : (
+          <>
+            <div className="mt-10 rounded-xl shadow-perfect p-4 flex items-center justify-between md:w-[70%] md:mx-auto">
+              <div className="flex items-center gap-1">
+                <span className="block h-10 w-10 rounded-xl">
                   {' '}
-                  Hunting permit{' '}
-                </td>
-                <td className="w-full text-center border border-gray-500 rounded-br-xl p-2">
-                  {' '}
-                  #5,000{' '}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+                  <img src={hunting} alt="" />{' '}
+                </span>
 
-        <div>
-          {' '}
-          <button className="block font-semibold text-center px-2 py-3 mt-8 mx-auto w-1/2 rounded-md bg-blue-600 text-white transition  hover:bg-gray-200 hover:text-blue-600 active:bg-blue-800 lg:px-6 lg:py-3">
-            Make payment
-          </button>{' '}
-        </div>
+                <h2 className="text-lg font-semibold">
+                  {' '}
+                  House hunting permit{' '}
+                </h2>
+              </div>
+
+              {property && (
+                <div className="font-semibold">
+                  {' '}
+                  #{((5 / 100) * property?.price).toLocaleString()}{' '}
+                </div>
+              )}
+            </div>
+
+            <div>
+              {' '}
+              <button className="block font-semibold text-center px-2 py-3 mt-8 mx-auto w-1/2 rounded-md bg-blue-600 text-white transition  hover:bg-gray-200 hover:text-blue-600 active:bg-blue-800 lg:px-6 lg:py-3">
+                Make payment
+              </button>{' '}
+            </div>
+          </>
+        )}
       </section>
       <Footer />
     </>

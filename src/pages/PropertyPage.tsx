@@ -20,18 +20,18 @@ import locationPointer from '../assets/location.png';
 
 import { BASE_API_URL } from '../components/Featured';
 
-const PropertyPage = () => {
-  type Property = {
-    imgUrl: any;
-    title: string;
-    desc: string;
-    bedrooms: number;
-    propertyType: string;
-    location: string;
-    price: number;
-    featured?: boolean;
-  };
+export type Property = {
+  imgUrl: any;
+  title: string;
+  desc: string;
+  bedrooms: number;
+  propertyType: string;
+  location: string;
+  price: number;
+  featured?: boolean;
+};
 
+const PropertyPage = () => {
   const propertyId = useParams().id;
   const [property, setProperty] = useState<Property>();
   const [isLoading, setIsLoading] = useState(true);
@@ -75,7 +75,7 @@ const PropertyPage = () => {
       setIsModal(true);
       return;
     } else {
-      navigate('/request-tour');
+      navigate(`/request-tour/${propertyId}`);
     }
   };
 
