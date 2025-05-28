@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 import { Property } from './PropertyPage';
 
 import { BASE_API_URL } from '../components/Featured';
-const TEST_API = import.meta.env.VITE_TEST_API;
 
 //IMPORTING HELPER COMPONENTS
 import Header from '../components/Header';
@@ -31,7 +30,7 @@ const RequestATour = () => {
     const fetchData = async () => {
       try {
         const data = await axios.get(
-          `${BASE_API_URL}/api/v1/properties/get-property/${propertyId}`
+          `${BASE_API_URL}/properties/get-property/${propertyId}`
         );
         if (data) {
           setProperty(data.data.data);
@@ -55,7 +54,7 @@ const RequestATour = () => {
       const amount = property!.price;
 
       const response = await axios.post(
-        `${TEST_API}/payments/initialize-payment`,
+        `${BASE_API_URL}/payments/initialize-payment`,
         { email, amount, propertyId }
       );
 

@@ -10,7 +10,7 @@ import LoaderComponent from '../components/LoaderComponent';
 
 import { User } from '../context/userContext';
 
-const TEST_API = import.meta.env.VITE_TEST_API;
+import { BASE_API_URL } from '../components/Featured';
 
 const PaymentConfirmation = () => {
   const [isPayVerified, setIsPayVerifed] = useState<boolean>(false);
@@ -30,7 +30,7 @@ const PaymentConfirmation = () => {
         setIsLoading(true);
 
         await axios.get(
-          `${TEST_API}/payments/verify-payment/${transactionRef}`
+          `${BASE_API_URL}/payments/verify-payment/${transactionRef}`
         );
 
         setIsLoading(false);
@@ -49,11 +49,14 @@ const PaymentConfirmation = () => {
     const getLandLordDetails = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(`${TEST_API}/user/get-user/${id}`, {
-          headers: {
-            Authorization: `Bearer ${userToken}`,
-          },
-        });
+        const response = await axios.get(
+          `${BASE_API_URL}/user/get-user/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${userToken}`,
+            },
+          }
+        );
 
         setLandLordDetails(response.data.data[0]);
         setIsLoading(false);

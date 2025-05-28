@@ -12,6 +12,7 @@ import LoaderComponent from '../components/LoaderComponent';
 import home from '../assets/home.png';
 import hidden from '../assets/hidden.png';
 import eye from '../assets/eye.png';
+import { BASE_API_URL } from '../components/Featured';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -56,15 +57,12 @@ const SignUp = () => {
     }
     try {
       setIsLoading(true);
-      const data = await axios.post(
-        'https://houser-backend.onrender.com/api/v1/auth/register-user',
-        {
-          email,
-          password,
-          username,
-          fullName,
-        }
-      );
+      const data = await axios.post(`${BASE_API_URL}/auth/register-user`, {
+        email,
+        password,
+        username,
+        fullName,
+      });
       const userToken = data.data.token;
       localStorage.setItem('user', JSON.stringify(userToken));
       localStorage.setItem(

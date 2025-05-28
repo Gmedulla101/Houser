@@ -57,7 +57,7 @@ const SignIn = () => {
     }
     try {
       setIsLoading(true);
-      const data = await axios.post(`${BASE_API_URL}/api/v1/auth/user-login`, {
+      const data = await axios.post(`${BASE_API_URL}/auth/user-login`, {
         email,
         password,
       });

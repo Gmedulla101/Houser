@@ -57,7 +57,7 @@ const useAuth = () => {
     const { email } = reset;
     try {
       dispatch(setLoader(true));
-      await axios.post(`${BASE_API_URL}/api/v1/auth/confirm-email`, { email });
+      await axios.post(`${BASE_API_URL}/auth/confirm-email`, { email });
       toast.success('Email confirmed!');
       dispatch(setLoader(false));
     } catch (error: any) {
@@ -79,7 +79,7 @@ const useAuth = () => {
 
       dispatch(setLoader(true));
 
-      await axios.post(`${BASE_API_URL}/api/v1/auth/reset-password`, {
+      await axios.post(`${BASE_API_URL}/auth/reset-password`, {
         email,
         code,
         password,

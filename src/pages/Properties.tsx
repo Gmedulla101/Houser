@@ -27,7 +27,7 @@ const Properties = () => {
     const fetchData = async () => {
       try {
         const data = await axios.get(
-          `${BASE_API_URL}/api/v1/properties/all-properties`
+          `${BASE_API_URL}/properties/all-properties`
         );
         if (data) {
           setProperties(data.data.data);

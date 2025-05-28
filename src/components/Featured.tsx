@@ -23,7 +23,7 @@ const Featured = () => {
     const getFeaturedPosts = async () => {
       try {
         const data = await axios.get(
-          `${BASE_API_URL}/api/v1/properties/featured-properties`
+          `${BASE_API_URL}/properties/featured-properties`
         );
         const limitedFeatures = data?.data?.data?.slice(0, 6);
         setFeaturedProps(limitedFeatures);

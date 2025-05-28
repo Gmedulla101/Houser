@@ -24,8 +24,6 @@ type UserDetails = {
   status?: string;
 };
 
-const TEST_API = import.meta.env.VITE_TEST_API;
-
 const Dashboard = () => {
   const { setIsSignedIn, isSignedIn, setUser, userToken } = useGlobalContext();
   const [userData, setUserData] = useState<UserDetails>();
@@ -49,7 +47,7 @@ const Dashboard = () => {
     const fetchUserData = async () => {
       try {
         setIsLoading(true);
-        const data = await axios.get(`${BASE_API_URL}/api/v1/user/getUser`, {
+        const data = await axios.get(`${BASE_API_URL}/user/getUser`, {
           headers: {
             Authorization: `Bearer ${userToken}`,
           },
@@ -66,7 +64,7 @@ const Dashboard = () => {
   }, []);
 
   const logout = async () => {
-    await axios.get(`${BASE_API_URL}/api/v1/auth/logout`);
+    await axios.get(`${BASE_API_URL}/auth/logout`);
     localStorage.removeItem('houser-user');
     localStorage.removeItem('userData');
     setIsSignedIn(false);
@@ -86,7 +84,7 @@ const Dashboard = () => {
   const handleEdit = async () => {
     try {
       await axios.patch(
-        `${TEST_API}/user/updateUser/${userData?._id}`,
+        `${BASE_API_URL}/user/updateUser/${userData?._id}`,
         { editData },
         {
           headers: {

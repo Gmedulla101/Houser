@@ -124,7 +124,7 @@ const CreatePost = () => {
         const token = JSON.parse(storedValue);
 
         await axios.post(
-          `${BASE_API_URL}/api/v1/properties/add-property`,
+          `${BASE_API_URL}/properties/add-property`,
           newPropDetails,
           {
             headers: {

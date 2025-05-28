@@ -44,7 +44,7 @@ const EmailConfirmation = () => {
       dispatch(setIsLoading(true));
 
       await axios.get(
-        `${BASE_API_URL}/api/v1/user/checkUser?${email ? `email=${email}` : ''}`
+        `${BASE_API_URL}/user/checkUser?${email ? `email=${email}` : ''}`
       );
 
       dispatch(setErrorMsg(''));

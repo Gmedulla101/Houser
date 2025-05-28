@@ -47,7 +47,7 @@ const PropertyPage = () => {
     const fetchData = async () => {
       try {
         const data = await axios.get(
-          `${BASE_API_URL}/api/v1/properties/get-property/${propertyId}`
+          `${BASE_API_URL}/properties/get-property/${propertyId}`
         );
         if (data) {
           setProperty(data.data.data);

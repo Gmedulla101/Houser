@@ -38,7 +38,7 @@ const Filter: React.FC<FilterProps> = ({ setFilteredData, setIsLoading }) => {
     const filterData = async () => {
       setIsLoading(true);
       const data = await axios.get(
-        `${BASE_API_URL}/api/v1/properties${currentLocation.pathname}?${
+        `${BASE_API_URL}/properties${currentLocation.pathname}?${
           filterObj.location ? `location=${filterObj.location}` : ''
         }&${
           filterObj.propertyType ? `propertyType=${filterObj.propertyType}` : ''
