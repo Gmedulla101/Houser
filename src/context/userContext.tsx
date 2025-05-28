@@ -9,6 +9,15 @@ interface AuthContextType {
   userData?: string;
 }
 
+export type User = {
+  email: string;
+  fullName: string;
+  updatedAt: string;
+  verified: boolean;
+  username: string;
+  phoneNumber: string;
+};
+
 export const GlobalContext = createContext<AuthContextType | null>(null);
 
 export const useGlobalContext = () => {

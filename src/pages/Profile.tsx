@@ -81,9 +81,11 @@ const Dashboard = () => {
             <>
               {/* USER INFO */}
               <div className="mt-8 px-8 lg:px-36">
-                <h1 className="font-bold text-2xl mb-12 lg:text-3xl">
+                <h1 className="font-bold text-2xl mb-10 lg:text-3xl">
                   Personal Information
                 </h1>
+
+                <p>Start typing to edit your information</p>
                 {/* FIRST NAME AND LAST NAME */}
                 <div className="flex flex-col gap-6 lg:flex-row">
                   <span className="flex flex-col gap-1 w-full">
@@ -169,35 +171,6 @@ const Dashboard = () => {
                       disabled
                       name="joinDate"
                       className="border-2 border-slate-400 h-12 rounded-md px-3 text-sm outline-none focus:border-2 focus:border-[#12362A]"
-                    />
-                  </span>
-                </div>
-
-                {/* COUNTRY AND CITY */}
-                <div className="flex flex-col gap-6 mt-8 lg:flex-row">
-                  <span className="flex flex-col gap-1 w-full">
-                    <label htmlFor="country" className="font-medium text-sm">
-                      Country
-                    </label>
-                    <input
-                      type="text"
-                      id="country"
-                      placeholder="User Country"
-                      name="country"
-                      className="border-2 border-slate-400 h-12 rounded-md px-3 text-sm"
-                    />
-                  </span>
-
-                  <span className="flex flex-col gap-1 w-full">
-                    <label htmlFor="city" className="font-medium text-sm">
-                      City
-                    </label>
-                    <input
-                      type="text"
-                      id="city"
-                      placeholder="User City"
-                      name="city"
-                      className="border-2 border-slate-400 h-12 rounded-md px-3 text-sm"
                     />
                   </span>
                 </div>

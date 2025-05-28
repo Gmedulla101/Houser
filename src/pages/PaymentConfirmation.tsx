@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useGlobalContext } from '../context/userContext';
 import { ToastContainer, toast } from 'react-toastify';
@@ -8,15 +8,17 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LoaderComponent from '../components/LoaderComponent';
 
+import { User } from '../context/userContext';
+
 const TEST_API = import.meta.env.VITE_TEST_API;
 
 const PaymentConfirmation = () => {
   const [isPayVerified, setIsPayVerifed] = useState<boolean>(false);
-  const [landlordDetails, setLandLordDetails] = useState();
+  const [landlordDetails, setLandLordDetails] = useState<User>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { id } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const transactionRef = searchParams.get('trxref');
 
@@ -45,13 +47,20 @@ const PaymentConfirmation = () => {
 
   useEffect(() => {
     const getLandLordDetails = async () => {
-      const response = await axios.get(`${TEST_API}/user/get-user/${id}`, {
-        headers: {
-          Authorization: `Bearer ${userToken}`,
-        },
-      });
+      try {
+        setIsLoading(true);
+        const response = await axios.get(`${TEST_API}/user/get-user/${id}`, {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        });
 
-      setLandLordDetails(response.data.data[0]);
+        setLandLordDetails(response.data.data[0]);
+        setIsLoading(false);
+      } catch (error: any) {
+        setIsLoading(false);
+        toast.error(error.message);
+      }
     };
 
     getLandLordDetails();
@@ -67,14 +76,56 @@ const PaymentConfirmation = () => {
             {' '}
             Confirmation of payment{' '}
           </h1>
-          <p>
+          <p className="text-center">
             {' '}
             We will confirm your payment and grant you access to the details of
             the Caretaker/Landlord{' '}
           </p>
         </section>
 
-        <section></section>
+        <section>
+          {isLoading ? (
+            <LoaderComponent />
+          ) : (
+            <>
+              <div className="mt-10 shadow-perfect rounded-xl p-4 mx-auto md:w-[80%] lg:w-[70%] text-sm">
+                <h1 className="text-center border border-blue-500 w-20 rounded-xl mx-auto text-blue-500 bg-blue-200 font-semibold">
+                  {' '}
+                  {landlordDetails?.verified ? 'verified' : 'unverified'}{' '}
+                </h1>
+
+                <span className="flex justify-between  p-2">
+                  {' '}
+                  <h2 className="w-40">Landlord name:</h2>{' '}
+                  <p className="font-semibold"> {landlordDetails?.fullName} </p>{' '}
+                </span>
+
+                <span className="flex justify-between  p-2">
+                  {' '}
+                  <h2 className="w-56">Landlord username:</h2>{' '}
+                  <p className="font-semibold"> {landlordDetails?.username} </p>{' '}
+                </span>
+
+                <span className="flex justify-between  p-2">
+                  {' '}
+                  <h2 className="w-56">Landlord email:</h2>{' '}
+                  <p className="font-semibold"> {landlordDetails?.email} </p>{' '}
+                </span>
+
+                <span className="flex justify-between  p-2">
+                  {' '}
+                  <h2 className="w-40">Landlord Phone Number:</h2>{' '}
+                  <p className="font-semibold">
+                    {' '}
+                    {landlordDetails?.phoneNumber
+                      ? landlordDetails.phoneNumber
+                      : 'No number added'}{' '}
+                  </p>{' '}
+                </span>
+              </div>
+            </>
+          )}
+        </section>
       </main>
 
       <Footer />
