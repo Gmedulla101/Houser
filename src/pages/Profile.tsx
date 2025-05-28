@@ -24,10 +24,21 @@ type UserDetails = {
   status?: string;
 };
 
+const TEST_API = import.meta.env.VITE_TEST_API;
+
 const Dashboard = () => {
   const { setIsSignedIn, isSignedIn, setUser, userToken } = useGlobalContext();
   const [userData, setUserData] = useState<UserDetails>();
   const [isLoading, setIsLoading] = useState(false);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [editData, setEditData] = useState({
+    fullName: '',
+    email: '',
+    username: '',
+    phoneNumber: '',
+  });
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo({
@@ -54,8 +65,6 @@ const Dashboard = () => {
     fetchUserData();
   }, []);
 
-  const navigate = useNavigate();
-
   const logout = async () => {
     await axios.get(`${BASE_API_URL}/api/v1/auth/logout`);
     localStorage.removeItem('houser-user');
@@ -63,6 +72,32 @@ const Dashboard = () => {
     setIsSignedIn(false);
     setUser(null);
     navigate('/');
+  };
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setIsEditing(true);
+
+    setEditData((prev) => {
+      return { ...prev, [name]: value };
+    });
+  };
+
+  const handleEdit = async () => {
+    try {
+      await axios.patch(
+        `${TEST_API}/user/updateUser/${userData?._id}`,
+        { editData },
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        }
+      );
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -81,41 +116,55 @@ const Dashboard = () => {
             <>
               {/* USER INFO */}
               <div className="mt-8 px-8 lg:px-36">
-                <h1 className="font-bold text-2xl mb-10 lg:text-3xl">
-                  Personal Information
-                </h1>
+                <div className="mb-5">
+                  <h1 className="font-bold text-2xl lg:text-3xl">
+                    Personal Information
+                  </h1>
+                  <span className="flex items-center justify-between mt-5">
+                    <p className="font-medium text-sm text-gray-500">
+                      Start typing to edit your information
+                    </p>
+                    {isEditing ? (
+                      <button
+                        onClick={handleEdit}
+                        className="block text-sm text-center px-2 py-3 w-20  rounded-md bg-blue-600 text-white hover:scale-110 transition active:bg-blue-800 lg:px-6 lg:py-3"
+                      >
+                        Edit
+                      </button>
+                    ) : (
+                      ''
+                    )}
+                  </span>
+                </div>
 
-                <p>Start typing to edit your information</p>
-                {/* FIRST NAME AND LAST NAME */}
+                {/* FIRST NAME AND USERNAME */}
                 <div className="flex flex-col gap-6 lg:flex-row">
                   <span className="flex flex-col gap-1 w-full">
-                    <label htmlFor="firstName" className="font-medium text-sm">
+                    <label htmlFor="fullName" className="font-medium text-sm">
                       {' '}
-                      First Name{' '}
+                      Full Name{' '}
                     </label>
                     <input
                       type="text"
-                      id="firstName"
-                      placeholder={
-                        userData?.fullName?.split(' ')[0] || userData?.firstName
-                      }
-                      name="firstName"
+                      id="fullName"
+                      placeholder={userData?.fullName}
+                      name="fullName"
+                      onChange={handleChange}
                       className="border-2 border-slate-400 h-12 rounded-md px-3 text-sm outline-none focus:border-2 focus:border-[#12362A]"
                     />
                   </span>
 
                   <span className="flex flex-col gap-1 w-full">
-                    <label htmlFor="firstName" className="font-medium text-sm">
+                    <label htmlFor="username" className="font-medium text-sm">
                       {' '}
-                      Last Name{' '}
+                      Username{' '}
                     </label>
                     <input
                       type="text"
-                      id="lastName"
-                      placeholder={
-                        userData?.fullName?.split(' ')[1] || userData?.lastName
-                      }
-                      name="lastName"
+                      id="username"
+                      placeholder={userData?.username}
+                      name="username"
+                      onChange={handleChange}
                       className="border-2 border-slate-400 h-12 rounded-md px-3 text-sm outline-none focus:border-2 focus:border-[#12362A]"
                     />
                   </span>
@@ -132,6 +181,7 @@ const Dashboard = () => {
                       id="email"
                       placeholder={`${userData?.email}`}
                       name="email"
+                      onChange={handleChange}
                       className="border-2 border-slate-400 h-12 rounded-md px-3 text-sm outline-none focus:border-2 focus:border-[#12362A]"
                     />
                   </span>
@@ -147,10 +197,12 @@ const Dashboard = () => {
                       type="number"
                       id="phonerNumber"
                       placeholder={`${
-                        Number(userData?.phoneNumber) ||
-                        'Please add your phone number'
+                        userData?.phoneNumber
+                          ? `+234${userData?.phoneNumber}`
+                          : 'Please add your phone number'
                       }`}
                       name="phoneNumber"
+                      onChange={handleChange}
                       className="border-2 border-slate-400 h-12 rounded-md px-3 text-sm outline-none focus:border-2 focus:border-[#12362A]"
                     />
                   </span>
