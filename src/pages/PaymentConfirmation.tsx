@@ -49,14 +49,11 @@ const PaymentConfirmation = () => {
     const getLandLordDetails = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(
-          `${BASE_API_URL}/user/get-user/${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${userToken}`,
-            },
-          }
-        );
+        const response = await axios.get(`${BASE_API_URL}/user/getUser/${id}`, {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        });
 
         setLandLordDetails(response.data.data[0]);
         setIsLoading(false);

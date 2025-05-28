@@ -49,6 +49,7 @@ const PropertyPage = () => {
         const data = await axios.get(
           `${BASE_API_URL}/properties/get-property/${propertyId}`
         );
+
         if (data) {
           setProperty(data.data.data);
           setIsLoading(false);

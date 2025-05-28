@@ -25,7 +25,13 @@ type UserDetails = {
 };
 
 const Dashboard = () => {
-  const { setIsSignedIn, isSignedIn, setUser, userToken } = useGlobalContext();
+  const {
+    setIsSignedIn,
+    isSignedIn,
+    setUser,
+    userToken,
+    userData: userDetails,
+  } = useGlobalContext();
   const [userData, setUserData] = useState<UserDetails>();
   const [isLoading, setIsLoading] = useState(false);
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -47,11 +53,14 @@ const Dashboard = () => {
     const fetchUserData = async () => {
       try {
         setIsLoading(true);
-        const data = await axios.get(`${BASE_API_URL}/user/getUser`, {
-          headers: {
-            Authorization: `Bearer ${userToken}`,
-          },
-        });
+        const data = await axios.get(
+          `${BASE_API_URL}/user/getUser/${userDetails?.id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${userToken}`,
+            },
+          }
+        );
         setUserData(data.data.data[0]);
         setIsLoading(false);
       } catch (error) {
@@ -62,6 +71,8 @@ const Dashboard = () => {
 
     fetchUserData();
   }, []);
+
+  console.log(userData);
 
   const logout = async () => {
     await axios.get(`${BASE_API_URL}/auth/logout`);
