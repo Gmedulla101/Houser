@@ -84,6 +84,7 @@ const Dashboard = () => {
 
   const handleEdit = async () => {
     try {
+      setIsLoading(true);
       await axios.patch(
         `${BASE_API_URL}/user/updateUser/${userData?._id}`,
         { editData },
@@ -93,8 +94,11 @@ const Dashboard = () => {
           },
         }
       );
+
       window.location.reload();
+      setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       console.log(error);
     }
   };
