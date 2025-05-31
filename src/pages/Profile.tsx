@@ -94,9 +94,8 @@ const Dashboard = () => {
           },
         }
       );
-
-      window.location.reload();
       setIsLoading(false);
+      window.location.reload();
     } catch (error) {
       setIsLoading(false);
       console.log(error);
