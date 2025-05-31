@@ -28,9 +28,11 @@ export const useGlobalContext = () => {
 
 const AppContext = ({ children }: any) => {
   const storedTokenValue: any = localStorage.getItem('houser-user');
+
   if (!storedTokenValue) {
     console.warn('No token present');
   }
+
   const userToken = JSON.parse(storedTokenValue);
 
   const storedUserData: any = localStorage.getItem('userData');

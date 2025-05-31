@@ -61,7 +61,9 @@ const RequestATour = () => {
       const { authorization_url } = response.data;
       setPaymentLoading(false);
       window.location.href = authorization_url;
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

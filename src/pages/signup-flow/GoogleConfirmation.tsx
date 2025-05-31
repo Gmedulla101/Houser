@@ -11,7 +11,8 @@ import { Link } from 'react-router-dom';
 
 const GoogleConfirmation = () => {
   const [searchParams] = useSearchParams();
-  const token: any = searchParams.get('token');
+  const token = searchParams.get('token');
+  const email = searchParams.get('email');
 
   const { setIsSignedIn } = useGlobalContext();
   useEffect(() => {
@@ -19,6 +20,12 @@ const GoogleConfirmation = () => {
       throw new Error('Auth failure: Token is not present');
     }
     localStorage.setItem('houser-user', JSON.stringify(token));
+    localStorage.setItem(
+      'userData',
+      JSON.stringify({
+        email,
+      })
+    );
 
     setIsSignedIn(true);
   }, []);
