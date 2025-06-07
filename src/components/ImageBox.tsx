@@ -16,14 +16,14 @@ const ImageBox: React.FC<ImageBoxProps> = ({
   width,
   height,
   index,
-  img,
 }) => {
   const [displayImage, setDisplayImage] = useState<any>();
 
   const setImage = (e: any) => {
     const { files } = e.target;
     setImg((prevImg: any) => {
-      return [...prevImg, files[0]];
+      prevImg[index] = files[0];
+      return prevImg;
     });
     setDisplayImage(URL.createObjectURL(files[0]));
   };
@@ -57,7 +57,10 @@ const ImageBox: React.FC<ImageBoxProps> = ({
           <button
             onClick={() => {
               setDisplayImage(undefined);
-              setImg(img.splice(index, 1));
+              setImg((prevImg: any) => {
+                prevImg[index] = '';
+                return prevImg;
+              });
             }}
             className="bg-gray-300 rounded-full py-1 px-4 mt-3 opacity-60 flex items-center"
           >

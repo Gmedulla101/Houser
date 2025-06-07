@@ -8,6 +8,7 @@ import ImageBox from '../components/ImageBox';
 
 //OTHER DEPS
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 //UI COMPONENTS
@@ -32,8 +33,7 @@ import { BASE_API_URL } from '../components/Featured';
 //MAIN COMPONENT BODY
 const CreatePost = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [errorMsg, setErrorMsg] = useState();
-  const [img, setImg] = useState<any>([]);
+  const [img, setImg] = useState<any>(['', '', '', '', '']);
   const [moreImages, setMoreImages] = useState<boolean>(false);
 
   const navigate = useNavigate();
@@ -72,8 +72,11 @@ const CreatePost = () => {
               imageObject
             );
             return data.url;
+          } else {
+            throw new Error("A post can't be created without pictures");
           }
         } catch (error) {
+          setIsLoading(false);
           console.error(error);
         }
 
@@ -109,7 +112,7 @@ const CreatePost = () => {
     } catch (error: any) {
       console.error(error);
       setIsLoading(false);
-      setErrorMsg(error.response.data.msg);
+      toast.error(error.response.data.msg);
     }
   };
 
@@ -133,8 +136,8 @@ const CreatePost = () => {
           }
         );
         navigate('/my-properties');
-      } catch (error) {
-        console.error(error);
+      } catch (error: any) {
+        toast.error(error.message);
       }
     };
     if (newPropDetails.imgUrl && newPropDetails.imgUrl.length > 0) {
@@ -150,15 +153,16 @@ const CreatePost = () => {
         <Loader size={'100'} />
       ) : (
         <section className="mt-24 xl:mt-28 md:p-0 px-4 xmd:px-12">
+          <ToastContainer />
           <h1 className="text-3xl font-semibold pb-5 lg:text-4xl xl:text-6xl">
             Be part of the housing experience.
           </h1>
           <section className="createInputs my-10">
-            <div className="mx-auto lg:justify-center lg:w-[80%]">
+            <div className="flex mx-auto justify-center lg:w-[80%]">
               <ImageBox
                 setImg={setImg}
-                width="w-full"
-                height="h-96"
+                width="w-80"
+                height="h-60"
                 index={0}
                 img={img}
               />
@@ -207,16 +211,6 @@ const CreatePost = () => {
               </div>
             )}
 
-            <div className="errorPopup">
-              {' '}
-              {errorMsg ? (
-                <p className="border-2 border-red-400 bg-red-300 text-white text-center font-semibold px-4 py-2 mb-2 rounded-lg transtion mt-8">
-                  {errorMsg}
-                </p>
-              ) : (
-                ''
-              )}
-            </div>
             <div className="text-inputs flex flex-col gap-2 my-8">
               <input
                 type="text"
